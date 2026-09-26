@@ -1,0 +1,21 @@
+{
+  "_help": "ผู้เขียนที่ใช้ดึงรายการตีพิมพ์ (npm run pubs) | openalex = รหัสผู้เขียนใน OpenAlex, ว่างไว้ถ้ายังหาไม่เจอ | surname = นามสกุลที่ใช้ทำตัวหนาในรายชื่อผู้แต่ง (สำนักพิมพ์สะกดชื่อต้นต่างกันได้ เช่น S. Srivaranun)",
+  "authors": [
+    {
+      "name": "Supasit Srivaranun",
+      "openalex": "A5045890033",
+      "surname": "Srivaranun"
+    },
+    {
+      "name": "Kittipos Prapassorn",
+      "openalex": "",
+      "surname": "Prapassorn"
+    }
+  ],
+  "excludeTypes": [
+    "preprint",
+    "dissertation",
+    "posted-content",
+    "peer-review"
+  ]
+}

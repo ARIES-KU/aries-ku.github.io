@@ -1,0 +1,284 @@
+[
+ {
+  "title": "Generic 3D conceptual stress-strain model for concrete confined with fiber reinforcement polymers",
+  "year": 2025,
+  "venue": "Developments in the Built Environment",
+  "doi": "https://doi.org/10.1016/j.dibe.2025.100749",
+  "authors": [
+   "Supasit Srivaranun",
+   "Tidarut Jirawattanasomkul",
+   "Nattamet Wuttiwannasak",
+   "Atichon Kunawisarut",
+   "Haruna Minakawa",
+   "Pitcha Jongvivatsakul",
+   "Suched Likitlersuang",
+   "Tamon Ueda"
+  ],
+  "type": "article",
+  "cited": 2
+ },
+ {
+  "title": "Digital twin-based structural health monitoring and measurements of dynamic characteristics in balanced cantilever bridge",
+  "year": 2025,
+  "venue": "Resilient Cities and Structures",
+  "doi": "https://doi.org/10.1016/j.rcns.2025.08.001",
+  "authors": [
+   "Tidarut Jirawattanasomkul",
+   "Hang T. T. Le",
+   "Supasit Srivaranun",
+   "Suched Likitlersuang",
+   "Pitcha Jongvivatsakul",
+   "Wanchai Yodsudjai",
+   "Punchet Thammarak"
+  ],
+  "type": "article",
+  "cited": 19
+ },
+ {
+  "title": "Evaluating natural and synthetic fibers in strengthening concrete column specimens with varying corner radii and aspect ratios",
+  "year": 2025,
+  "venue": "Journal of Building Engineering",
+  "doi": "https://doi.org/10.1016/j.jobe.2025.112095",
+  "authors": [
+   "Shahzad Saleem",
+   "Owaisur Rahman Shah",
+   "Tidarut Jirawattanasomkul",
+   "Dawei Zhang",
+   "Amorn Pimanmas",
+   "Atichon Kunawisarut",
+   "Supasit Srivaranun"
+  ],
+  "type": "article",
+  "cited": 10
+ },
+ {
+  "title": "UAV-Enhanced Analysis of Fatigue-Induced Damage in RC Bridge Girders Using Nonlinear Finite Element Methods",
+  "year": 2025,
+  "venue": "Report",
+  "doi": "https://doi.org/10.2749/tokyo.2025.1112",
+  "authors": [
+   "Veerawat Nilprapan",
+   "Tidarut Jirawattanasomkul",
+   "Weeradetch Tanapalungkorn",
+   "Suched Likitlersuang",
+   "Supasit Srivaranun"
+  ],
+  "type": "conference-paper",
+  "cited": 0
+ },
+ {
+  "title": "Generic 3d Conceptual Stress-Strain Model for Concrete Confined with Fiber Reinforcement Polymers",
+  "year": 2025,
+  "venue": "SSRN Electronic Journal",
+  "doi": "https://doi.org/10.2139/ssrn.5347495",
+  "authors": [
+   "Supasit Srivaranun",
+   "Tidarut Jirawattanasomkul",
+   "Nattamet Wuttiwannasak",
+   "Atichon Kunawisarut",
+   "Haruna Minakawa",
+   "Pitcha Jongvivatsakul",
+   "Suched Likitlersuang",
+   "Tamon Ueda"
+  ],
+  "type": "preprint",
+  "cited": 0
+ },
+ {
+  "title": "Investigation of corrosion-induced cracks using corrosion products quantified by an X-ray technique and FE analysis of single- and multiple-rebar beams",
+  "year": 2024,
+  "venue": "Cement and Concrete Composites",
+  "doi": "https://doi.org/10.1016/j.cemconcomp.2024.105565",
+  "authors": [
+   "Zhejun Xu",
+   "Mitsuyoshi Akiyama",
+   "Sopokhem Lim",
+   "Supasit Srivaranun",
+   "Dan M. Frangopol",
+   "Shinichi MIYAZATO",
+   "Ao Li"
+  ],
+  "type": "article",
+  "cited": 23
+ },
+ {
+  "title": "Field investigation and numerical analysis of horizontal cracking in ledge girders of post-tension concrete bridges",
+  "year": 2024,
+  "venue": "Engineering Structures",
+  "doi": "https://doi.org/10.1016/j.engstruct.2024.117866",
+  "authors": [
+   "Supasit Srivaranun",
+   "Thara Tannawee",
+   "Tidarut Jirawattanasomkul",
+   "Pitcha Jongvivatsakul",
+   "Yasuhiko Sato",
+   "Suched Likitlersuang"
+  ],
+  "type": "article",
+  "cited": 7
+ },
+ {
+  "title": "Cyclic performance of non‐ductile reinforced concrete columns retrofitted by partial steel plate jacketing: Experiment and numerical analysis",
+  "year": 2024,
+  "venue": "Structural Concrete",
+  "doi": "https://doi.org/10.1002/suco.202300326",
+  "authors": [
+   "Ekkachai Yooprasertchai",
+   "Pragasit Juntanalikit",
+   "Tidarut Jirawattanasomkul",
+   "Supasit Srivaranun",
+   "Amorn Pimanmas"
+  ],
+  "type": "article",
+  "cited": 10
+ },
+ {
+  "title": "Effects of spatial corrosion distribution and prestressing levels on the structural performance of deteriorated PC beams",
+  "year": 2024,
+  "venue": "Construction and Building Materials",
+  "doi": "https://doi.org/10.1016/j.conbuildmat.2024.135650",
+  "authors": [
+   "Taotao Wu",
+   "Mitsuyoshi Akiyama",
+   "Sopokhem Lim",
+   "Lei Wu",
+   "Zhejun Xu",
+   "Supasit Srivaranun",
+   "Dan M. Frangopol",
+   "Weizhen Chen"
+  ],
+  "type": "article",
+  "cited": 17
+ },
+ {
+  "title": "A novel combined experimental-machine learning approach to estimate the probabilistic capacity of RC beams with spatially correlated rebar corrosion in transverse and longitudinal directions",
+  "year": 2023,
+  "venue": "Engineering Structures",
+  "doi": "https://doi.org/10.1016/j.engstruct.2023.115588",
+  "authors": [
+   "Supasit Srivaranun",
+   "Mitsuyoshi Akiyama",
+   "Taiki Yamada",
+   "Dan M. Frangopol",
+   "Jiyu Xin"
+  ],
+  "type": "article",
+  "cited": 25
+ },
+ {
+  "title": "Stochastic Simulation of Spatial Steel Corrosion for Performance Assessment of Aging RC Structures",
+  "year": 2022,
+  "venue": "Institutional Repositories DataBase (IRDB)",
+  "doi": null,
+  "authors": [
+   "スパシット スリヴァラヌン",
+   "Supasit Srivaranun"
+  ],
+  "type": "dissertation",
+  "cited": 0
+ },
+ {
+  "title": "Random field-based reliability updating framework for existing RC structures incorporating the effect of spatial steel corrosion distribution",
+  "year": 2021,
+  "venue": "Structure and Infrastructure Engineering",
+  "doi": "https://doi.org/10.1080/15732479.2021.1995445",
+  "authors": [
+   "Supasit Srivaranun",
+   "Mitsuyoshi Akiyama",
+   "Keisuke Masuda",
+   "Dan M. Frangopol",
+   "Osamu Maruyama"
+  ],
+  "type": "article",
+  "cited": 41
+ },
+ {
+  "title": "Effect of the interaction of corrosion pits among multiple tensile rebars on the reliability of RC structures: Experimental and numerical investigation",
+  "year": 2021,
+  "venue": "Structural Safety",
+  "doi": "https://doi.org/10.1016/j.strusafe.2021.102115",
+  "authors": [
+   "Supasit Srivaranun",
+   "Mitsuyoshi Akiyama",
+   "Paolo Bocchini",
+   "Vasileios Christou",
+   "Dan M. Frangopol",
+   "Hiroyuki Fukushima",
+   "Keisuke Masuda"
+  ],
+  "type": "article",
+  "cited": 50
+ },
+ {
+  "title": "Application of observational data in reliability estimation of aging RC bridge structures considering spatial steel corrosion distribution",
+  "year": 2021,
+  "venue": null,
+  "doi": "https://doi.org/10.1201/9780429279119-141",
+  "authors": [
+   "Supasit Srivaranun",
+   "Keisuke Masuda",
+   "Sopokhem Lim",
+   "Mitsuyoshi Akiyama",
+   "Dan M. Frangopol",
+   "Osamu Maruyama"
+  ],
+  "type": "book-chapter",
+  "cited": 0
+ },
+ {
+  "title": "Life-cycle reliability estimation of deteriorating RC structures by stochastic interpolation of spatial random fields",
+  "year": 2021,
+  "venue": null,
+  "doi": "https://doi.org/10.1201/9780429343292-12",
+  "authors": [
+   "Supasit Srivaranun",
+   "Keisuke Masuda",
+   "Mitsuyoshi Akiyama",
+   "Dan M. Frangopol",
+   "Osamu Maruyama"
+  ],
+  "type": "book-chapter",
+  "cited": 0
+ },
+ {
+  "title": "Updating the Reliability of Existing RC Structures in a Marine Environment Incorporating Spatial Variations",
+  "year": 2020,
+  "venue": "Lecture notes in civil engineering",
+  "doi": "https://doi.org/10.1007/978-981-15-8079-6_120",
+  "authors": [
+   "Keisuke Masuda",
+   "Supasit Srivaranun",
+   "Mitsuyoshi Akiyama"
+  ],
+  "type": "conference-paper",
+  "cited": 0
+ },
+ {
+  "title": "Life-cycle reliability-based design and reliability updating of reinforced concrete shield tunnels in coastal regions",
+  "year": 2019,
+  "venue": "Structure and Infrastructure Engineering",
+  "doi": "https://doi.org/10.1080/15732479.2019.1674343",
+  "authors": [
+   "Zheng-Shu He",
+   "Supasit Srivaranun",
+   "Mitsuyoshi Akiyama",
+   "Dan M. Frangopol"
+  ],
+  "type": "article",
+  "cited": 30
+ },
+ {
+  "title": "Time-dependent structural performance analysis of RC slab exposed to chloride attack by incorporating spatial variability",
+  "year": 2019,
+  "venue": "Seoul National University Open Repository (Seoul National University)",
+  "doi": "https://doi.org/10.22725/icasp13.273",
+  "authors": [
+   "Supasit Srivaranun",
+   "Keisuke Masuda",
+   "Mitsuyoshi Akiyama",
+   "Dan M. Frangopol"
+  ],
+  "type": "conference-paper",
+  "cited": 1
+ }
+]

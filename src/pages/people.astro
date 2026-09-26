@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import { faculty, roster, groups, alumni, supportedBy, updated, rosterIsEmpty } from '../lib/people';
+
+const updatedText = new Date(updated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const filled = roster.filter((g) => g.members.length > 0);
+---
+<Base title="People" description="Faculty, researchers and students of the ARIES Center, Department of Civil Engineering, Kasetsart University." page="people">
+  <section class="page inner">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">People</span>
+        <h1>Members</h1>
+      </div>
+
+      <section class="block" style="margin-top:32px">
+        <div class="sec-head" style="margin-bottom:16px"><h2>Faculty</h2></div>
+        <div class="cards3">
+          {faculty.map((f) => (
+            <article class="person">
+              <div class="avatar">{f.initials}</div>
+              <div><h3>{f.name}</h3><p class="role">{f.role}</p></div>
+              <p class="aff">{f.about}</p>
+              <div class="links">{f.links.map((l) => <a href={l.href} rel={l.href.startsWith('http') ? 'noopener' : undefined}>{l.label}</a>)}</div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="sec-head" style="margin-bottom:12px">
+          <h2>Researchers and Students</h2>
+          <p class="muted">English names as each member spells them in their own documents.</p>
+        </div>
+        <div class="roster">
+          {rosterIsEmpty
+            ? <p class="muted" style="padding:16px 0">Researcher and student profiles appear here once each person has confirmed.</p>
+            : filled.map((g) => (
+              <Fragment>
+                <div class="sub">{g.label}</div>
+                <ul class="members">
+                  {g.members.map((m) => (
+                    <li class={m.pending ? 'pending' : undefined}>
+                      <div>
+                        <div class="n">{m.name} <span class="th-name" lang="th">{m.name_th}</span>{m.pending && <span class="pend">not public yet</span>}</div>
+                        <div class="t">{m.topic}</div>
+                      </div>
+                      <span class="grp-tag">{groups[m.group].short}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Fragment>
+            ))}
+        </div>
+      </section>
+
+      <section class="block">
+        <details class="alumni">
+          <summary>Alumni</summary>
+          {alumni.length
+            ? <ul class="members" style="padding:0 20px 12px">{alumni.map((a) => <li><div><div class="n">{a.name}</div><div class="t">{a.note}</div></div><span class="grp-tag">{a.year}</span></li>)}</ul>
+            : <p class="muted">The center's first cohort is still in progress. Graduates will be listed here by year of graduation.</p>}
+        </details>
+      </section>
+
+      {supportedBy.permission && (
+        <section class="block">
+          <div class="sec-head" style="margin-bottom:8px">
+            <h2>Supported by</h2>
+            <p class="muted" style="max-width:66ch">{supportedBy.text}</p>
+          </div>
+        </section>
+      )}
+
+      <p class="updated">Last updated: {updatedText}</p>
+    </div>
+  </section>
+</Base>

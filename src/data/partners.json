@@ -1,0 +1,20 @@
+{
+  "_help": "logoApproved = หน่วยงานอนุญาตให้ใช้โลโก้แล้ว ถ้า false หน้าเว็บแสดงเป็นชื่อตัวหนังสือแทนโลโก้ | size: sq = ตรากลม/สี่เหลี่ยม, wide = โลโก้แนวนอน, word = ตัวหนังสือล้วน | แหล่งไฟล์และสัญญาอนุญาต: ดู SOURCES ใน Research Empire",
+  "gov": [
+    { "file": "logo-doh.png",  "en": "Department of Highways",                        "th": "กรมทางหลวง",                           "size": "sq",   "logoApproved": false },
+    { "file": "logo-drr.png",  "en": "Department of Rural Roads",                     "th": "กรมทางหลวงชนบท",                        "size": "sq",   "logoApproved": false },
+    { "file": "logo-exat.png", "en": "Expressway Authority of Thailand",              "th": "การทางพิเศษแห่งประเทศไทย",                 "size": "sq",   "logoApproved": false },
+    { "file": "logo-egat.png", "en": "Electricity Generating Authority of Thailand",  "th": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",             "size": "sq",   "logoApproved": false },
+    { "file": "logo-boi.png",  "en": "Thailand Board of Investment",                  "th": "สำนักงานคณะกรรมการส่งเสริมการลงทุน",           "size": "wide", "logoApproved": false }
+  ],
+  "intl": [
+    { "file": "logo-waseda.png",  "en": "Waseda University",                       "th": "Waseda University",                       "size": "wide", "logoApproved": false },
+    { "file": "logo-itb.png",     "en": "Institut Teknologi Bandung",              "th": "Institut Teknologi Bandung",              "size": "wide", "logoApproved": false, "fairUse": true },
+    { "file": "logo-lehigh.png",  "en": "Lehigh University",                       "th": "Lehigh University",                       "size": "wide", "logoApproved": false },
+    { "file": "logo-szu.png",     "en": "Shenzhen University",                     "th": "Shenzhen University",                     "size": "sq",   "logoApproved": false, "fairUse": true },
+    { "file": "logo-hit.png",     "en": "Harbin Institute of Technology",          "th": "Harbin Institute of Technology",          "size": "sq",   "logoApproved": false, "fairUse": true },
+    { "file": "logo-satreps.png", "en": "SATREPS",                                 "th": "SATREPS",                                 "size": "word", "logoApproved": false },
+    { "file": "logo-jica.png",    "en": "Japan International Cooperation Agency",  "th": "JICA",                                    "size": "sq",   "logoApproved": false },
+    { "file": "logo-jst.png",     "en": "Japan Science and Technology Agency",     "th": "Japan Science and Technology Agency",     "size": "wide", "logoApproved": false }
+  ]
+}

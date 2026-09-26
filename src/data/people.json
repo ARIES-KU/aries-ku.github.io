@@ -1,0 +1,100 @@
+{
+  "_help": "แก้รายชื่อที่นี่ที่เดียว หน้า People และกริดทีมหน้าแรกอ่านจากไฟล์นี้ | ไฟล์นี้ขึ้น GitHub: ใส่เฉพาะคนที่ยินยอมแล้ว (consent: true) คนที่ยังไม่ยินยอมอยู่ใน people.pending.json ซึ่งอยู่แค่ในเครื่อง",
+  "updated": "2026-09-26",
+  "groups": {
+    "dt": {
+      "short": "Structural Assessment & Digital Twin",
+      "long": "Structural Assessment and Digital Twin"
+    },
+    "geo": {
+      "short": "Geospatial & Field Operations",
+      "long": "Geospatial and Field Operations"
+    }
+  },
+  "faculty": [
+    {
+      "initials": "SS",
+      "name": "Asst. Prof. Dr. Supasit Srivaranun",
+      "name_th": "ผศ.ดร.ศุภศิษฏ์ ศรีวรานันท์",
+      "role": "Director · Head, Structural Assessment and Digital Twin",
+      "role_th": "หัวหน้าศูนย์ · หัวหน้ากลุ่ม Structural Assessment and Digital Twin",
+      "about": "Department of Civil Engineering, Kasetsart University. Structural reliability, spatial corrosion, digital twins for bridge assessment.",
+      "links": [
+        {
+          "label": "OpenAlex",
+          "href": "https://openalex.org/A5045890033"
+        },
+        {
+          "label": "Publications",
+          "href": "/publications/"
+        }
+      ],
+      "consent": true
+    },
+    {
+      "initials": "KP",
+      "name": "Asst. Prof. Kittipos Prapassorn",
+      "name_th": "ผศ.กิตติพศ ประภัศร",
+      "role": "Co-founder · Head, Geospatial and Field Operations",
+      "role_th": "ผู้ร่วมก่อตั้ง · หัวหน้ากลุ่ม Geospatial and Field Operations",
+      "about": "Department of Civil Engineering, Kasetsart University. UAV, LiDAR, InSAR and field survey.",
+      "links": [
+        {
+          "label": "KU profile",
+          "href": "https://en.eng.ku.ac.th/?professor=kittipos-prapassorn"
+        }
+      ],
+      "consent": false
+    },
+    {
+      "initials": "SM",
+      "name": "Assoc. Prof. Dr. Suphawut Malaikrisanachalee",
+      "name_th": "รศ.ดร.ศุภวุฒิ มาลัยกฤษณะชลี",
+      "role": "Senior Advisor",
+      "role_th": "ที่ปรึกษาอาวุโส · หัวหน้าภาควิชาวิศวกรรมโยธา",
+      "about": "Head of the Department of Civil Engineering, Kasetsart University. Policy direction and alignment with department and faculty strategy.",
+      "links": [
+        {
+          "label": "KU profile",
+          "href": "https://en.eng.ku.ac.th/?professor=suphawut-malaikrisanachalee"
+        },
+        {
+          "label": "ORCID",
+          "href": "https://orcid.org/0000-0001-9031-457X"
+        }
+      ],
+      "consent": false
+    }
+  ],
+  "roster": [
+    {
+      "label": "Ph.D.",
+      "role": "Ph.D. researcher",
+      "role_th": "นักวิจัยระดับปริญญาเอก",
+      "members": []
+    },
+    {
+      "label": "M.Eng · Year 2",
+      "role": "M.Eng researcher",
+      "role_th": "นักวิจัยระดับปริญญาโท",
+      "members": []
+    },
+    {
+      "label": "M.Eng · Year 1",
+      "role": "M.Eng researcher",
+      "role_th": "นักวิจัยระดับปริญญาโท",
+      "members": []
+    },
+    {
+      "label": "Research Assistant",
+      "role": "Research Assistant",
+      "role_th": "ผู้ช่วยนักวิจัย",
+      "members": []
+    }
+  ],
+  "alumni": [],
+  "supportedBy": {
+    "permission": false,
+    "text": "Prof. Dr. Wanchai Yodsudjai, Dean of the Faculty of Engineering, Kasetsart University: guidance and continuing research collaboration, including the SATREPS (JICA-JST) network and digital twin-based structural health monitoring of bridges."
+  }
+}

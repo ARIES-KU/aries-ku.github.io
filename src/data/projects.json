@@ -1,0 +1,22 @@
+{
+  "_help": "titleConfirmed = ชื่อภาษาอังกฤษตรงกับสัญญาทุนแล้ว (check-launch จะเตือนถ้ายัง false) | status: active / done / pending",
+  "note": "Grant values and quantitative results are published only after project close-out and owner approval.",
+  "items": [
+    { "fund": "NRCT · FY2026", "status": "active", "statusLabel": "In progress", "titleConfirmed": false,
+      "title": "Digital twin platform for network-level predictive bridge condition assessment and management for disaster risk reduction: integrating AI and data standards",
+      "text": "Started May 2026. Builds the Bridge Intelligence pipeline end to end on a pilot bridge, from UAV and LiDAR survey to network-level prioritization, with data standards owner agencies can adopt.",
+      "tags": ["Digital twin", "AI inspection", "Data standards"] },
+    { "fund": "NRCT · FY2025", "status": "done", "statusLabel": "Completed", "titleConfirmed": false,
+      "title": "Damage detection and assessment system for coastal concrete bridge structures using engineering innovation",
+      "text": "Completed. Combined UAV imagery, AI damage detection and finite-element assessment for reinforced-concrete bridges in a marine environment.",
+      "tags": ["Coastal bridges", "UAV + AI", "FEM"] },
+    { "fund": "EGAT", "status": "active", "statusLabel": "In progress", "titleConfirmed": false,
+      "title": "Early-warning system for infrastructure deformation using InSAR",
+      "text": "With the Electricity Generating Authority of Thailand. Satellite InSAR monitoring of deformation in critical infrastructure, led by the Geospatial and Field Operations group.",
+      "tags": ["InSAR", "Monitoring"] },
+    { "fund": "BOI-accredited training", "status": "pending", "statusLabel": "Awaiting budget", "titleConfirmed": false,
+      "title": "UAV and AI technologies for infrastructure: professional training course",
+      "text": "Curriculum approved by the Thailand Board of Investment. First cohort will run once budget is allocated; open to engineers from government agencies and industry.",
+      "tags": ["Training", "UAV", "AI"] }
+  ]
+}

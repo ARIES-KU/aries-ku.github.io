@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;          // page name; the site name is appended
+  description: string;
+  lang?: 'en' | 'th';
+  page: 'home' | 'research' | 'people' | 'projects' | 'publications' | 'contact' | 'other';
+  thHref?: string;        // Thai counterpart of this page, if one exists
+  enHref?: string;        // English counterpart of this page, if one exists
+}
+const { title, description, lang = 'en', page, thHref, enHref } = Astro.props;
+const isPreview = import.meta.env.PUBLIC_PREVIEW === 'true';
+const site = Astro.site ?? new URL('https://aries-ku.github.io');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL('/og.jpg', site).href;
+const fullTitle = page === 'home' ? `ARIES Center | Kasetsart University` : `${title} | ARIES Center`;
+
+// Thai exists for Home and Contact only; the other pages link to their English version from the Thai menu.
+const nav = [
+  { key: 'home',         en: 'Home',         th: 'หน้าแรก',        enHref: '/',              thHref: '/th/' },
+  { key: 'research',     en: 'Research',     th: 'งานวิจัย',        enHref: '/research/',     thHref: '/research/' },
+  { key: 'people',       en: 'People',       th: 'บุคลากร',        enHref: '/people/',       thHref: '/people/' },
+  { key: 'projects',     en: 'Projects',     th: 'โครงการ',        enHref: '/projects/',     thHref: '/projects/' },
+  { key: 'publications', en: 'Publications', th: 'ผลงานตีพิมพ์',    enHref: '/publications/', thHref: '/publications/' },
+  { key: 'contact',      en: 'Contact',      th: 'ติดต่อ',         enHref: '/contact/',      thHref: '/th/contact/' },
+];
+const toTh = thHref ?? '/th/';
+const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    {thHref && <link rel="alternate" hreflang="th" href={new URL(thHref, site).href} />}
+    {enHref && <link rel="alternate" hreflang="en" href={new URL(enHref, site).href} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ARIES Center, Kasetsart University" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'th' ? 'th_TH' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0B1A3A" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    {isPreview && <div class="preview-bar" lang="th">ตัวอย่างสำหรับตรวจทาน ยังไม่ใช่เว็บที่เปิดตัว · Preview for review, not yet launched</div>}
+    <header class="topbar">
+      <div class="wrap">
+        <a class="brand" href={lang === 'th' ? '/th/' : '/'} aria-label="ARIES Center home">
+          <img src="/images/logo-h-t.png" alt="ARIES Smart Infrastructure" width="103" height="34" />
+          <span class="div" aria-hidden="true"></span>
+          <span class="ku">Kasetsart<br />University</span>
+        </a>
+        <nav class="main" aria-label="Primary">
+          {nav.map((n) => (
+            <a href={lang === 'th' ? n.thHref : n.enHref} class={n.key === page ? 'active' : undefined} aria-current={n.key === page ? 'page' : undefined}>
+              {lang === 'th' ? n.th : n.en}
+            </a>
+          ))}
+        </nav>
+        <div class="lang" role="group" aria-label="Language">
+          <a href={toEn} class={lang === 'en' ? 'on' : undefined} hreflang="en" lang="en">EN</a>
+          <a href={toTh} class={lang === 'th' ? 'on' : undefined} hreflang="th" lang="th">TH</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div>
+          <div class="logos">
+            <img src="/images/logo-h-t.png" alt="ARIES" width="133" height="44" />
+            <img src="/images/ku_logo.png" alt="Kasetsart University" width="44" height="44" />
+          </div>
+          <p class="name"><b>ARIES</b><br />Center of Excellence for Advanced Resilience and Intelligent Engineering of Structural Systems<br /><span lang="th">ศูนย์เชี่ยวชาญเฉพาะทางวิศวกรรมระบบโครงสร้างอัจฉริยะเพื่อความยั่งยืน</span><br />Department of Civil Engineering, Faculty of Engineering, Kasetsart University</p>
+          <small>© {new Date().getFullYear()} ARIES Center, Kasetsart University. A department-level center of excellence under the Department of Civil Engineering.</small>
+        </div>
+        <div class="links">
+          {nav.slice(1).map((n) => <a href={lang === 'th' ? n.thHref : n.enHref}>{lang === 'th' ? n.th : n.en}</a>)}
+          <a href="https://www.eng.ku.ac.th/" rel="noopener">Faculty of Engineering, KU</a>
+          <a href="https://www.ku.ac.th/" rel="noopener">Kasetsart University</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

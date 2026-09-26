@@ -1,0 +1,62 @@
+# Builds the site and publishes it to GitHub Pages.
+# Repository: github.com/ARIES-KU/aries-ku.github.io  (Settings > Pages > Source: GitHub Actions)
+#
+# Two ways to run:
+#   * Actions tab > "Deploy to GitHub Pages" > Run workflow > mode = preview | live
+#       preview: banner + noindex; faculty entries still under review are allowed
+#       live:    the full launch check must pass
+#   * automatically on every push to main, only once the repository variable SITE_LIVE is "true"
+#     (Settings > Secrets and variables > Actions > Variables). Until launch, pushes are skipped.
+# Only people who have consented are in the repository at all (see src/lib/people.ts).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'preview (banner + noindex) or live'
+        type: choice
+        options: [preview, live]
+        default: preview
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.SITE_LIVE == 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      PREVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'preview' }}
+      PUBLIC_PREVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'preview' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Launch / preview check
+        run: npm run check-launch
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,133 @@
+---
+import home from '../data/home.json';
+import { faculty, roster, groups, rosterIsEmpty } from '../lib/people';
+import partners from '../data/partners.json';
+import news from '../data/news.json';
+import research from '../data/research.json';
+
+interface Props { lang: 'en' | 'th' }
+const { lang } = Astro.props;
+const T = home[lang];
+const th = lang === 'th';
+
+const researchHref = '/research/';
+const statusLabel = {
+  active:   { en: 'Active',     th: 'ดำเนินการอยู่' },
+  next:     { en: 'Next phase', th: 'ระยะถัดไป' },
+  flagship: { en: 'Flagship',   th: 'แผนงานหลัก' },
+  ongoing:  { en: 'Ongoing',    th: 'ต่อเนื่อง' },
+};
+// six tiles: four pillars with the flagship and field-work tiles slotted in
+const tiles = research.pillars.map((p) => ({ name: th ? p.name_th : p.name, tile: p.tile, status: p.status }));
+for (const x of research.extraTiles) tiles.splice(x.position, 0, { name: th ? x.name_th : x.name, tile: x.tile, status: x.status });
+
+const team = [
+  ...faculty.map((f) => ({ ini: f.initials, name: th ? f.name_th : f.name, role: th ? f.role_th : f.role, pending: false })),
+  ...roster.flatMap((g) => g.members.map((m) => ({
+    ini: m.initials,
+    name: th ? m.name_th : m.name,
+    role: `${th ? g.role_th : g.role} · ${groups[m.group].long}`,
+    pending: !!m.pending,
+  }))),
+];
+const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
+---
+<section class="page">
+  <img class="hero-photo" src="/images/hero.jpg" alt={T.heroAlt} width="1600" height="900" />
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="eyebrow">{T.eyebrow}</span>
+      <h1>{T.title}</h1>
+      <p class="dept">{T.dept}</p>
+      <div class="facts">
+        {T.facts.map(([k, v]) => <div><span class="lab">{k}</span><span class="val">{v}</span></div>)}
+      </div>
+    </div>
+
+    <section class="home-sec intro">
+      <p class="lead">{T.lead}</p>
+      <div class="rule"></div>
+      <div class="prose"><p>{T.p1}</p><p>{T.p2}</p></div>
+    </section>
+
+    <section class="home-sec">
+      <div class="sec-head"><h2>{T.workH}</h2></div>
+      <div class="work-grid">
+        <div>
+          <p class="prose" style="margin-bottom:18px">{T.workP}</p>
+          <ul class="bullets">{T.bullets.map((b) => <li>{b}</li>)}</ul>
+        </div>
+        <div>
+          <h3 style="margin-bottom:12px">{T.groupsH}</h3>
+          <div class="groups">
+            {research.groups.map((g) => (
+              <article class="group-card">
+                <h3>{th ? g.name_th : g.name}</h3>
+                <p>{th ? g.text_th : g.text}</p>
+                <p class="lead-line">{th ? `หัวหน้ากลุ่ม: ${g.lead_th}` : `Lead: ${g.lead}`}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="flagbar">
+        <div><span class="k">{T.flagK}</span><h3>{T.flagT}</h3><p class="users">{T.flagUsers}</p></div>
+        <div class="steps">
+          {T.steps.map((s, i) => <Fragment><span>{s}</span>{i < T.steps.length - 1 && <b>→</b>}</Fragment>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="home-sec">
+      <div class="sec-head"><h2>{T.newsH}</h2></div>
+      <div class="news">
+        {news.items.slice(0, 4).map((n) => (
+          <article class={n.accent ? 'ncard accent' : 'ncard'}>
+            {n.href ? <a class="t" href={n.href} rel="noopener">{th ? n.title_th : n.title_en}</a> : <div class="t">{th ? n.title_th : n.title_en}</div>}
+            <div class="d">{th ? n.date_th : n.date_en}</div>
+            <div class="cat">{th ? n.cat_th : n.cat_en}</div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-sec">
+      <div class="sec-head"><h2>{T.themesH}</h2></div>
+      <div class="themes">
+        {tiles.map((t) => (
+          <a class="tile" href={researchHref}>
+            <img src={`/images/${t.tile}`} alt="" loading="lazy" width="800" height="450" />
+            <div class="cap"><b>{t.name}</b><small>{statusLabel[t.status as keyof typeof statusLabel][lang]}</small></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-sec partners">
+      <div class="sec-head" style="margin-bottom:6px"><h2>{T.partnersH}</h2><p class="muted">{T.partnersP}</p></div>
+      {[['gov', T.govL], ['intl', T.intlL]].map(([key, label]) => (
+        <Fragment>
+          <div class="grp">{label}</div>
+          <div class="row">
+            {partners[key as 'gov' | 'intl'].map((p) => p.logoApproved
+              ? <span class={`lg ${p.size}`} title={partnerName(p)}><img src={`/logos/${p.file}`} alt={partnerName(p)} loading="lazy" /></span>
+              : <span class="lg-text">{partnerName(p)}</span>)}
+          </div>
+        </Fragment>
+      ))}
+    </section>
+
+    <section class="home-sec">
+      <div class="sec-head"><h2>{T.teamH}</h2><p class="muted">{T.teamP}</p></div>
+      <div class="team">
+        {team.map((m) => (
+          <div class={m.pending ? 'member pending' : 'member'}><div class="av">{m.ini}</div><div><div class="nm">{m.name}</div><div class="rl">{m.role}</div>{m.pending && <span class="pend">{th ? 'ยังไม่เผยแพร่' : 'not public yet'}</span>}</div></div>
+        ))}
+      </div>
+      {rosterIsEmpty && <p class="muted" style="margin-top:14px">{th ? 'รายชื่อนิสิตและผู้ช่วยนักวิจัยจะแสดงเมื่อเจ้าตัวยืนยัน' : 'Researcher and student profiles appear here once each person has confirmed.'}</p>}
+      <p style="margin-top:18px"><a href="/people/">{th ? 'ดูบุคลากรทั้งหมด →' : 'All people →'}</a></p>
+    </section>
+
+    <div class="status"><span>{T.status1}</span><span>{T.status2}</span></div>
+  </div>
+</section>

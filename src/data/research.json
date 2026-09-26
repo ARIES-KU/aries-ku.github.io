@@ -1,0 +1,48 @@
+{
+  "intro": "ARIES organizes its work in four research areas, implemented in phases. Two are active today and match the founding groups' expertise; two open as the center grows and colleagues from related fields join.",
+  "pillars": [
+    { "name": "Deep Tech and Intelligent Systems", "name_th": "เทคโนโลยีขั้นสูงและระบบอัจฉริยะ", "status": "active", "tile": "tile-deeptech.jpg",
+      "text": "Structural inspection with artificial intelligence, digital twins, unmanned aerial vehicles and LiDAR; autonomous inspection pipelines; computer vision for classifying structural damage.",
+      "note": "Current work: UAV-enhanced fatigue assessment of RC bridge girders; digital twin platform for network-level bridge management (NRCT 2026)." },
+    { "name": "Structural Systems", "name_th": "ระบบโครงสร้างพื้นฐาน", "status": "active", "tile": "tile-structural.jpg",
+      "text": "Condition assessment and management of infrastructure systems from the component to the network level, covering bridges, buildings, dams and transport networks.",
+      "note": "Current work: coastal concrete bridge damage detection and assessment (NRCT 2025, completed); field investigation of cracking in post-tensioned ledge girders." },
+    { "name": "Resilience and Multi-Hazard Assessment", "name_th": "ความต้านทานและการประเมินภัยพิบัติ", "status": "next", "tile": "tile-resilience.jpg",
+      "text": "Integrated risk assessment and structural reliability covering earthquake, deterioration, corrosion and climate-change impacts, together with life-cycle management of structures.",
+      "note": "Foundations: reliability updating of ageing RC structures with spatial corrosion; life-cycle reliability of deteriorating structures." },
+    { "name": "Advanced Materials and Durability", "name_th": "วัสดุขั้นสูงและความทนทาน", "status": "next", "tile": "tile-materials.jpg",
+      "text": "Advanced materials such as graphene quantum dots and ultra-high performance concrete, computational deterioration modelling, and low-carbon concrete.",
+      "note": "Foundations: corrosion-product quantification by X-ray techniques; fiber-reinforced strengthening of concrete columns." }
+  ],
+  "extraTiles": [
+    { "name": "Bridge Intelligence", "name_th": "Bridge Intelligence", "status": "flagship", "tile": "tile-flagship.jpg", "position": 2 },
+    { "name": "Field Operations and Training", "name_th": "งานภาคสนามและการฝึกอบรม", "status": "ongoing", "tile": "tile-training.jpg", "position": 5 }
+  ],
+  "groups": [
+    { "name": "Structural Assessment and Digital Twin", "name_th": "Structural Assessment and Digital Twin",
+      "text": "Structural assessment, digital twins and deterioration modelling of structures.",
+      "text_th": "การประเมินโครงสร้าง แบบจำลองคู่ขนานดิจิทัล และแบบจำลองการเสื่อมสภาพ",
+      "lead": "Asst. Prof. Dr. Supasit Srivaranun, Director", "lead_th": "ผศ.ดร.ศุภศิษฏ์ ศรีวรานันท์ (หัวหน้าศูนย์)" },
+    { "name": "Geospatial and Field Operations", "name_th": "Geospatial and Field Operations",
+      "text": "Unmanned aerial vehicles, LiDAR, satellite InSAR and field survey.",
+      "text_th": "อากาศยานไร้คนขับ LiDAR ดาวเทียม InSAR และการสำรวจภาคสนาม",
+      "lead": "Asst. Prof. Kittipos Prapassorn", "lead_th": "ผศ.กิตติพศ ประภัศร" }
+  ],
+  "flagship": {
+    "p1": "Bridges are the proving ground for the first three years. The program builds a complete inspection-to-decision system: UAV and LiDAR survey, AI damage detection, a digital twin of each structure, condition assessment, and prioritization of maintenance across the whole network.",
+    "p2": "What is different: prioritization at the network level rather than bridge by bridge; an engineer in the loop at every quality-control step; and data standards that owner agencies can adopt directly, so results move from research into practice.",
+    "steps": [
+      { "k": "Survey", "h": "UAV and LiDAR", "p": "Image and point-cloud capture of the whole structure." },
+      { "k": "Detect", "h": "AI damage detection", "p": "Computer vision classifies cracks, spalling and corrosion." },
+      { "k": "Model", "h": "Digital twin", "p": "Geometry, damage and behaviour in one living model." },
+      { "k": "Assess", "h": "Condition assessment", "p": "Structural evaluation with human-in-the-loop quality control." },
+      { "k": "Decide", "h": "Network prioritization", "p": "Which bridge, which repair, in what order." }
+    ],
+    "users": ["Department of Highways", "Department of Rural Roads", "Expressway Authority of Thailand"]
+  },
+  "facilities": {
+    "text": "The center works from Room 9806, 8th floor, Building 9, Faculty of Engineering, and uses the Department of Civil Engineering laboratories as needed.",
+    "equipment": [],
+    "_todo": "ใส่รายการอุปกรณ์จริงใน equipment หรือปล่อยว่างไว้ (หน้าเว็บจะไม่แสดงหัวข้อรายการอุปกรณ์ถ้าว่าง)"
+  }
+}

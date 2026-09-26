@@ -1,0 +1,56 @@
+---
+interface Props { lang: 'en' | 'th' }
+const { lang } = Astro.props;
+const th = lang === 'th';
+const email = 'supasit.sriv@ku.ac.th';
+const maps = 'https://www.google.com/maps/search/?api=1&query=Faculty+of+Engineering+Kasetsart+University+Building+9';
+---
+<section class="page inner">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">{th ? 'ติดต่อ' : 'Contact'}</span>
+      <h1>{th ? 'พบเราได้ที่อาคาร 9' : 'Find us at Building 9'}</h1>
+    </div>
+    <div class="contact">
+      <div class="addr">
+        <div class="line"><span class="lab">{th ? 'ศูนย์' : 'Center'}</span>
+          <span>{th ? <Fragment><b>ศูนย์ ARIES</b><br />ห้อง 9806 ชั้น 8 อาคาร 9</Fragment> : <Fragment><b>ARIES Center</b><br />Room 9806, 8th floor, Building 9</Fragment>}</span></div>
+        <div class="line"><span class="lab">{th ? 'ที่อยู่' : 'Address'}</span>
+          <span>{th
+            ? <Fragment>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์<br />มหาวิทยาลัยเกษตรศาสตร์<br />เลขที่ 50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900</Fragment>
+            : <Fragment>Department of Civil Engineering, Faculty of Engineering<br />Kasetsart University<br />50 Ngam Wong Wan Road, Lat Yao, Chatuchak, Bangkok 10900, Thailand</Fragment>}</span></div>
+        <div class="line"><span class="lab">{th ? 'อีเมล' : 'Email'}</span>
+          <span class="emailrow"><a href={`mailto:${email}`}><code>{email}</code></a><button type="button" data-copy={email} data-done={th ? 'คัดลอกแล้ว' : 'Copied'}>{th ? 'คัดลอก' : 'Copy'}</button></span></div>
+      </div>
+      <div class="mapbox">
+        <b>{th ? 'คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ บางเขน' : 'Faculty of Engineering, Kasetsart University, Bang Khen campus'}</b>
+        <a href={maps} rel="noopener">{th ? 'เปิดใน Google Maps →' : 'Open in Google Maps →'}</a>
+      </div>
+    </div>
+
+    <section class="block">
+      <div class="sec-head">
+        <span class="eyebrow">{th ? 'ร่วมงานกับเรา' : 'Join us'}</span>
+        <h2>{th ? 'ทำงานตรงจุดที่วิศวกรรมโครงสร้างพบกับปัญญาประดิษฐ์ อากาศยานไร้คนขับ และแบบจำลองคู่ขนานดิจิทัล' : 'Work where structural engineering meets AI, UAV and digital twins'}</h2>
+      </div>
+      <div class="cols">
+        <div class="prose"><p>{th
+          ? 'เรายินดีรับนิสิตปริญญาโท ปริญญาเอก และนิสิตปริญญาตรีที่มองหาโครงงาน พื้นฐานวิศวกรรมโยธาหรือโครงสร้างเป็นสิ่งที่คาดหวัง ความคุ้นเคยกับการเขียนโปรแกรม (Python) เป็นข้อได้เปรียบ และความอยากรู้สำคัญกว่าทักษะที่ครบแล้ว'
+          : "We welcome master's and doctoral applicants, and undergraduates looking for a senior project. A background in civil or structural engineering is expected; comfort with programming (Python) is a strong plus, and curiosity matters more than a finished skill set."}</p></div>
+        <div class="prose"><p>{th
+          ? 'การรับเข้าศึกษาระดับบัณฑิตศึกษาดำเนินการผ่านคณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ สนใจสมัคร ส่งอีเมลถึงหัวหน้าศูนย์พร้อม CV สั้นๆ และ 2-3 ประโยคว่าอยากทำเรื่องอะไร'
+          : 'Graduate admission is through the Faculty of Engineering, Kasetsart University. Before applying, write to the Director with a short CV and two or three sentences on what you would like to work on.'}</p></div>
+      </div>
+    </section>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const old = btn.textContent;
+      try { await navigator.clipboard.writeText(btn.dataset.copy || ''); btn.textContent = btn.dataset.done || 'Copied'; }
+      catch { const code = btn.parentElement?.querySelector('code'); if (code) { const r = document.createRange(); r.selectNodeContents(code); const s = getSelection(); s?.removeAllRanges(); s?.addRange(r); } }
+      setTimeout(() => { btn.textContent = old; }, 1600);
+    });
+  });
+</script>

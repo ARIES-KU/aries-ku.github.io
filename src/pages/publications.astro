@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import pubs from '../data/publications.json';
+
+const items = pubs.items;
+const years = [...new Set(items.map((p) => p.year))].sort((a, b) => b - a);
+const surnames = pubs.bold.map((s) => s.toLowerCase());
+const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s));
+const generated = new Date(pubs.generated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title="Publications" description="Journal articles, conference papers and book chapters by members of the ARIES Center, Kasetsart University." page="publications">
+  <section class="page inner">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Publications</span>
+        <h1>Publications by ARIES members</h1>
+        <p class="muted">Works are found through <a href="https://openalex.org/" rel="noopener">OpenAlex</a> and described from the publisher's CrossRef record. Last refreshed {generated}. Preprints and theses are excluded.</p>
+      </div>
+      <div class="pubtools">
+        <label for="pub-filter" class="muted">Filter</label>
+        <input id="pub-filter" type="search" placeholder="Title, author, journal or year" />
+        <span id="pub-count" class="count">{items.length} of {items.length} publications</span>
+      </div>
+      <div id="pub-list">
+        {years.map((y) => (
+          <section class="year" data-year={y}>
+            <h2 class="yh">{y}</h2>
+            {items.filter((p) => p.year === y).map((p) => (
+              <article class="pub" data-text={[p.title, p.venue, p.year, p.authors.join(' ')].join(' ').toLowerCase()}>
+                <div class="t">{p.title}</div>
+                <div class="a">{p.authors.map((a, i) => <Fragment>{i > 0 && ', '}{isMember(a) ? <b>{a}</b> : a}</Fragment>)}</div>
+                <div class="v"><em>{p.venue}</em><span class="type">{p.type}</span>{p.doi && <a href={p.doi} rel="noopener">{p.doi.replace('https://doi.org/', '')}</a>}</div>
+              </article>
+            ))}
+          </section>
+        ))}
+      </div>
+      <p id="pub-none" class="muted" style="margin-top:20px" hidden>No publications match that filter.</p>
+    </div>
+  </section>
+</Base>
+<script>
+  const input = document.getElementById('pub-filter') as HTMLInputElement;
+  const count = document.getElementById('pub-count')!;
+  const none = document.getElementById('pub-none')!;
+  const all = Array.from(document.querySelectorAll<HTMLElement>('.pub'));
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    all.forEach((el) => { const hit = !q || (el.dataset.text || '').includes(q); el.hidden = !hit; if (hit) shown++; });
+    document.querySelectorAll<HTMLElement>('.year').forEach((s) => { s.hidden = !s.querySelector('.pub:not([hidden])'); });
+    count.textContent = `${shown} of ${all.length} publications`;
+    none.hidden = shown > 0;
+  });
+</script>

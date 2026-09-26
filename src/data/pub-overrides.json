@@ -1,0 +1,18 @@
+{
+  "_help": "แก้ข้อมูลตีพิมพ์ที่ OpenAlex/CrossRef ส่งมาไม่ครบ: คีย์ = DOI แบบเต็ม (https://doi.org/...) ตัวพิมพ์เล็ก | set = ฟิลด์ที่จะแทนที่ | hide = true เพื่อซ่อนรายการ | ทุกค่าที่ใส่ต้องมีแหล่งอ้างอิงจริง ห้ามพิมพ์จากความจำ",
+  "https://doi.org/10.22725/icasp13.273": {
+    "_source": "SNU S-Space record https://hdl.handle.net/10371/153439 (checked 2026-09-26); DOI not in CrossRef",
+    "set": {
+      "title": "Time-Dependent Structural Performance Analysis of RC Slab Exposed to Chloride Attack by Incorporating Spatial Variability",
+      "authors": [
+        "Supasit Srivaranun",
+        "Keisuke Masuda",
+        "Mitsuyoshi Akiyama",
+        "Dan M. Frangopol"
+      ],
+      "venue": "13th International Conference on Applications of Statistics and Probability in Civil Engineering (ICASP13), Seoul, South Korea, May 26-30, 2019",
+      "type": "Conference",
+      "source": "Repository record"
+    }
+  }
+}

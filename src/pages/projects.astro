@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import projects from '../data/projects.json';
+const chip = { active: 'ok', done: 'info', pending: 'next' } as Record<string, string>;
+---
+<Base title="Projects" description="Funded research, collaborations and training programs of the ARIES Center, Kasetsart University." page="projects">
+  <section class="page inner">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Projects</span>
+        <h1>Funded research and programs under the center</h1>
+      </div>
+      <div class="projects">
+        {projects.items.map((p) => (
+          <article class="proj">
+            <div class="meta"><span class="fund">{p.fund}</span><span class={`chip ${chip[p.status]}`}><i></i>{p.statusLabel}</span></div>
+            <h2 class="h3">{p.title}</h2>
+            <p>{p.text}</p>
+            <div class="tags">{p.tags.map((t) => <span>{t}</span>)}</div>
+          </article>
+        ))}
+      </div>
+      <p class="muted" style="margin-top:24px;font-size:.92rem;max-width:66ch">{projects.note}</p>
+    </div>
+  </section>
+</Base>
