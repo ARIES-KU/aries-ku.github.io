@@ -4,7 +4,7 @@ Source of the ARIES Center website (Department of Civil Engineering, Kasetsart U
 
 - Content lives in `src/data/*.json`; pages in `src/pages/`; one stylesheet in `src/styles/global.css`.
 - `npm run pubs` refreshes `src/data/publications.json` (works found in OpenAlex, described from CrossRef by DOI; fixes in `src/data/pub-overrides.json`).
-- `npm run check-launch` blocks publishing while anyone listed has not given consent; the deploy workflow runs it first.
+- `npm run check-launch` blocks publishing while anyone listed has not given consent; the deploy workflow runs it first. Until launch the workflow runs only from Actions > Run workflow (the repository is private, and GitHub Free cannot serve Pages from a private repository).
 - `python scripts/preview-shots.py` screenshots every built page into `shots/` for review.
 - Maintenance guide (Thai): [MAINTAINER.md](MAINTAINER.md).
 

@@ -1,18 +1,20 @@
 # Builds the site and publishes it to GitHub Pages.
 # Repository: github.com/ARIES-KU/aries-ku.github.io  (Settings > Pages > Source: GitHub Actions)
 #
-# Two ways to run:
+# Manual only for now (26 Sep 2026): the repository is private until launch, and GitHub Free cannot serve
+# Pages from a private repository, so every automatic deploy failed and e-mailed a "Run failed" notice.
 #   * Actions tab > "Deploy to GitHub Pages" > Run workflow > mode = preview | live
 #       preview: banner + noindex; faculty entries still under review are allowed
 #       live:    the full launch check must pass
-#   * automatically on every push to main: as a preview until the repository variable SITE_LIVE is "true"
-#     (Settings > Secrets and variables > Actions > Variables), as the live site after that.
+#   * the repository must be public when you run it.
+# On launch day, make the repository public and add back the automatic deploy on every push:
+#     push:
+#       branches: [main]
+# under `on:` below, so that edits go live without pressing Run workflow.
 # Only people who have consented are in the repository at all (see src/lib/people.ts).
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
     inputs:
       mode:
@@ -34,8 +36,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PREVIEW: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'preview') || (github.event_name == 'push' && vars.SITE_LIVE != 'true') }}
-      PUBLIC_PREVIEW: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'preview') || (github.event_name == 'push' && vars.SITE_LIVE != 'true') }}
+      PREVIEW: ${{ inputs.mode == 'preview' }}
+      PUBLIC_PREVIEW: ${{ inputs.mode == 'preview' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

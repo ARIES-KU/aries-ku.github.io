@@ -36,7 +36,7 @@ git commit -m "อธิบายสั้นๆ ว่าแก้อะไร"
 git push
 ```
 
-push ขึ้น `main` แล้ว GitHub Actions จะตรวจ สร้าง และขึ้นเว็บให้เองภายในไม่กี่นาที ดูสถานะได้ที่แท็บ Actions ของ repo ถ้าเป็นสีแดง เปิดดู log ของขั้น "Launch check" ก่อน ส่วนใหญ่คือมีคนที่ยังไม่ได้ `consent`
+ตอนนี้ (ก่อนเปิดตัว) repo เป็น Private และ push **ไม่**ขึ้นเว็บเอง: push เพื่อเก็บงานไว้บน GitHub เท่านั้น เมื่อต้องการขึ้นเว็บ ให้ repo เป็น Public ก่อน แล้วไปที่แท็บ Actions > "Deploy to GitHub Pages" > Run workflow เลือก preview หรือ live ถ้าเป็นสีแดง เปิดดู log ของขั้น "Launch check" ก่อน ส่วนใหญ่คือมีคนที่ยังไม่ได้ `consent` ส่วนขั้น deploy ที่แดงพร้อมข้อความ "Ensure GitHub Pages has been enabled" แปลว่า repo ยังเป็น Private. หลังเปิดตัวจะเปิดให้ push แล้วขึ้นเว็บเองอีกครั้ง (วิธีอยู่ในหัวไฟล์ `.github/workflows/deploy.yml`)
 
 ## กติกาที่ต้องถือ
 
