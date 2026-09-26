@@ -28,6 +28,8 @@ const nav = [
 ];
 const toTh = thHref ?? '/th/';
 const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
+// White / navy comparison switch: on in `npm run dev`, off in the published site unless PUBLIC_THEME_SWITCH=true.
+const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 'true';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -56,6 +58,7 @@ const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
+    {showLook && <script is:inline>try{var q=new URLSearchParams(location.search).get('look');if(q)localStorage.setItem('aries-look',q);if((q||localStorage.getItem('aries-look'))==='navy')document.documentElement.dataset.look='navy'}catch(e){}</script>}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -63,7 +66,8 @@ const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
     <header class="topbar">
       <div class="wrap">
         <a class="brand" href={lang === 'th' ? '/th/' : '/'} aria-label="ARIES Center home">
-          <img src="/images/logo-h-t.png" alt="ARIES Smart Infrastructure" width="103" height="34" />
+          <img class="logo-on-light" src="/images/logo-h-t.png" alt="ARIES Smart Infrastructure" width="103" height="34" />
+          {showLook && <img class="logo-on-dark" src="/images/logo-h-white.png" alt="ARIES Smart Infrastructure" width="103" height="34" />}
           <span class="div" aria-hidden="true"></span>
           <span class="ku">Kasetsart<br />University</span>
         </a>
@@ -89,8 +93,9 @@ const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
       <div class="wrap">
         <div>
           <div class="logos">
-            <img src="/images/logo-h-t.png" alt="ARIES" width="133" height="44" />
-            <img src="/images/ku_logo.png" alt="Kasetsart University" width="44" height="44" />
+            <img class="logo-on-light" src="/images/logo-h-t.png" alt="ARIES" width="133" height="44" />
+            {showLook && <img class="logo-on-dark" src="/images/logo-h-white.png" alt="ARIES" width="133" height="44" />}
+            <img class="ku" src="/images/ku_logo.png" alt="Kasetsart University" width="44" height="44" />
           </div>
           <p class="name"><b>ARIES</b><br />Center of Excellence for Advanced Resilience and Intelligent Engineering of Structural Systems<br /><span lang="th">ศูนย์เชี่ยวชาญเฉพาะทางวิศวกรรมระบบโครงสร้างอัจฉริยะเพื่อความยั่งยืน</span><br />Department of Civil Engineering, Faculty of Engineering, Kasetsart University</p>
           <small>© {new Date().getFullYear()} ARIES Center, Kasetsart University. A department-level center of excellence under the Department of Civil Engineering.</small>
@@ -102,5 +107,26 @@ const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
         </div>
       </div>
     </footer>
+    {showLook && (
+      <Fragment>
+        <div class="look-switch" role="group" aria-label="Colour theme, for review" lang="th">
+          <span>สีธีม</span>
+          <button type="button" data-look="white">ขาว</button>
+          <button type="button" data-look="navy">น้ำเงิน</button>
+        </div>
+        <script is:inline>
+          (function () {
+            var root = document.documentElement, btns = document.querySelectorAll('.look-switch button');
+            function set(look) {
+              if (look === 'navy') root.dataset.look = 'navy'; else delete root.dataset.look;
+              btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.look === look)); });
+              try { localStorage.setItem('aries-look', look); } catch (e) {}
+            }
+            btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.look); }); });
+            set(root.dataset.look === 'navy' ? 'navy' : 'white');
+          })();
+        </script>
+      </Fragment>
+    )}
   </body>
 </html>

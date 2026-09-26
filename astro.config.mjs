@@ -5,4 +5,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   // change to https://aries-ku.org when the domain is registered (and add public/CNAME)
   site: 'https://aries-ku.github.io',
+  // the dev toolbar sits over the white / navy switch on phone widths, and reviewers do not need it
+  devToolbar: { enabled: false },
 });

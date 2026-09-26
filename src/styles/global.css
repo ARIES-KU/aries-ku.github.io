@@ -339,3 +339,40 @@ table.map td:first-child{font-weight:600;color:var(--navy);min-width:220px}
 .btn.primary:hover{background:var(--navy-2);text-decoration:none}
 .btn.ghost{border-color:var(--line);color:var(--text);background:var(--surface)}
 .btn.ghost:hover{border-color:var(--cyan);text-decoration:none}
+
+/* navy look: the v0.2 navy prototype's dark header, footer, flagship bar and tile captions, on the same content.
+   Applied by html[data-look="navy"]; the switch (.look-switch) only renders in `npm run dev`. */
+.logo-on-dark{display:none!important}
+html[data-look="navy"] .logo-on-light{display:none!important}
+html[data-look="navy"] .logo-on-dark{display:block!important}
+html[data-look="navy"] .topbar{background:var(--navy);border-bottom-color:#1C2E58}
+html[data-look="navy"] .brand .div{background:rgba(255,255,255,.25)}
+html[data-look="navy"] .brand .ku{color:#9FB3D1}
+html[data-look="navy"] nav.main a{color:#DCE6F5}
+html[data-look="navy"] nav.main a:hover{background:rgba(255,255,255,.08)}
+html[data-look="navy"] nav.main a.active{color:#fff}
+html[data-look="navy"] .lang{border-color:rgba(255,255,255,.28)}
+html[data-look="navy"] .lang a{background:transparent;color:#B9C8DE}
+html[data-look="navy"] .lang a.on{background:var(--cyan);color:#fff}
+html[data-look="navy"] .lang a:not(.on):hover{background:rgba(255,255,255,.1);color:#fff}
+html[data-look="navy"] .flagbar{background:var(--navy);border-color:var(--navy);color:#fff}
+html[data-look="navy"] .flagbar h3{color:#fff}
+html[data-look="navy"] .flagbar .k{color:#7CC4F5}
+html[data-look="navy"] .flagbar .users{color:#C8D8EE}
+html[data-look="navy"] .steps span{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff}
+html[data-look="navy"] .tile .cap{background:rgba(11,26,58,.92);border-top-color:transparent}
+html[data-look="navy"] .tile .cap b{color:#fff}
+html[data-look="navy"] .tile .cap small{color:#7CC4F5}
+html[data-look="navy"] footer{background:var(--navy);color:#C8D8EE;border-top-color:#1C2E58}
+html[data-look="navy"] footer .name b{color:#fff}
+html[data-look="navy"] footer .links a{color:#DCE6F5}
+html[data-look="navy"] footer .links a:hover{color:#7CC4F5}
+html[data-look="navy"] footer small{color:#9FB3D1}
+html[data-look="navy"] footer .logos .ku{background:#fff;border-radius:6px;padding:3px;box-sizing:content-box}
+
+/* review-only switch, bottom left */
+.look-switch{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 4px 4px 12px;box-shadow:var(--shadow);font:500 .85rem var(--thai)}
+.look-switch span{color:var(--muted);margin-right:4px}
+.look-switch button{font:600 .85rem var(--thai);border:0;border-radius:999px;padding:6px 14px;cursor:pointer;background:transparent;color:var(--text)}
+.look-switch button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.look-switch button:not([aria-pressed="true"]):hover{background:var(--surface-2)}
