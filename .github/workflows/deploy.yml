@@ -38,6 +38,8 @@ jobs:
     env:
       PREVIEW: ${{ inputs.mode == 'preview' }}
       PUBLIC_PREVIEW: ${{ inputs.mode == 'preview' }}
+      # white / navy / full-navy switch while the look is being chosen; never on the live site
+      PUBLIC_THEME_SWITCH: ${{ inputs.mode == 'preview' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
