@@ -28,7 +28,7 @@ const nav = [
 ];
 const toTh = thHref ?? '/th/';
 const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
-// White / navy comparison switch: on in `npm run dev`, off in the published site unless PUBLIC_THEME_SWITCH=true.
+// White / navy / full-navy comparison switch: on in `npm run dev`, off in the published site unless PUBLIC_THEME_SWITCH=true.
 const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 'true';
 ---
 <!doctype html>
@@ -58,7 +58,7 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
-    {showLook && <script is:inline>try{var q=new URLSearchParams(location.search).get('look');if(q)localStorage.setItem('aries-look',q);if((q||localStorage.getItem('aries-look'))==='navy')document.documentElement.dataset.look='navy'}catch(e){}</script>}
+    {showLook && <script is:inline>try{var q=new URLSearchParams(location.search).get('look');if(q)localStorage.setItem('aries-look',q);var l=q||localStorage.getItem('aries-look');if(l==='navy'||l==='dark')document.documentElement.dataset.look=l}catch(e){}</script>}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -112,18 +112,19 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
         <div class="look-switch" role="group" aria-label="Colour theme, for review" lang="th">
           <span>สีธีม</span>
           <button type="button" data-look="white">ขาว</button>
-          <button type="button" data-look="navy">น้ำเงิน</button>
+          <button type="button" data-look="navy">หัวท้ายน้ำเงิน</button>
+          <button type="button" data-look="dark">น้ำเงินทั้งหน้า</button>
         </div>
         <script is:inline>
           (function () {
             var root = document.documentElement, btns = document.querySelectorAll('.look-switch button');
             function set(look) {
-              if (look === 'navy') root.dataset.look = 'navy'; else delete root.dataset.look;
+              if (look === 'navy' || look === 'dark') root.dataset.look = look; else delete root.dataset.look;
               btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.look === look)); });
               try { localStorage.setItem('aries-look', look); } catch (e) {}
             }
             btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.look); }); });
-            set(root.dataset.look === 'navy' ? 'navy' : 'white');
+            set(root.dataset.look || 'white');
           })();
         </script>
       </Fragment>
