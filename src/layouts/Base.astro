@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { centerJsonLd } from '../lib/structured-data';
 
 interface Props {
   title: string;          // page name; the site name is appended
@@ -55,6 +56,7 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#0B1A3A" />
+    {page === 'home' && <script type="application/ld+json" set:html={JSON.stringify(centerJsonLd(site))} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" />
