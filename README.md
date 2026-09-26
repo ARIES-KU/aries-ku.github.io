@@ -10,4 +10,4 @@ Source of the ARIES Center website (Department of Civil Engineering, Kasetsart U
 
 Hosting: repository `ARIES-KU/aries-ku.github.io`, Settings > Pages > Source: GitHub Actions. When the domain is registered, set `site` in `astro.config.mjs`, add `public/CNAME` with the domain, and set the custom domain in Settings > Pages.
 
-Design history and decisions: Research Empire, `career/aries_website_plan_2026-09.md` and `career/aries_website_prototype/`.
+Design history and decisions: Research Empire, `career/aries_website_plan_2026-09.md`. The single-file prototypes (navy and white) and the generated images live next to this repository in the center's Drive folder `06_Website/` (`prototype/`, `images_generated/`).
