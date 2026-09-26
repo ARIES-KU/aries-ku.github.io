@@ -1,0 +1,42 @@
+{
+ "10.1016/j.engstruct.2024.117866": {
+  "title": "Field investigation and numerical analysis of horizontal cracking in ledge girders of post-tension concrete bridges",
+  "year": 2024,
+  "abstract": ""
+ },
+ "10.2749/tokyo.2025.1112": {
+  "title": "UAV-Enhanced Analysis of Fatigue-Induced Damage in RC Bridge Girders Using Nonlinear Finite Element Methods",
+  "year": 2025,
+  "abstract": "Reinforced concrete (RC) bridges in service for extended periods often experience significant deterioration. This study explores the application of Unmanned Aerial Vehicles (UAVs) to structural damage assessments. An RC bridge, with over seven decades of service, was surveyed using UAV technology. The UAV survey provided high-resolution images, enabling precise identification of damage locations. The study hypothesizes that the observed flexural-shear cracks result from fatigue loading due to repeated cyclic loads. The analysis, conducted following AASHTO LRFD Bridge Design Specifications and utilizing nonlinear finite element analysis (NLFEA), focused on assessing structural integrity. UAV-captured images were instrumental in identifying and comparing crack patterns, leading to more accurate damage assessments. The integration of UAV technology in structural inspections demonstrates significant potential in reducing inspection time and costs while enhancing the precision of damage assessments. This makes UAVs a valuable tool for the maintenance and safety of aging RC bridges."
+ },
+ "10.1016/j.rcns.2025.08.001": {
+  "title": "Digital twin-based structural health monitoring and measurements of dynamic characteristics in balanced cantilever bridge",
+  "year": 2025,
+  "abstract": "This study developed a digital twin (DT) and structural health monitoring (SHM) system for a balanced cantilever bridge, utilizing advanced measurement techniques to enhance accuracy. Vibration and dynamic strain measurements were obtained using accelerometers and piezo-resistive strain gauges, capturing low-magnitude dynamic strains during operational vibrations. 3D-LiDAR scanning and Ultrasonic Pulse Velocity (UPV) tests captured the bridge's as-is geometry and modulus of elasticity. The resulting detailed 3D point cloud model revealed the structure's true state and highlighted discrepancies between the as-designed and as-built conditions. Dynamic properties, including modal frequencies and shapes, were extracted from the strain and acceleration measurements, providing critical insights into the bridge's structural behavior. The neutral axis depth, indicating stress distribution and potential damage, was accurately determined. Good agreement between vibration measurement data and the as-is model results validated the reliability of the digital twin model. Dynamic strain patterns and neutral axis parameters showed strong correlation with model predictions, serving as sensitive indicators of local damage. The baseline digital twin model and measurement results establish a foundation for future bridge inspections and investigations. This study demonstrates the effectiveness of combining digital twin technology with field measurements for real-time monitoring and predictive maintenance, ensuring the sustainability and safety of the bridge infrastructure, thereby enhancing its overall resilience to operational and environmental stressors."
+ },
+ "10.1016/j.cemconcomp.2024.105565": {
+  "title": "Investigation of corrosion-induced cracks using corrosion products quantified by an X-ray technique and FE analysis of single- and multiple-rebar beams",
+  "year": 2024,
+  "abstract": ""
+ },
+ "10.1016/j.engstruct.2023.115588": {
+  "title": "A novel combined experimental-machine learning approach to estimate the probabilistic capacity of RC beams with spatially correlated rebar corrosion in transverse and longitudinal directions",
+  "year": 2023,
+  "abstract": ""
+ },
+ "10.1016/j.strusafe.2021.102115": {
+  "title": "Effect of the interaction of corrosion pits among multiple tensile rebars on the reliability of RC structures: Experimental and numerical investigation",
+  "year": 2021,
+  "abstract": "The deterioration of reinforced concrete (RC) structures due to chloride-induced corrosion is not spatially uniform because of the spatial variability related to material properties and environmental stressors. This variation has a substantial effect on the reliability of RC structures. However, few experimental studies have focused on the effect of the interaction of corrosion pits among tensile rebars on the reliability of RC structures. Therefore, in this paper, an experimental procedure that incorporates X-ray and digital image processing techniques was conducted on RC slab specimens subjected to accelerated corrosion. Using the experimental results, the parameter of the transverse correlation function of steel weight loss distributions was estimated to investigate how the corrosion pits in corroded rebars are correlated. Based on the experimentally obtained model parameters, the spatial steel weight loss distributions were simulated by spectral representation method. A three-dimensional (3D) nonlinear finite element (FE) analysis of RC structures with simulated steel weight loss distributions was conducted to obtain the ultimate bending capacity of RC structures. In an illustrative example, the effect of the transverse correlation among steel weight loss distributions of multiple tensile rebars on the failure probability of RC girders was quantified."
+ },
+ "10.1080/15732479.2021.1995445": {
+  "title": "Random field-based reliability updating framework for existing RC structures incorporating the effect of spatial steel corrosion distribution",
+  "year": 2021,
+  "abstract": "In recent years, interest in the effect of the spatial variability associated with steel corrosion on the safety and reliability of reinforced concrete (RC) structures in harsh environments has increased. However, updating the reliability based on observations of existing RC structures remains a challenge. In this paper, an advanced framework for updating the time-dependent reliability incorporating the effect of the spatial steel corrosion distribution in existing RC members is presented. Probabilistic concepts are adopted to model random variables associated with material corrosion as random fields. With the application of a particle filter, spatially observed information obtained at discrete locations on RC members can be utilized to update the associated random variables. This reduces the epistemic uncertainty associated with structural performance assessments. In an illustrative example, time-dependent reliability updating is conducted on a RC bridge girder with the inspection results of the steel corrosion crack width. The effects of the number and space interval of observed locations on the updated structural reliability are investigated. The results demonstrate that the accuracy of the estimation of the time-dependent reliability of RC structures can be improved by using spatial observation information with a greater number of observed locations."
+ },
+ "10.1016/j.conbuildmat.2024.135650": {
+  "title": "Effects of spatial corrosion distribution and prestressing levels on the structural performance of deteriorated PC beams",
+  "year": 2024,
+  "abstract": "This paper aims to study the effects of spatial corrosion distribution and prestressing levels on the structural performance of corroded prestressed concrete (PC) beams via experimental studies. X-ray and digital image processing techniques are developed to visualize and quantify the spatial corrosion of strands in PC beams. The spatial characteristics of strand corrosion and its effect on the structural performance of PC beams are compared with those of reinforced concrete (RC) beams. Unlike RC beams showing more ductile behavior, the load-bearing capacity and ductility of the corroded PC beams are determined by the maximum local steel weight loss of an individual steel wire in the maximum bending moment region. The prestress force induces larger local maxima of steel corrosion and widens corrosion-induced cracks by elevating the concrete tensile strain in the transverse direction."
+ }
+}

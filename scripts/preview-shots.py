@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DIST, OUT = ROOT / 'dist', ROOT / 'shots'
 OUT.mkdir(exist_ok=True)
 PORT = 4388
-PAGES = ['/', '/research/', '/people/', '/projects/', '/publications/', '/contact/', '/th/', '/th/contact/', '/nope/']
+PAGES = ['/', '/mission/', '/research/', '/people/', '/projects/', '/publications/', '/contact/', '/th/', '/th/contact/', '/nope/']
 
 class Quiet(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *a): pass

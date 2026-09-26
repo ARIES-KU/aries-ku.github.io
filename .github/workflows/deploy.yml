@@ -5,8 +5,8 @@
 #   * Actions tab > "Deploy to GitHub Pages" > Run workflow > mode = preview | live
 #       preview: banner + noindex; faculty entries still under review are allowed
 #       live:    the full launch check must pass
-#   * automatically on every push to main, only once the repository variable SITE_LIVE is "true"
-#     (Settings > Secrets and variables > Actions > Variables). Until launch, pushes are skipped.
+#   * automatically on every push to main: as a preview until the repository variable SITE_LIVE is "true"
+#     (Settings > Secrets and variables > Actions > Variables), as the live site after that.
 # Only people who have consented are in the repository at all (see src/lib/people.ts).
 name: Deploy to GitHub Pages
 
@@ -32,11 +32,10 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.event_name == 'workflow_dispatch' || vars.SITE_LIVE == 'true' }}
     runs-on: ubuntu-latest
     env:
-      PREVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'preview' }}
-      PUBLIC_PREVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'preview' }}
+      PREVIEW: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'preview') || (github.event_name == 'push' && vars.SITE_LIVE != 'true') }}
+      PUBLIC_PREVIEW: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'preview') || (github.event_name == 'push' && vars.SITE_LIVE != 'true') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

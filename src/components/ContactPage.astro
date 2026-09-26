@@ -4,6 +4,19 @@ const { lang } = Astro.props;
 const th = lang === 'th';
 const email = 'supasit.sriv@ku.ac.th';
 const maps = 'https://www.google.com/maps/search/?api=1&query=Faculty+of+Engineering+Kasetsart+University+Building+9';
+const roles = th
+  ? [
+      ['นิสิตปริญญาโท / เอก', 'หัวข้อวิทยานิพนธ์ที่เป็นหนึ่งข้อต่อของ Bridge Intelligence: การสำรวจด้วยโดรนและ LiDAR, การตรวจจับความเสียหายด้วย AI, แบบจำลองคู่ขนานดิจิทัล, ความน่าเชื่อถือของโครงสร้าง หรือวัสดุ บนสะพานจริง'],
+      ['นิสิตปริญญาตรี (โครงงาน)', 'โครงงานที่ต่อยอดจากข้อมูลจริงของศูนย์ เช่น ชุดข้อมูลภาพจากโดรน หรือ point cloud ของสะพาน'],
+      ['ผู้ช่วยนักวิจัย', 'ทำงานเต็มเวลาในโครงการทุนวิจัยของศูนย์ ระหว่างเตรียมตัวเรียนต่อหรือทำงานสายวิศวกรรม'],
+      ['หน่วยงานและบริษัท', 'นำร่องระบบบนโครงข่ายของท่าน ร่วมกำหนดมาตรฐานข้อมูล หรือส่งวิศวกรเข้าอบรม'],
+    ]
+  : [
+      ["Master's and doctoral students", 'A thesis topic that is one link in the Bridge Intelligence chain: UAV and LiDAR survey, AI damage detection, digital twins, structural reliability or materials, on a real bridge.'],
+      ['Undergraduates (senior project)', 'A project built on the center’s real data, such as drone image sets or bridge point clouds.'],
+      ['Research assistants', 'Full-time work on a funded project, before graduate study or an engineering career.'],
+      ['Agencies and companies', 'Pilot the chain on part of your network, shape the data standard, or send engineers to the training course.'],
+    ];
 ---
 <section class="page inner">
   <div class="wrap">
@@ -31,15 +44,18 @@ const maps = 'https://www.google.com/maps/search/?api=1&query=Faculty+of+Enginee
     <section class="block">
       <div class="sec-head">
         <span class="eyebrow">{th ? 'ร่วมงานกับเรา' : 'Join us'}</span>
-        <h2>{th ? 'ทำงานตรงจุดที่วิศวกรรมโครงสร้างพบกับปัญญาประดิษฐ์ อากาศยานไร้คนขับ และแบบจำลองคู่ขนานดิจิทัล' : 'Work where structural engineering meets AI, UAV and digital twins'}</h2>
+        <h2>{th ? 'ถ้าเข้ามาร่วมงานกับ ARIES คุณจะได้เป็นส่วนหนึ่งของอะไร' : 'If you join ARIES, this is what you would be part of'}</h2>
       </div>
-      <div class="cols">
+      <div class="doors">
+        {roles.map(([who, what]) => <article class="door"><h3>{who}</h3><p>{what}</p></article>)}
+      </div>
+      <div class="cols" style="margin-top:28px">
         <div class="prose"><p>{th
-          ? 'เรายินดีรับนิสิตปริญญาโท ปริญญาเอก และนิสิตปริญญาตรีที่มองหาโครงงาน พื้นฐานวิศวกรรมโยธาหรือโครงสร้างเป็นสิ่งที่คาดหวัง ความคุ้นเคยกับการเขียนโปรแกรม (Python) เป็นข้อได้เปรียบ และความอยากรู้สำคัญกว่าทักษะที่ครบแล้ว'
-          : "We welcome master's and doctoral applicants, and undergraduates looking for a senior project. A background in civil or structural engineering is expected; comfort with programming (Python) is a strong plus, and curiosity matters more than a finished skill set."}</p></div>
+          ? 'พื้นฐานวิศวกรรมโยธาหรือโครงสร้างเป็นสิ่งที่คาดหวัง ความคุ้นเคยกับการเขียนโปรแกรม (Python) เป็นข้อได้เปรียบ และความอยากรู้สำคัญกว่าทักษะที่ครบแล้ว'
+          : 'A background in civil or structural engineering is expected; comfort with programming (Python) is a strong plus, and curiosity matters more than a finished skill set.'}</p></div>
         <div class="prose"><p>{th
-          ? 'การรับเข้าศึกษาระดับบัณฑิตศึกษาดำเนินการผ่านคณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ สนใจสมัคร ส่งอีเมลถึงหัวหน้าศูนย์พร้อม CV สั้นๆ และ 2-3 ประโยคว่าอยากทำเรื่องอะไร'
-          : 'Graduate admission is through the Faculty of Engineering, Kasetsart University. Before applying, write to the Director with a short CV and two or three sentences on what you would like to work on.'}</p></div>
+          ? 'การรับเข้าศึกษาระดับบัณฑิตศึกษาดำเนินการผ่านคณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ สนใจสมัคร ส่งอีเมลถึงหัวหน้าศูนย์พร้อม CV สั้นๆ และ 2-3 ประโยคว่าอยากทำเรื่องอะไร หน่วยงานที่สนใจนำร่องหรือร่วมวิจัย ส่งอีเมลได้ที่เดียวกัน'
+          : 'Graduate admission is through the Faculty of Engineering, Kasetsart University. Before applying, write to the Director with a short CV and two or three sentences on what you would like to work on. Agencies and companies interested in a pilot or joint research: same address.'}</p></div>
       </div>
     </section>
   </div>

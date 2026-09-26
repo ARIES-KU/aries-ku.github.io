@@ -4,7 +4,24 @@
     "eyebrow": "ARIES Center",
     "title": "Center of Excellence for Advanced Resilience and Intelligent Engineering of Structural Systems",
     "dept": "Department of Civil Engineering · Faculty of Engineering · Kasetsart University",
-    "facts": [["Founded", "2026"], ["Research groups", "2"], ["Flagship", "Bridge Intelligence, 2026 to 2028"], ["Office", "Room 9806, Building 9"]],
+    "facts": [
+      [
+        "Founded",
+        "2026"
+      ],
+      [
+        "Research groups",
+        "2"
+      ],
+      [
+        "Flagship",
+        "Bridge Intelligence, 2026 to 2028"
+      ],
+      [
+        "Office",
+        "Room 9806, Building 9"
+      ]
+    ],
     "lead": "ARIES develops AI, digital-twin and field-sensing technologies that turn inspection data into decisions: how to assess, maintain and prioritize the bridges and infrastructure Thailand depends on.",
     "p1": "Thailand's bridges and elevated roads are many, and they are ageing. Visual inspection alone cannot keep up: it is limited in accuracy, consistency and coverage, and maintenance budgets and inspection engineers are both scarce. Prioritizing repairs across a whole network is hard to do in practice.",
     "p2": "Artificial intelligence, unmanned aerial vehicles, LiDAR and digital twins have matured fast. Brought together with structural engineering, they can make inspection, assessment and asset management more accurate, faster and far more complete. ARIES was founded in 2026 by faculty of the Department of Civil Engineering at Kasetsart University to bring these strands into one center with one direction.",
@@ -23,7 +40,13 @@
     "flagK": "Flagship program 2026 to 2028",
     "flagT": "Bridge Intelligence",
     "flagUsers": "One pipeline from survey to decision, built with and for the Department of Highways, the Department of Rural Roads and the Expressway Authority of Thailand.",
-    "steps": ["Survey", "Detect", "Model", "Assess", "Decide"],
+    "steps": [
+      "Survey",
+      "Detect",
+      "Model",
+      "Assess",
+      "Decide"
+    ],
     "newsH": "News",
     "themesH": "Research themes",
     "partnersH": "Partners and collaborators",
@@ -33,14 +56,41 @@
     "teamH": "Our team",
     "teamP": "Two founding faculty, a senior advisor, and the students and research staff who do the work.",
     "status1": "ARIES is a department-level center of excellence under the Department of Civil Engineering, Kasetsart University, founded in 2026.",
-    "status2": "Room 9806, 8th floor, Building 9, Faculty of Engineering, Bangkok"
+    "status2": "Room 9806, 8th floor, Building 9, Faculty of Engineering, Bangkok",
+    "storiesH": "From the field",
+    "storiesP": "Real structures, the problems we found, and why they matter.",
+    "storyProblem": "The problem",
+    "storyDid": "What we did",
+    "storyWhy": "Why it matters",
+    "storyRead": "Read the paper →",
+    "directionH": "Where we are going",
+    "directionP": "ARIES is not building an inspection tool. It is building the body of knowledge that connects data, structures and decisions: how what we measure on a bridge becomes what an owner decides to do about it.",
+    "directionLink": "Mission, road map and how to work with us →",
+    "researchLink": "The problems we work on →"
   },
   "th": {
     "heroAlt": "สะพานข้ามแม่น้ำพร้อมภาพซ้อนแบบจำลองคู่ขนานดิจิทัล",
     "eyebrow": "ศูนย์ ARIES",
     "title": "ศูนย์เชี่ยวชาญเฉพาะทางวิศวกรรมระบบโครงสร้างอัจฉริยะเพื่อความยั่งยืน (ศวอ.)",
     "dept": "ภาควิชาวิศวกรรมโยธา · คณะวิศวกรรมศาสตร์ · มหาวิทยาลัยเกษตรศาสตร์",
-    "facts": [["ก่อตั้ง", "2569"], ["กลุ่มวิจัย", "2 กลุ่ม"], ["แผนงานหลัก", "Bridge Intelligence 2569 ถึง 2571"], ["สำนักงาน", "ห้อง 9806 อาคาร 9"]],
+    "facts": [
+      [
+        "ก่อตั้ง",
+        "2569"
+      ],
+      [
+        "กลุ่มวิจัย",
+        "2 กลุ่ม"
+      ],
+      [
+        "แผนงานหลัก",
+        "Bridge Intelligence 2569 ถึง 2571"
+      ],
+      [
+        "สำนักงาน",
+        "ห้อง 9806 อาคาร 9"
+      ]
+    ],
     "lead": "ARIES พัฒนาเทคโนโลยีปัญญาประดิษฐ์ แบบจำลองคู่ขนานดิจิทัล และการสำรวจภาคสนาม เพื่อแปลงข้อมูลการตรวจสอบให้เป็นการตัดสินใจ: จะประเมิน บำรุงรักษา และจัดลำดับความสำคัญของสะพานและโครงสร้างพื้นฐานของประเทศอย่างไร",
     "p1": "สะพานและทางยกระดับของประเทศไทยมีจำนวนมากและมีอายุการใช้งานยาวนาน การตรวจสอบด้วยสายตาเพียงอย่างเดียวมีข้อจำกัดทั้งด้านความแม่นยำ ความสม่ำเสมอ และความครอบคลุม ขณะที่งบประมาณบำรุงรักษาและจำนวนวิศวกรผู้ตรวจสอบมีอยู่อย่างจำกัด การจัดลำดับการซ่อมบำรุงในระดับโครงข่ายจึงทำได้ยากในทางปฏิบัติ",
     "p2": "ปัญญาประดิษฐ์ อากาศยานไร้คนขับ LiDAR และแบบจำลองคู่ขนานดิจิทัลพัฒนาไปอย่างรวดเร็ว เมื่อบูรณาการเข้ากับงานวิศวกรรมโครงสร้าง จะยกระดับการตรวจสอบ ประเมิน และบริหารจัดการโครงสร้างพื้นฐานให้แม่นยำ รวดเร็ว และครอบคลุมยิ่งขึ้น ศูนย์ ARIES ก่อตั้งในปี 2569 โดยคณาจารย์ภาควิชาวิศวกรรมโยธา มหาวิทยาลัยเกษตรศาสตร์ เพื่อรวมกำลังคน องค์ความรู้ และทรัพยากรไว้ภายใต้ทิศทางเดียวกัน",
@@ -59,7 +109,13 @@
     "flagK": "แผนงานวิจัยหลัก 2569 ถึง 2571",
     "flagT": "Bridge Intelligence",
     "flagUsers": "ระบบเดียวตั้งแต่สำรวจจนถึงตัดสินใจ พัฒนาร่วมกับกรมทางหลวง กรมทางหลวงชนบท และการทางพิเศษแห่งประเทศไทย",
-    "steps": ["สำรวจ", "ตรวจจับ", "จำลอง", "ประเมิน", "ตัดสินใจ"],
+    "steps": [
+      "สำรวจ",
+      "ตรวจจับ",
+      "จำลอง",
+      "ประเมิน",
+      "ตัดสินใจ"
+    ],
     "newsH": "ข่าว",
     "themesH": "ขอบเขตงานวิจัย",
     "partnersH": "พันธมิตรและเครือข่ายความร่วมมือ",
@@ -69,6 +125,16 @@
     "teamH": "ทีมของเรา",
     "teamP": "คณาจารย์ผู้ก่อตั้ง 2 ท่าน ที่ปรึกษาอาวุโส นิสิต และผู้ช่วยนักวิจัยที่ลงมือทำงานจริง",
     "status1": "ศูนย์ ARIES เป็นศูนย์เชี่ยวชาญเฉพาะทางระดับภาควิชา สังกัดภาควิชาวิศวกรรมโยธา มหาวิทยาลัยเกษตรศาสตร์ ก่อตั้งปี 2569",
-    "status2": "ห้อง 9806 ชั้น 8 อาคาร 9 คณะวิศวกรรมศาสตร์ บางเขน"
+    "status2": "ห้อง 9806 ชั้น 8 อาคาร 9 คณะวิศวกรรมศาสตร์ บางเขน",
+    "storiesH": "จากงานภาคสนาม",
+    "storiesP": "โครงสร้างจริง ปัญหาที่พบ และทำไมจึงสำคัญ",
+    "storyProblem": "ปัญหา",
+    "storyDid": "เราทำอะไร",
+    "storyWhy": "ทำไมจึงสำคัญ",
+    "storyRead": "อ่านบทความ →",
+    "directionH": "ทิศทางของเรา",
+    "directionP": "ARIES ไม่ได้สร้างแค่เครื่องมือตรวจสอบสะพาน แต่กำลังสร้างองค์ความรู้ที่เชื่อมข้อมูล โครงสร้าง และการตัดสินใจเข้าด้วยกัน: สิ่งที่เราวัดได้จากสะพานจะกลายเป็นสิ่งที่เจ้าของโครงสร้างตัดสินใจทำได้อย่างไร",
+    "directionLink": "พันธกิจ แผนงาน และการร่วมงานกับเรา →",
+    "researchLink": "ปัญหาที่เราทำงานอยู่ →"
   }
 }

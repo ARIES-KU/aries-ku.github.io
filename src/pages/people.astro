@@ -1,16 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import { faculty, roster, groups, alumni, supportedBy, updated, rosterIsEmpty } from '../lib/people';
+import m from '../data/mission.json';
 
 const updatedText = new Date(updated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const filled = roster.filter((g) => g.members.length > 0);
 ---
-<Base title="People" description="Faculty, researchers and students of the ARIES Center, Department of Civil Engineering, Kasetsart University." page="people">
+<Base title="People" description="Faculty, researchers and students of the ARIES Center, what each works on, and how to join or collaborate." page="people">
   <section class="page inner">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">People</span>
         <h1>Members</h1>
+        <p class="lead muted prose">Two founding faculty, a senior advisor, and the researchers and students who do the work. If you want to work with us, the doors are at the bottom of this page.</p>
       </div>
 
       <section class="block" style="margin-top:32px">
@@ -30,7 +32,7 @@ const filled = roster.filter((g) => g.members.length > 0);
       <section class="block">
         <div class="sec-head" style="margin-bottom:12px">
           <h2>Researchers and Students</h2>
-          <p class="muted">English names as each member spells them in their own documents.</p>
+          <p class="muted">Each entry names the question the person is working on. English names as each member spells them in their own documents.</p>
         </div>
         <div class="roster">
           {rosterIsEmpty
@@ -39,13 +41,13 @@ const filled = roster.filter((g) => g.members.length > 0);
               <Fragment>
                 <div class="sub">{g.label}</div>
                 <ul class="members">
-                  {g.members.map((m) => (
-                    <li class={m.pending ? 'pending' : undefined}>
+                  {g.members.map((mb) => (
+                    <li class={mb.pending ? 'pending' : undefined}>
                       <div>
-                        <div class="n">{m.name} <span class="th-name" lang="th">{m.name_th}</span>{m.pending && <span class="pend">not public yet</span>}</div>
-                        <div class="t">{m.topic}</div>
+                        <div class="n">{mb.name} <span class="th-name" lang="th">{mb.name_th}</span>{mb.pending && <span class="pend">not public yet</span>}</div>
+                        <div class="t">{mb.topic}</div>
                       </div>
-                      <span class="grp-tag">{groups[m.group].short}</span>
+                      <span class="grp-tag">{groups[mb.group].short}</span>
                     </li>
                   ))}
                 </ul>
@@ -71,6 +73,14 @@ const filled = roster.filter((g) => g.members.length > 0);
           </div>
         </section>
       )}
+
+      <section class="block flag" id="collaborate">
+        <div class="head"><div class="sec-head" style="margin-bottom:0"><span class="eyebrow">Open for collaboration</span><h2>What you would be part of</h2></div></div>
+        <div class="doors">
+          {m.doors.map((d) => <article class="door"><h3>{d.who}</h3><p>{d.offer}</p></article>)}
+        </div>
+        <p style="margin-top:20px"><a class="btn primary" href="/contact/">Contact the Director</a> <a class="btn ghost" href="/mission/" style="margin-left:8px">Read the mission</a></p>
+      </section>
 
       <p class="updated">Last updated: {updatedText}</p>
     </div>

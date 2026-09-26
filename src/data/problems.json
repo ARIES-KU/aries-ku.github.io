@@ -1,0 +1,55 @@
+{
+  "_help": "หน้า Research จัดตามปัญหา: คำถาม วิธี สิ่งที่พบ ข้อจำกัด และเปเปอร์ (dois ต้องมีใน publications.json) | ข้อความ findings มาจากบทคัดย่อของเปเปอร์ที่อ้าง (scripts/abstracts_2026-09-26.json) ไม่ใส่ผลที่ยังไม่ตีพิมพ์",
+  "items": [
+    {
+      "id": "inspection",
+      "question": "Inspections cannot keep up with the number of ageing bridges",
+      "context": "Visual inspection is slow, inconsistent between inspectors, and cannot reach every surface. Thailand's bridge stock is large and much of it is decades old.",
+      "approach": "UAV surveys that deliver high-resolution imagery of every element; computer vision that locates and classifies damage; nonlinear finite-element analysis that turns the observed damage into a structural assessment.",
+      "findings": "On an RC bridge in service for more than seventy years, UAV imagery located flexural-shear cracks precisely enough to compare them with crack patterns predicted by nonlinear finite-element analysis under fatigue loading, supporting the fatigue hypothesis and reducing inspection time and cost.",
+      "limits": "Image-based methods see surfaces. Internal defects, corrosion behind sound cover and prestressing losses still need non-destructive testing and sensors.",
+      "dois": ["https://doi.org/10.2749/tokyo.2025.1112"],
+      "status": "active"
+    },
+    {
+      "id": "twin",
+      "question": "The bridge on the drawings is not the bridge in the field",
+      "context": "Assessments are usually based on design drawings. After decades of service, geometry, stiffness and behaviour have all drifted from what was drawn.",
+      "approach": "3D LiDAR scanning for as-built geometry, ultrasonic pulse velocity for in-place stiffness, accelerometers and dynamic strain gauges under traffic, and a digital twin built on the as-is data rather than the as-designed data.",
+      "findings": "For a balanced cantilever bridge, the point-cloud model exposed discrepancies between as-designed and as-built conditions; modal frequencies, mode shapes and neutral-axis depth extracted from the measurements agreed well with the as-is twin, so dynamic strain and neutral-axis parameters can serve as sensitive indicators of local damage.",
+      "limits": "One structure and a baseline campaign. Long-term monitoring and repeated surveys are needed before change detection becomes routine.",
+      "dois": ["https://doi.org/10.1016/j.rcns.2025.08.001"],
+      "status": "active"
+    },
+    {
+      "id": "corrosion",
+      "question": "Corrosion is not uniform, so an average understates the risk",
+      "context": "Chloride-induced corrosion varies along and across every bar. Capacity is governed by the worst location, which an average measurement never shows.",
+      "approach": "X-ray imaging and digital image processing to quantify corrosion along every bar and strand; random-field models fitted to the measured spatial patterns; 3D nonlinear finite-element analysis of members with simulated corrosion; experiments on RC and prestressed specimens.",
+      "findings": "Transverse correlation of steel weight loss among multiple tensile bars was quantified experimentally and shown to change the failure probability of RC girders. In prestressed beams, capacity and ductility were governed by the maximum local weight loss of a single wire in the maximum-moment region, and prestress widened corrosion-induced cracks.",
+      "limits": "Accelerated corrosion in laboratory specimens. Field corrosion is slower and its spatial statistics may differ.",
+      "dois": ["https://doi.org/10.1016/j.strusafe.2021.102115", "https://doi.org/10.1016/j.conbuildmat.2024.135650", "https://doi.org/10.1016/j.cemconcomp.2024.105565", "https://doi.org/10.1016/j.engstruct.2023.115588"],
+      "status": "active"
+    },
+    {
+      "id": "reliability",
+      "question": "How should an inspection change our confidence in a structure?",
+      "context": "Inspections produce local observations, such as crack widths at a few points. Reliability estimates need to absorb them without pretending they describe the whole member.",
+      "approach": "Random-field models of corrosion-related variables and a particle filter that updates them from spatially observed data, giving time-dependent reliability that reflects what was actually seen.",
+      "findings": "In an example RC bridge girder updated from crack-width observations, the accuracy of the time-dependent reliability estimate improved with the number and spacing of observed locations.",
+      "limits": "Illustrative example on one member type. Linking the framework to routine inspection records is part of the flagship program.",
+      "dois": ["https://doi.org/10.1080/15732479.2021.1995445"],
+      "status": "active"
+    },
+    {
+      "id": "network",
+      "question": "From one bridge to a network: which structure, which repair, in what order?",
+      "context": "Budgets and engineers are limited. Decisions have to be made across hundreds of structures at once, on comparable data.",
+      "approach": "Bridge Intelligence: the full chain from survey to prioritization on a pilot network, with data standards that owner agencies can adopt, under the NRCT digital twin project started in 2026.",
+      "findings": "In progress. Results will be reported here as they are published.",
+      "limits": "",
+      "dois": [],
+      "status": "in progress"
+    }
+  ]
+}

@@ -1,16 +1,16 @@
 ---
 import home from '../data/home.json';
-import { faculty, roster, groups, rosterIsEmpty } from '../lib/people';
 import partners from '../data/partners.json';
 import news from '../data/news.json';
 import research from '../data/research.json';
+import stories from '../data/stories.json';
+import { faculty, roster, groups, rosterIsEmpty } from '../lib/people';
 
 interface Props { lang: 'en' | 'th' }
 const { lang } = Astro.props;
 const T = home[lang];
 const th = lang === 'th';
 
-const researchHref = '/research/';
 const statusLabel = {
   active:   { en: 'Active',     th: 'ดำเนินการอยู่' },
   next:     { en: 'Next phase', th: 'ระยะถัดไป' },
@@ -51,11 +51,38 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
     </section>
 
     <section class="home-sec">
+      <div class="sec-head"><h2>{T.storiesH}</h2><p class="muted">{T.storiesP}</p></div>
+      <div class="stories">
+        {stories.items.map((s) => { const t = s[lang]; return (
+          <article class="story">
+            <img src={`/images/${s.image}`} alt="" loading="lazy" width="800" height="450" />
+            <div class="body">
+              <span class="kicker">{t.kicker}</span>
+              <h3>{t.title}</h3>
+              <dl>
+                <dt>{T.storyProblem}</dt><dd>{t.problem}</dd>
+                <dt>{T.storyDid}</dt><dd>{t.did}</dd>
+                <dt>{T.storyWhy}</dt><dd>{t.why}</dd>
+              </dl>
+              <a class="read" href={s.doi} rel="noopener">{T.storyRead}</a>
+            </div>
+          </article>
+        ); })}
+      </div>
+    </section>
+
+    <section class="direction">
+      <div><h2>{T.directionH}</h2><p>{T.directionP}</p></div>
+      <a href="/mission/">{T.directionLink}</a>
+    </section>
+
+    <section class="home-sec">
       <div class="sec-head"><h2>{T.workH}</h2></div>
       <div class="work-grid">
         <div>
           <p class="prose" style="margin-bottom:18px">{T.workP}</p>
           <ul class="bullets">{T.bullets.map((b) => <li>{b}</li>)}</ul>
+          <p style="margin-top:18px"><a href="/research/">{T.researchLink}</a></p>
         </div>
         <div>
           <h3 style="margin-bottom:12px">{T.groupsH}</h3>
@@ -95,7 +122,7 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
       <div class="sec-head"><h2>{T.themesH}</h2></div>
       <div class="themes">
         {tiles.map((t) => (
-          <a class="tile" href={researchHref}>
+          <a class="tile" href="/research/">
             <img src={`/images/${t.tile}`} alt="" loading="lazy" width="800" height="450" />
             <div class="cap"><b>{t.name}</b><small>{statusLabel[t.status as keyof typeof statusLabel][lang]}</small></div>
           </a>
@@ -125,7 +152,7 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
         ))}
       </div>
       {rosterIsEmpty && <p class="muted" style="margin-top:14px">{th ? 'รายชื่อนิสิตและผู้ช่วยนักวิจัยจะแสดงเมื่อเจ้าตัวยืนยัน' : 'Researcher and student profiles appear here once each person has confirmed.'}</p>}
-      <p style="margin-top:18px"><a href="/people/">{th ? 'ดูบุคลากรทั้งหมด →' : 'All people →'}</a></p>
+      <p style="margin-top:18px"><a href="/people/">{th ? 'ดูบุคลากรทั้งหมด และการร่วมงานกับเรา →' : 'All people, and how to work with us →'}</a></p>
     </section>
 
     <div class="status"><span>{T.status1}</span><span>{T.status2}</span></div>

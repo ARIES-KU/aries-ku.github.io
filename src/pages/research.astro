@@ -1,25 +1,62 @@
 ---
 import Base from '../layouts/Base.astro';
 import research from '../data/research.json';
+import problems from '../data/problems.json';
+import pubs from '../data/publications.json';
+
 const label = { active: 'Active', next: 'Next phase' } as Record<string, string>;
+const byDoi = new Map(pubs.items.filter((p) => p.doi).map((p) => [p.doi!.toLowerCase(), p]));
+const paper = (doi: string) => byDoi.get(doi.toLowerCase());
+const surnames = pubs.bold.map((s) => s.toLowerCase());
+const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s));
 ---
-<Base title="Research" description="Four research areas, two research groups and the Bridge Intelligence flagship program of the ARIES Center, Kasetsart University." page="research">
+<Base title="Research" description="The problems ARIES works on, how it approaches them, what the published work found so far, and the four research areas and two groups behind it." page="research">
   <section class="page inner">
     <div class="wrap">
+      <div class="th-note only-th" hidden>หน้านี้ยังเป็นภาษาอังกฤษ ฉบับภาษาไทยจะตามมาในระยะถัดไป</div>
       <div class="sec-head">
         <span class="eyebrow">Research</span>
-        <h1>Four areas, two groups, one flagship</h1>
-        <p class="lead muted prose">{research.intro}</p>
+        <h1>The problems we work on</h1>
+        <p class="lead muted prose">Each problem below is stated the way an owner agency meets it. Under it: how we approach it, what our published work has found, where the limits are, and the papers to read.</p>
+      </div>
+
+      <div class="problems">
+        {problems.items.map((p, i) => (
+          <article class="problem" id={p.id}>
+            <div class="problem-head">
+              <span class="pno">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h2>{p.question}</h2>
+                <p class="muted">{p.context}</p>
+              </div>
+              <span class={`chip ${p.status === 'active' ? 'ok' : 'next'}`}><i></i>{p.status === 'active' ? 'Published work' : 'In progress'}</span>
+            </div>
+            <div class="problem-body">
+              <div><h3>Approach</h3><p>{p.approach}</p></div>
+              <div><h3>What we found</h3><p>{p.findings}</p></div>
+              {p.limits && <div><h3>Limits</h3><p class="muted">{p.limits}</p></div>}
+              {p.dois.length > 0 && (
+                <div class="papers">
+                  <h3>Papers</h3>
+                  <ul>
+                    {p.dois.map((d) => { const w = paper(d); return w
+                      ? <li><a href={w.doi} rel="noopener">{w.title}</a> <span class="muted">({w.venue}, {w.year})</span></li>
+                      : <li><a href={d} rel="noopener">{d.replace('https://doi.org/', '')}</a></li>; })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
 
       <section class="block">
-        <h2 style="margin-bottom:16px">Research areas</h2>
+        <div class="sec-head"><h2>Four research areas, implemented in phases</h2><p class="muted prose">{research.intro}</p></div>
         <div class="pillars">
           {research.pillars.map((p) => (
             <article class="pillar">
               <div class="row"><h3>{p.name}</h3><span class={`chip ${p.status === 'active' ? 'ok' : 'next'}`}><i></i>{label[p.status]}</span></div>
               <p class="muted">{p.text}</p>
-              <p class="muted" style="font-size:.92rem">{p.note}</p>
             </article>
           ))}
         </div>
@@ -54,6 +91,7 @@ const label = { active: 'Active', next: 'Next phase' } as Record<string, string>
           {research.flagship.steps.map((s) => <div class="step"><span class="k">{s.k}</span><h4>{s.h}</h4><p>{s.p}</p></div>)}
         </div>
         <div class="users">Primary users: {research.flagship.users.map((u) => <span>{u}</span>)}</div>
+        <p style="margin-top:16px"><a href="/mission/">Why this program, and where it leads →</a></p>
       </section>
 
       <section class="block">

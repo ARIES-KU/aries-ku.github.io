@@ -5,7 +5,7 @@ interface Props {
   title: string;          // page name; the site name is appended
   description: string;
   lang?: 'en' | 'th';
-  page: 'home' | 'research' | 'people' | 'projects' | 'publications' | 'contact' | 'other';
+  page: 'home' | 'mission' | 'research' | 'people' | 'projects' | 'publications' | 'contact' | 'other';
   thHref?: string;        // Thai counterpart of this page, if one exists
   enHref?: string;        // English counterpart of this page, if one exists
 }
@@ -19,6 +19,7 @@ const fullTitle = page === 'home' ? `ARIES Center | Kasetsart University` : `${t
 // Thai exists for Home and Contact only; the other pages link to their English version from the Thai menu.
 const nav = [
   { key: 'home',         en: 'Home',         th: 'หน้าแรก',        enHref: '/',              thHref: '/th/' },
+  { key: 'mission',      en: 'Mission',      th: 'พันธกิจ',        enHref: '/mission/',      thHref: '/mission/' },
   { key: 'research',     en: 'Research',     th: 'งานวิจัย',        enHref: '/research/',     thHref: '/research/' },
   { key: 'people',       en: 'People',       th: 'บุคลากร',        enHref: '/people/',       thHref: '/people/' },
   { key: 'projects',     en: 'Projects',     th: 'โครงการ',        enHref: '/projects/',     thHref: '/projects/' },

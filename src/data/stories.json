@@ -1,0 +1,63 @@
+{
+  "_help": "เรื่องเล่าจากภาคสนามบนหน้าแรก: โครงสร้างจริง ปัญหาที่พบ ทำไมสำคัญ เราทำอะไร ทุกเรื่องต้องมาจากงานที่ตีพิมพ์แล้ว (doi) ห้ามใส่ผลที่ยังไม่ตีพิมพ์ | _source = ที่มาของข้อความ",
+  "items": [
+    {
+      "image": "tile-structural.jpg",
+      "doi": "https://doi.org/10.2749/tokyo.2025.1112",
+      "_source": "abstract, IABSE Symposium Tokyo 2025 (OpenAlex, 26 Sep 2026)",
+      "en": {
+        "kicker": "A bridge with seven decades of service",
+        "title": "Cracks that told a story of fatigue",
+        "problem": "An RC bridge that had carried traffic for more than seventy years showed flexural-shear cracks in its girders. Were they the marks of repeated loading, year after year?",
+        "did": "We surveyed the bridge with a UAV. The high-resolution images let us pin down where each crack was, then a nonlinear finite-element analysis following the AASHTO LRFD specifications reproduced the loading history and let us compare the predicted and observed crack patterns.",
+        "why": "Thousands of ageing concrete bridges cannot be climbed and hand-inspected often enough. A drone survey that feeds straight into structural analysis makes inspection faster and cheaper, and the assessment more precise."
+      },
+      "th": {
+        "kicker": "สะพานที่ใช้งานมากว่าเจ็ดสิบปี",
+        "title": "รอยร้าวที่เล่าเรื่องความล้า",
+        "problem": "สะพานคอนกรีตเสริมเหล็กที่รับรถมากว่าเจ็ดสิบปีมีรอยร้าวแบบดัด-เฉือนในคาน คำถามคือรอยร้าวเหล่านี้เกิดจากน้ำหนักบรรทุกซ้ำๆ ปีแล้วปีเล่าหรือไม่",
+        "did": "เราสำรวจสะพานด้วยอากาศยานไร้คนขับ ภาพความละเอียดสูงช่วยระบุตำแหน่งรอยร้าวแต่ละแห่ง แล้วใช้การวิเคราะห์ไฟไนต์เอลิเมนต์แบบไม่เชิงเส้นตามมาตรฐาน AASHTO LRFD จำลองประวัติการรับน้ำหนัก และเทียบรูปแบบรอยร้าวที่ทำนายกับที่พบจริง",
+        "why": "สะพานคอนกรีตอายุมากมีนับพันแห่ง ปีนขึ้นไปตรวจด้วยมือให้ทั่วและบ่อยพอเป็นไปไม่ได้ การสำรวจด้วยโดรนที่ต่อตรงเข้าการวิเคราะห์โครงสร้างทำให้ตรวจได้เร็วขึ้น ถูกลง และประเมินได้แม่นขึ้น"
+      }
+    },
+    {
+      "image": "tile-training.jpg",
+      "doi": "https://doi.org/10.1016/j.rcns.2025.08.001",
+      "_source": "abstract, Resilient Cities and Structures 2025 (OpenAlex, 26 Sep 2026)",
+      "en": {
+        "kicker": "A balanced cantilever bridge",
+        "title": "The bridge was not quite the bridge on the drawings",
+        "problem": "Structures are assessed against their design drawings. But after years in service, how close is the real bridge to the one that was drawn?",
+        "did": "We scanned the whole bridge with 3D LiDAR, measured concrete stiffness with ultrasonic pulse velocity, and recorded vibration and dynamic strain under traffic. The point cloud exposed differences between the as-designed and as-built geometry, and a digital twin built on the as-is data reproduced the measured dynamic behaviour.",
+        "why": "A twin that matches the real structure is a baseline: future inspections can be compared against it, and changes in dynamic strain or neutral-axis depth become early signs of local damage."
+      },
+      "th": {
+        "kicker": "สะพานคานยื่นสมดุล",
+        "title": "สะพานจริงไม่ตรงกับแบบเสียทีเดียว",
+        "problem": "การประเมินโครงสร้างมักอิงแบบก่อสร้าง แต่หลังใช้งานมาหลายปี สะพานจริงยังตรงกับสะพานในแบบแค่ไหน",
+        "did": "เราสแกนสะพานทั้งหลังด้วย 3D LiDAR วัดความแข็งของคอนกรีตด้วยคลื่นอัลตราโซนิก และบันทึกการสั่นกับความเครียดพลวัตขณะรถวิ่ง point cloud เผยความต่างระหว่างรูปทรงตามแบบกับที่สร้างจริง และแบบจำลองคู่ขนานดิจิทัลที่สร้างจากข้อมูลจริงให้ผลตรงกับพฤติกรรมพลวัตที่วัดได้",
+        "why": "แบบจำลองที่ตรงกับของจริงคือเส้นฐาน การตรวจครั้งต่อไปเทียบกับมันได้ และการเปลี่ยนแปลงของความเครียดพลวัตหรือตำแหน่งแกนสะเทินจะกลายเป็นสัญญาณเตือนความเสียหายเฉพาะจุดตั้งแต่เนิ่นๆ"
+      }
+    },
+    {
+      "image": "tile-materials.jpg",
+      "doi": "https://doi.org/10.1016/j.conbuildmat.2024.135650",
+      "doi2": "https://doi.org/10.1016/j.strusafe.2021.102115",
+      "_source": "abstracts, Construction and Building Materials 2024 and Structural Safety 2021 (OpenAlex, 26 Sep 2026)",
+      "en": {
+        "kicker": "Inside a corroded beam",
+        "title": "Corrosion is never uniform, and the worst spot decides",
+        "problem": "Steel in concrete does not corrode evenly. If an assessment uses an average loss, how much does it miss?",
+        "did": "With X-ray imaging and digital image processing we mapped the corrosion of every bar and strand in slab and beam specimens after accelerated corrosion. In prestressed beams the load capacity was set by the largest local loss of a single wire in the maximum-moment region, and the prestress itself made corrosion cracks wider. The measured spatial patterns became random-field models and 3D nonlinear finite-element analyses of how much capacity a structure keeps.",
+        "why": "An inspection has to find the worst spot, not the average. This is the physics behind the way ARIES turns crack-width observations into updated estimates of a structure's reliability."
+      },
+      "th": {
+        "kicker": "ภายในคานที่ถูกกัดกร่อน",
+        "title": "การกัดกร่อนไม่เคยสม่ำเสมอ และจุดที่แย่ที่สุดคือตัวตัดสิน",
+        "problem": "เหล็กในคอนกรีตไม่ได้กัดกร่อนเท่ากันทั้งเส้น ถ้าประเมินด้วยค่าเฉลี่ย เราพลาดไปแค่ไหน",
+        "did": "เราใช้ภาพถ่ายรังสีเอกซ์และการประมวลผลภาพทำแผนที่การกัดกร่อนของเหล็กทุกเส้นในชิ้นทดสอบพื้นและคานหลังเร่งการกัดกร่อน ในคานอัดแรง กำลังรับน้ำหนักถูกกำหนดโดยการสูญเสียเฉพาะจุดสูงสุดของลวดเพียงเส้นเดียวในช่วงโมเมนต์สูงสุด และแรงอัดทำให้รอยร้าวจากการกัดกร่อนกว้างขึ้น รูปแบบเชิงพื้นที่ที่วัดได้กลายเป็นแบบจำลองสนามสุ่มและการวิเคราะห์ไฟไนต์เอลิเมนต์สามมิติว่าโครงสร้างเหลือกำลังเท่าไร",
+        "why": "การตรวจสอบต้องหาจุดที่แย่ที่สุด ไม่ใช่ค่าเฉลี่ย นี่คือฟิสิกส์เบื้องหลังวิธีที่ ARIES แปลงความกว้างรอยร้าวที่ตรวจพบให้เป็นค่าความน่าเชื่อถือของโครงสร้างที่ปรับใหม่"
+      }
+    }
+  ]
+}

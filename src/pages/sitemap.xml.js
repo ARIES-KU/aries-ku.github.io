@@ -1,5 +1,5 @@
 // Static sitemap: list every public page here when one is added.
-const PAGES = ['/', '/research/', '/people/', '/projects/', '/publications/', '/contact/', '/th/', '/th/contact/'];
+const PAGES = ['/', '/mission/', '/research/', '/people/', '/projects/', '/publications/', '/contact/', '/th/', '/th/contact/'];
 
 export function GET({ site }) {
   const base = site ?? new URL('https://aries-ku.github.io');
