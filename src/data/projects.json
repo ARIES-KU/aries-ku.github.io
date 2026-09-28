@@ -11,11 +11,6 @@
       "_source": "EN title: contract N83A670433 p.9, NRIIS 4838285 p.1, final report p.3 (the report cover uses a different wording); completed per NRCT letter อว 0412.5/780 (6 Mar 2026)",
       "title": "Development of the Damage Detection System for Coastal Concrete Bridges through Engineering Innovations",
       "text": "Completed. Combined UAV imagery, AI damage detection and finite-element assessment for reinforced-concrete bridges in a marine environment.",
-      "tags": ["Coastal bridges", "UAV + AI", "FEM"] },
-    { "fund": "BOI-accredited training", "status": "pending", "statusLabel": "Awaiting budget", "titleConfirmed": false,
-      "_source": "BOI x NXPO proposal (innosci x ku-civil) p.1 item 1",
-      "title": "Advanced Workforce Development Program in Advanced 3D Surveying Technologies (UAV, LiDAR, TLS, SLAM) and AI Agent Analysis for Industry 5.0 Smart Infrastructure Management",
-      "text": "Curriculum approved by the Board of Investment of Thailand (BOI). First cohort will run once budget is allocated; open to engineers from government agencies and industry.",
-      "tags": ["Training", "UAV", "AI"] }
+      "tags": ["Coastal bridges", "UAV + AI", "FEM"] }
   ]
 }

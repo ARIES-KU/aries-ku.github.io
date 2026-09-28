@@ -90,7 +90,7 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
         <div class="pipeline">
           {research.flagship.steps.map((s) => <div class="step"><span class="k">{s.k}</span><h4>{s.h}</h4><p>{s.p}</p></div>)}
         </div>
-        <div class="users">Primary users: {research.flagship.users.map((u) => <span>{u}</span>)}</div>
+        <p class="muted" style="margin-top:18px;max-width:66ch">{research.flagship.usersNote}</p>
         <p style="margin-top:16px"><a href="/mission/">Why this program, and where it leads →</a></p>
       </section>
 

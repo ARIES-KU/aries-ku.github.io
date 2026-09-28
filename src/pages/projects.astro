@@ -3,12 +3,12 @@ import Base from '../layouts/Base.astro';
 import projects from '../data/projects.json';
 const chip = { active: 'ok', done: 'info', pending: 'next' } as Record<string, string>;
 ---
-<Base title="Projects" description="Funded research, collaborations and training programs of the ARIES Center, Kasetsart University." page="projects">
+<Base title="Projects" description="Funded research projects of the ARIES Center, Kasetsart University." page="projects">
   <section class="page inner">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Projects</span>
-        <h1>Funded research and programs under the center</h1>
+        <h1>Funded research under the center</h1>
       </div>
       <div class="projects">
         {projects.items.map((p) => (

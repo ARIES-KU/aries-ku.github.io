@@ -16,7 +16,7 @@
   ],
   "extraTiles": [
     { "name": "Bridge Intelligence", "name_th": "Bridge Intelligence", "status": "flagship", "tile": "tile-flagship.jpg", "position": 2 },
-    { "name": "Field Operations and Training", "name_th": "งานภาคสนามและการฝึกอบรม", "status": "ongoing", "tile": "tile-training.jpg", "position": 5 }
+    { "name": "Field Operations", "name_th": "งานภาคสนาม", "status": "ongoing", "tile": "tile-training.jpg", "position": 5 }
   ],
   "groups": [
     { "name": "Structural Assessment and Digital Twin", "name_th": "Structural Assessment and Digital Twin",
@@ -38,6 +38,6 @@
       { "k": "Assess", "h": "Condition assessment", "p": "Structural evaluation with human-in-the-loop quality control." },
       { "k": "Decide", "h": "Network prioritization", "p": "Which bridge, which repair, in what order." }
     ],
-    "users": ["Department of Highways", "Department of Rural Roads", "Expressway Authority of Thailand"]
+    "usersNote": "Designed for the agencies that own and maintain Thailand's bridges. It is at the research stage: the chain is being built and tested on a pilot bridge under the NRCT project."
   }
 }

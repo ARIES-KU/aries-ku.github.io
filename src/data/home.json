@@ -39,7 +39,7 @@
     "groupsH": "Research groups",
     "flagK": "Flagship program 2026 to 2028",
     "flagT": "Bridge Intelligence",
-    "flagUsers": "One pipeline from survey to decision. Primary users: the Department of Highways, the Department of Rural Roads and the Expressway Authority of Thailand.",
+    "flagUsers": "One pipeline from survey to decision, designed for the agencies that own and maintain Thailand's bridges. Now at the research stage, tested on a pilot bridge.",
     "steps": [
       "Survey",
       "Detect",
@@ -108,7 +108,7 @@
     "groupsH": "กลุ่มวิจัย",
     "flagK": "แผนงานวิจัยหลัก 2569 ถึง 2571",
     "flagT": "Bridge Intelligence",
-    "flagUsers": "ระบบเดียวตั้งแต่สำรวจจนถึงตัดสินใจ ผู้ใช้ประโยชน์หลัก ได้แก่ กรมทางหลวง กรมทางหลวงชนบท และการทางพิเศษแห่งประเทศไทย",
+    "flagUsers": "ระบบเดียวตั้งแต่สำรวจจนถึงตัดสินใจ ออกแบบเพื่อหน่วยงานที่เป็นเจ้าของและดูแลสะพานของประเทศ ขณะนี้อยู่ในขั้นวิจัยและทดสอบบนสะพานนำร่อง",
     "steps": [
       "สำรวจ",
       "ตรวจจับ",
