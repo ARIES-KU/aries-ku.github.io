@@ -9,25 +9,24 @@
     "Train researchers and engineers with advanced-technology skills in structural engineering."
   ],
   "layers": [
-    { "name": "Sensing", "what": "UAV imagery, LiDAR point clouds, satellite InSAR, vibration and strain sensors, X-ray imaging of corrosion.", "who": "Geospatial and Field Operations group", "feeds": "raw measurements of real structures" },
+    { "name": "Sensing", "what": "UAV imagery, LiDAR point clouds, satellite InSAR, vibration and strain sensors.", "who": "Geospatial and Field Operations group", "feeds": "raw measurements of real structures" },
     { "name": "Intelligence", "what": "Computer vision that classifies damage, digital twins that hold geometry, damage and behaviour in one model, machine-learning estimators of capacity.", "who": "Structural Assessment and Digital Twin group", "feeds": "structured, comparable descriptions of condition" },
-    { "name": "Structural knowledge", "what": "Nonlinear finite-element assessment, random-field models of spatial corrosion, reliability updating from inspection data, durability of materials.", "who": "Both groups; multi-hazard and materials groups as they open", "feeds": "how safe a structure is, and how that changes with time" },
-    { "name": "Decisions", "what": "Network-level prioritization, data standards owner agencies can adopt, training for the engineers who will use them.", "who": "With the Department of Highways, the Department of Rural Roads and the Expressway Authority of Thailand", "feeds": "which structure, which action, in what order" }
+    { "name": "Structural knowledge", "what": "Nonlinear finite-element assessment, X-ray measurement of corrosion in laboratory specimens, random-field models of spatial corrosion, reliability updating from inspection data, durability of materials.", "who": "Both groups; multi-hazard and materials groups as they open", "feeds": "how safe a structure is, and how that changes with time" },
+    { "name": "Decisions", "what": "Network-level prioritization, data standards owner agencies can adopt, training for the engineers who will use them.", "who": "For the Department of Highways, the Department of Rural Roads and the Expressway Authority of Thailand as primary users", "feeds": "which structure, which action, in what order" }
   ],
   "roadmap": [
-    { "period": "2026 to 2028", "title": "Build and prove", "items": ["Bridge Intelligence: the full chain from UAV and LiDAR survey to network-level prioritization, built on a pilot bridge under the NRCT digital twin project", "Data standards for bridge inspection and condition data that owner agencies can use directly", "First cohort of the BOI-accredited UAV and AI training course", "Every project reports in a peer-reviewed publication"] },
+    { "period": "2026 to 2028", "title": "Build and prove", "items": ["Bridge Intelligence: the full chain from UAV and LiDAR survey to network-level prioritization, built on a pilot bridge under the NRCT digital twin project", "Data standards for bridge inspection and condition data that owner agencies can use directly", "First cohort of the BOI-accredited UAV and AI training course", "Every research project reports in a peer-reviewed publication"] },
     { "period": "2028 onwards", "title": "Broaden and institutionalize", "items": ["Open the Resilience and Multi-Hazard and the Advanced Materials groups with colleagues from related fields", "A handbook and data standard for bridge inspection and assessment, developed with the agencies", "Formal partnerships with universities abroad, moving from personal collaboration to center-level agreements", "Graduates and research assistants who carry the methods into the agencies and companies that manage infrastructure"] }
   ],
   "projectMap": [
-    { "project": "Digital twin platform for network-level bridge assessment (NRCT, 2026)", "goal": "Proves the whole chain on a real network and produces the data standards.", "layers": ["Sensing", "Intelligence", "Decisions"] },
+    { "project": "Digital twin platform for network-level bridge assessment (NRCT, 2026)", "goal": "Runs the whole chain on a pilot bridge, links it to network-level prioritization, and produces the data standards.", "layers": ["Sensing", "Intelligence", "Decisions"] },
     { "project": "Coastal concrete bridge damage detection and assessment (NRCT, 2025, completed)", "goal": "Built the UAV + AI + finite-element assessment pipeline that Bridge Intelligence extends.", "layers": ["Sensing", "Intelligence", "Structural knowledge"] },
-    { "project": "InSAR early warning for infrastructure deformation (EGAT)", "goal": "Adds satellite-scale sensing so that monitoring reaches structures no drone visits.", "layers": ["Sensing"] },
     { "project": "UAV and AI training course (BOI-accredited)", "goal": "Puts the methods in the hands of the engineers who inspect and manage infrastructure.", "layers": ["Decisions"] }
   ],
   "principles": [
     { "t": "An engineer stays in the loop", "d": "AI proposes, people decide. Every automated detection is reviewed before it changes a rating." },
     { "t": "Standards owners can adopt", "d": "Results are delivered in data formats and procedures that agencies can use without us in the room." },
-    { "t": "Every project publishes", "d": "Applied work and academic work are the same work. Each funded project reports in a peer-reviewed venue." },
+    { "t": "Research that gets published", "d": "Applied work and academic work are the same work. Each funded research project aims to report in a peer-reviewed venue." },
     { "t": "Train people, not only tools", "d": "Students, research assistants and agency engineers learn the methods by working on real structures." }
   ],
   "doors": [

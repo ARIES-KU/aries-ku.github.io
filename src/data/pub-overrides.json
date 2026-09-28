@@ -14,5 +14,16 @@
       "type": "Conference",
       "source": "Repository record"
     }
+  },
+  "https://doi.org/10.1080/15732479.2019.1674343": {
+    "_source": "CrossRef has given/family swapped for the second author; OpenAlex W2980507577 (checked 2026-09-28) links it to A5045890033 Supasit Srivaranun, ORCID 0000-0003-2209-694X",
+    "set": {
+      "authors": [
+        "Zheng-Shu He",
+        "Supasit Srivaranun",
+        "Mitsuyoshi Akiyama",
+        "Dan M. Frangopol"
+      ]
+    }
   }
 }

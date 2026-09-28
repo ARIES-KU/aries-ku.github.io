@@ -27,13 +27,14 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
               <span class="pno">{String(i + 1).padStart(2, '0')}</span>
               <div>
                 <h2>{p.question}</h2>
+                {p.credit && <p class="credit">{p.credit}</p>}
                 <p class="muted">{p.context}</p>
               </div>
               <span class={`chip ${p.status === 'active' ? 'ok' : 'next'}`}><i></i>{p.status === 'active' ? 'Published work' : 'In progress'}</span>
             </div>
             <div class="problem-body">
               <div><h3>Approach</h3><p>{p.approach}</p></div>
-              <div><h3>What we found</h3><p>{p.findings}</p></div>
+              <div><h3>What the work found</h3><p>{p.findings}</p></div>
               {p.limits && <div><h3>Limits</h3><p class="muted">{p.limits}</p></div>}
               {p.dois.length > 0 && (
                 <div class="papers">

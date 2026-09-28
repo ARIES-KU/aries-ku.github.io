@@ -5,7 +5,7 @@
     { "file": "logo-drr.png",  "en": "Department of Rural Roads",                     "th": "กรมทางหลวงชนบท",                        "size": "sq",   "logoApproved": false },
     { "file": "logo-exat.png", "en": "Expressway Authority of Thailand",              "th": "การทางพิเศษแห่งประเทศไทย",                 "size": "sq",   "logoApproved": false },
     { "file": "logo-egat.png", "en": "Electricity Generating Authority of Thailand",  "th": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",             "size": "sq",   "logoApproved": false },
-    { "file": "logo-boi.png",  "en": "Thailand Board of Investment",                  "th": "สำนักงานคณะกรรมการส่งเสริมการลงทุน",           "size": "wide", "logoApproved": false }
+    { "file": "logo-boi.png",  "en": "Board of Investment of Thailand (BOI)",         "th": "สำนักงานคณะกรรมการส่งเสริมการลงทุน",           "size": "wide", "logoApproved": false }
   ],
   "intl": [
     { "file": "logo-waseda.png",  "en": "Waseda University",                       "th": "Waseda University",                       "size": "wide", "logoApproved": false },

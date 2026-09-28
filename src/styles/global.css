@@ -284,7 +284,8 @@ h2.h3{font-size:1.05rem;font-weight:600}
 .preview-bar{background:var(--next-soft);color:var(--next);text-align:center;font-size:.85rem;padding:6px 16px}
 
 /* stories, problems, mission (v0.6) */
-.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stories{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.story .credit,.problem-head .credit{font-size:.84rem;color:var(--muted);font-style:italic;margin-top:-4px}
 .story{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
 .story img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
 .story .body{padding:18px 20px 20px;display:grid;gap:10px;flex:1}

@@ -59,6 +59,7 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
             <div class="body">
               <span class="kicker">{t.kicker}</span>
               <h3>{t.title}</h3>
+              {t.credit && <p class="credit">{t.credit}</p>}
               <dl>
                 <dt>{T.storyProblem}</dt><dd>{t.problem}</dd>
                 <dt>{T.storyDid}</dt><dd>{t.did}</dd>
