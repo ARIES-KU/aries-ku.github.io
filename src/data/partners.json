@@ -1,5 +1,7 @@
 {
   "_help": "ไฟล์โลโก้ใส่ใน public/logos/ เฉพาะเมื่อ logoApproved = true เท่านั้น (สำเนาทุกไฟล์อยู่ที่ 06_Website/prototype/ บน Drive) | logoApproved = หน่วยงานอนุญาตให้ใช้โลโก้แล้ว ถ้า false หน้าเว็บแสดงเป็นชื่อตัวหนังสือแทนโลโก้ | size: sq = ตรากลม/สี่เหลี่ยม, wide = โลโก้แนวนอน, word = ตัวหนังสือล้วน | แหล่งไฟล์และสัญญาอนุญาต: ดู SOURCES ใน Research Empire",
+  "show": false,
+  "_show": "หัวข้อพันธมิตรบนหน้าแรกซ่อนไว้ (อาจารย์ตัดสิน 28 ก.ย. 2569): ขึ้นทีละแห่งเมื่อแต่ละที่ตอบรับเป็นลายลักษณ์อักษร หลังคณบดีลงนามจัดตั้งศูนย์; หน่วยงานรัฐขึ้นได้เมื่อมีโครงการหรือ MOU กับศูนย์โดยตรง",
   "gov": [
     { "file": "logo-doh.png",  "en": "Department of Highways",                        "th": "กรมทางหลวง",                           "size": "sq",   "logoApproved": false },
     { "file": "logo-drr.png",  "en": "Department of Rural Roads",                     "th": "กรมทางหลวงชนบท",                        "size": "sq",   "logoApproved": false },
@@ -8,12 +10,10 @@
   ],
   "intl": [
     { "file": "logo-waseda.png",  "en": "Waseda University",                       "th": "Waseda University",                       "size": "wide", "logoApproved": false },
+    { "file": "logo-chula.png",   "en": "Chulalongkorn University",                "th": "จุฬาลงกรณ์มหาวิทยาลัย",                    "size": "sq",   "logoApproved": false },
     { "file": "logo-itb.png",     "en": "Institut Teknologi Bandung",              "th": "Institut Teknologi Bandung",              "size": "wide", "logoApproved": false, "fairUse": true },
     { "file": "logo-lehigh.png",  "en": "Lehigh University",                       "th": "Lehigh University",                       "size": "wide", "logoApproved": false },
     { "file": "logo-szu.png",     "en": "Shenzhen University",                     "th": "Shenzhen University",                     "size": "sq",   "logoApproved": false, "fairUse": true },
-    { "file": "logo-hit.png",     "en": "Harbin Institute of Technology",          "th": "Harbin Institute of Technology",          "size": "sq",   "logoApproved": false, "fairUse": true },
-    { "file": "logo-satreps.png", "en": "SATREPS",                                 "th": "SATREPS",                                 "size": "word", "logoApproved": false },
-    { "file": "logo-jica.png",    "en": "Japan International Cooperation Agency",  "th": "JICA",                                    "size": "sq",   "logoApproved": false },
-    { "file": "logo-jst.png",     "en": "Japan Science and Technology Agency",     "th": "Japan Science and Technology Agency",     "size": "wide", "logoApproved": false }
+    { "file": "logo-hit.png",     "en": "Harbin Institute of Technology",          "th": "Harbin Institute of Technology",          "size": "sq",   "logoApproved": false, "fairUse": true }
   ]
 }

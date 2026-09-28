@@ -22,7 +22,8 @@ for (const f of people.faculty) if (!f.consent) facultyIssue(`faculty has not re
 for (const g of people.roster) for (const m of g.members) if (!m.consent) blockers.push(`in people.json without consent: ${m.name} (${g.label}); move them to people.pending.json`);
 if (process.env.CI && (await exists('src/data/people.pending.json'))) blockers.push('src/data/people.pending.json reached GitHub: it must stay local (it is in .gitignore)');
 
-for (const p of [...partners.gov, ...partners.intl]) {
+if (!partners.show) warnings.push('partner section hidden until partners agree in writing (decision 28 Sep 2026)');
+for (const p of partners.show ? [...partners.gov, ...partners.intl] : []) {
   if (p.logoApproved && p.fairUse) blockers.push(`logo marked approved but the file is a fair-use copy: replace ${p.file} with the partner's official file`);
   // logo files live in public/ only once approved (copies of all of them are in 06_Website/prototype/ on Drive)
   if (p.logoApproved && !(await exists(`public/logos/${p.file}`))) blockers.push(`logo marked approved but public/logos/${p.file} is missing: copy the approved file in`);

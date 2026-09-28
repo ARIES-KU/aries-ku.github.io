@@ -131,6 +131,7 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
       </div>
     </section>
 
+    {partners.show && (
     <section class="home-sec partners">
       <div class="sec-head" style="margin-bottom:6px"><h2>{T.partnersH}</h2><p class="muted">{T.partnersP}</p></div>
       {[['gov', T.govL], ['intl', T.intlL]].map(([key, label]) => (
@@ -144,6 +145,7 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
         </Fragment>
       ))}
     </section>
+    )}
 
     <section class="home-sec">
       <div class="sec-head"><h2>{T.teamH}</h2><p class="muted">{T.teamP}</p></div>
