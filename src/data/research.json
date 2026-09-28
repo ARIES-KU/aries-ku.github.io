@@ -39,10 +39,5 @@
       { "k": "Decide", "h": "Network prioritization", "p": "Which bridge, which repair, in what order." }
     ],
     "users": ["Department of Highways", "Department of Rural Roads", "Expressway Authority of Thailand"]
-  },
-  "facilities": {
-    "text": "The center works from Room 9806, 8th floor, Building 9, Faculty of Engineering, and uses the Department of Civil Engineering laboratories as needed.",
-    "equipment": [],
-    "_todo": "ใส่รายการอุปกรณ์จริงใน equipment หรือปล่อยว่างไว้ (หน้าเว็บจะไม่แสดงหัวข้อรายการอุปกรณ์ถ้าว่าง)"
   }
 }

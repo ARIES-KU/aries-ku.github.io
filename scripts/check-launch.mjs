@@ -24,6 +24,8 @@ if (process.env.CI && (await exists('src/data/people.pending.json'))) blockers.p
 
 for (const p of [...partners.gov, ...partners.intl]) {
   if (p.logoApproved && p.fairUse) blockers.push(`logo marked approved but the file is a fair-use copy: replace ${p.file} with the partner's official file`);
+  // logo files live in public/ only once approved (copies of all of them are in 06_Website/prototype/ on Drive)
+  if (p.logoApproved && !(await exists(`public/logos/${p.file}`))) blockers.push(`logo marked approved but public/logos/${p.file} is missing: copy the approved file in`);
   if (!p.logoApproved) warnings.push(`logo shown as text until approved: ${p.en}`);
 }
 if (!people.supportedBy.permission) warnings.push('"Supported by" section hidden until the Dean agrees');

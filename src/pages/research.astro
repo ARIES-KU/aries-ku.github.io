@@ -95,13 +95,6 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
         <p style="margin-top:16px"><a href="/mission/">Why this program, and where it leads →</a></p>
       </section>
 
-      <section class="block">
-        <h2>Facilities</h2>
-        <p class="muted" style="max-width:66ch;margin-top:8px">{research.facilities.text}</p>
-        {research.facilities.equipment.length > 0 && (
-          <ul class="bullets" style="margin-top:16px">{research.facilities.equipment.map((e: string) => <li>{e}</li>)}</ul>
-        )}
-      </section>
     </div>
   </section>
 </Base>

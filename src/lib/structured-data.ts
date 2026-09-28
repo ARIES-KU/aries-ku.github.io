@@ -19,10 +19,10 @@ export function centerJsonLd(site: URL) {
       'ศวอ.',
     ],
     description:
-      'Department-level center of excellence at Kasetsart University that develops AI, digital-twin and field-sensing technologies for assessing and maintaining bridges and infrastructure.',
+      'Research center operating under the Department of Civil Engineering, Kasetsart University, that develops AI, digital-twin and field-sensing technologies for assessing and maintaining bridges and infrastructure.',
     url: u('/'),
     logo: u('/images/logo.png'),
-    foundingDate: '2026',
+    // foundingDate: add the date the Dean signs the establishment memo (not signed as of 28 Sep 2026)
     email: 'supasit.sriv@ku.ac.th',
     address: {
       '@type': 'PostalAddress',

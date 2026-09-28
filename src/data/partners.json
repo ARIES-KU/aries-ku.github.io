@@ -1,10 +1,9 @@
 {
-  "_help": "logoApproved = หน่วยงานอนุญาตให้ใช้โลโก้แล้ว ถ้า false หน้าเว็บแสดงเป็นชื่อตัวหนังสือแทนโลโก้ | size: sq = ตรากลม/สี่เหลี่ยม, wide = โลโก้แนวนอน, word = ตัวหนังสือล้วน | แหล่งไฟล์และสัญญาอนุญาต: ดู SOURCES ใน Research Empire",
+  "_help": "ไฟล์โลโก้ใส่ใน public/logos/ เฉพาะเมื่อ logoApproved = true เท่านั้น (สำเนาทุกไฟล์อยู่ที่ 06_Website/prototype/ บน Drive) | logoApproved = หน่วยงานอนุญาตให้ใช้โลโก้แล้ว ถ้า false หน้าเว็บแสดงเป็นชื่อตัวหนังสือแทนโลโก้ | size: sq = ตรากลม/สี่เหลี่ยม, wide = โลโก้แนวนอน, word = ตัวหนังสือล้วน | แหล่งไฟล์และสัญญาอนุญาต: ดู SOURCES ใน Research Empire",
   "gov": [
     { "file": "logo-doh.png",  "en": "Department of Highways",                        "th": "กรมทางหลวง",                           "size": "sq",   "logoApproved": false },
     { "file": "logo-drr.png",  "en": "Department of Rural Roads",                     "th": "กรมทางหลวงชนบท",                        "size": "sq",   "logoApproved": false },
     { "file": "logo-exat.png", "en": "Expressway Authority of Thailand",              "th": "การทางพิเศษแห่งประเทศไทย",                 "size": "sq",   "logoApproved": false },
-    { "file": "logo-egat.png", "en": "Electricity Generating Authority of Thailand",  "th": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย",             "size": "sq",   "logoApproved": false },
     { "file": "logo-boi.png",  "en": "Board of Investment of Thailand (BOI)",         "th": "สำนักงานคณะกรรมการส่งเสริมการลงทุน",           "size": "wide", "logoApproved": false }
   ],
   "intl": [

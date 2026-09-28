@@ -100,7 +100,7 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
             <img class="ku" src="/images/ku_logo.png" alt="Kasetsart University" width="44" height="44" />
           </div>
           <p class="name"><b>ARIES</b><br />Center of Excellence for Advanced Resilience and Intelligent Engineering of Structural Systems<br /><span lang="th">ศูนย์เชี่ยวชาญเฉพาะทางวิศวกรรมระบบโครงสร้างอัจฉริยะเพื่อความยั่งยืน</span><br />Department of Civil Engineering, Faculty of Engineering, Kasetsart University</p>
-          <small>© {new Date().getFullYear()} ARIES Center, Kasetsart University. A department-level center of excellence under the Department of Civil Engineering.</small>
+          <small>© {new Date().getFullYear()} ARIES Center, Kasetsart University. Operating under the Department of Civil Engineering; formal establishment as a center of excellence is in progress.</small>
         </div>
         <div class="links">
           {nav.slice(1).map((n) => <a href={lang === 'th' ? n.thHref : n.enHref}>{lang === 'th' ? n.th : n.en}</a>)}
