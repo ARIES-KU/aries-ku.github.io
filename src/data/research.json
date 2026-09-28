@@ -24,8 +24,8 @@
       "text_th": "การประเมินโครงสร้าง แบบจำลองคู่ขนานดิจิทัล และแบบจำลองการเสื่อมสภาพ",
       "lead": "Asst. Prof. Dr. Supasit Srivaranun, Director", "lead_th": "ผศ.ดร.ศุภศิษฏ์ ศรีวรานันท์ (หัวหน้าศูนย์)" },
     { "name": "Geospatial and Field Operations", "name_th": "Geospatial and Field Operations",
-      "text": "Unmanned aerial vehicles, LiDAR, satellite InSAR and field survey.",
-      "text_th": "อากาศยานไร้คนขับ LiDAR ดาวเทียม InSAR และการสำรวจภาคสนาม",
+      "text": "Unmanned aerial vehicles, LiDAR and field survey.",
+      "text_th": "อากาศยานไร้คนขับ LiDAR และการสำรวจภาคสนาม",
       "lead": "Asst. Prof. Kittipos Prapassorn", "lead_th": "ผศ.กิตติพศ ประภัศร" }
   ],
   "flagship": {
