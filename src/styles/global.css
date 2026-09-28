@@ -75,7 +75,12 @@ nav.main a.active{color:var(--navy);font-weight:600;box-shadow:inset 0 -3px 0 va
 .page.inner{padding-top:56px}
 .home-sec{margin-top:64px}
 .sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.th-note{background:var(--next-soft);color:var(--next);border-radius:8px;padding:10px 14px;font-family:var(--thai);font-size:.95rem;margin-bottom:28px;display:inline-block}
+/* EN tag after a Thai menu item whose page exists only in English */
+.en-tag{display:inline-block;margin-left:5px;padding:0 4px;border:1px solid var(--line);border-radius:4px;font:600 .6rem/1.5 var(--mono);letter-spacing:.06em;color:var(--muted);vertical-align:2px}
+html:is([data-look="navy"],[data-look="dark"]) nav.main .en-tag{color:#9FB3D1;border-color:rgba(255,255,255,.25)}
+html[data-look="navy"] footer .en-tag{color:#9FB3D1;border-color:rgba(255,255,255,.25)}
+/* small phones: keep the Thai menu (with its EN tags) on two rows, like the English one */
+@media (max-width:420px){nav.main a{padding:6px 7px}.en-tag{margin-left:3px;padding:0 3px;font-size:.55rem}}
 
 /* hero: photo + overlapping white card */
 .hero-photo{display:block;width:100%;height:clamp(300px,40vw,520px);object-fit:cover;object-position:center 40%}

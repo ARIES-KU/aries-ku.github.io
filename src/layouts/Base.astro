@@ -27,6 +27,8 @@ const nav = [
   { key: 'publications', en: 'Publications', th: 'ผลงานตีพิมพ์',    enHref: '/publications/', thHref: '/publications/' },
   { key: 'contact',      en: 'Contact',      th: 'ติดต่อ',         enHref: '/contact/',      thHref: '/th/contact/' },
 ];
+// in the Thai menu, pages with no Thai version carry a small EN tag, so a reader knows before clicking
+const enOnly = (n: { enHref: string; thHref: string }) => lang === 'th' && n.thHref === n.enHref;
 const toTh = thHref ?? '/th/';
 const toEn = enHref ?? (lang === 'th' ? '/' : Astro.url.pathname);
 // White / navy / full-navy comparison switch: on in `npm run dev`, off in the published site unless PUBLIC_THEME_SWITCH=true.
@@ -75,8 +77,8 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
         </a>
         <nav class="main" aria-label="Primary">
           {nav.map((n) => (
-            <a href={lang === 'th' ? n.thHref : n.enHref} class={n.key === page ? 'active' : undefined} aria-current={n.key === page ? 'page' : undefined}>
-              {lang === 'th' ? n.th : n.en}
+            <a href={lang === 'th' ? n.thHref : n.enHref} class={n.key === page ? 'active' : undefined} aria-current={n.key === page ? 'page' : undefined} hreflang={enOnly(n) ? 'en' : undefined}>
+              {lang === 'th' ? n.th : n.en}{enOnly(n) && <span class="en-tag" lang="en" title="หน้านี้เป็นภาษาอังกฤษ">EN</span>}
             </a>
           ))}
         </nav>
@@ -103,7 +105,7 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
           <small>© {new Date().getFullYear()} ARIES Center, Kasetsart University. Operating under the Department of Civil Engineering; formal establishment as a center of excellence is in progress.</small>
         </div>
         <div class="links">
-          {nav.slice(1).map((n) => <a href={lang === 'th' ? n.thHref : n.enHref}>{lang === 'th' ? n.th : n.en}</a>)}
+          {nav.slice(1).map((n) => <a href={lang === 'th' ? n.thHref : n.enHref} hreflang={enOnly(n) ? 'en' : undefined}>{lang === 'th' ? n.th : n.en}{enOnly(n) && <span class="en-tag" lang="en" title="หน้านี้เป็นภาษาอังกฤษ">EN</span>}</a>)}
           <a href="https://www.eng.ku.ac.th/" rel="noopener">Faculty of Engineering, KU</a>
           <a href="https://www.ku.ac.th/" rel="noopener">Kasetsart University</a>
         </div>
