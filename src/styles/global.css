@@ -77,7 +77,7 @@ nav.main a.active{color:var(--navy);font-weight:600;box-shadow:inset 0 -3px 0 va
 .sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
 /* EN tag after a Thai menu item whose page exists only in English */
 .en-tag{display:inline-block;margin-left:5px;padding:0 4px;border:1px solid var(--line);border-radius:4px;font:600 .6rem/1.5 var(--mono);letter-spacing:.06em;color:var(--muted);vertical-align:2px}
-html:is([data-look="navy"],[data-look="dark"]) nav.main .en-tag{color:#9FB3D1;border-color:rgba(255,255,255,.25)}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) nav.main .en-tag{color:#9FB3D1;border-color:rgba(255,255,255,.25)}
 html[data-look="navy"] footer .en-tag{color:#9FB3D1;border-color:rgba(255,255,255,.25)}
 /* small phones: keep the Thai menu (with its EN tags) on two rows, like the English one */
 @media (max-width:420px){nav.main a{padding:6px 7px}.en-tag{margin-left:3px;padding:0 3px;font-size:.55rem}}
@@ -347,34 +347,34 @@ table.map td:first-child{font-weight:600;color:var(--navy);min-width:220px}
 .btn.ghost:hover{border-color:var(--cyan);text-decoration:none}
 
 /* navy look: the v0.2 navy prototype's dark header, footer, flagship bar and tile captions, on the same content.
-   Applied by html:is([data-look="navy"],[data-look="dark"]); the switch (.look-switch) only renders in `npm run dev`. */
+   Applied to the navy, full-navy and black looks; the switch (.look-switch) only renders in `npm run dev`. */
 .logo-on-dark{display:none!important}
-html:is([data-look="navy"],[data-look="dark"]) .logo-on-light{display:none!important}
-html:is([data-look="navy"],[data-look="dark"]) .logo-on-dark{display:block!important}
-html:is([data-look="navy"],[data-look="dark"]) .topbar{background:var(--brand-navy);border-bottom-color:#1C2E58}
-html:is([data-look="navy"],[data-look="dark"]) .brand .div{background:rgba(255,255,255,.25)}
-html:is([data-look="navy"],[data-look="dark"]) .brand .ku{color:#9FB3D1}
-html:is([data-look="navy"],[data-look="dark"]) nav.main a{color:#DCE6F5}
-html:is([data-look="navy"],[data-look="dark"]) nav.main a:hover{background:rgba(255,255,255,.08)}
-html:is([data-look="navy"],[data-look="dark"]) nav.main a.active{color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .lang{border-color:rgba(255,255,255,.28)}
-html:is([data-look="navy"],[data-look="dark"]) .lang a{background:transparent;color:#B9C8DE}
-html:is([data-look="navy"],[data-look="dark"]) .lang a.on{background:var(--cyan);color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .lang a:not(.on):hover{background:rgba(255,255,255,.1);color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .flagbar{background:var(--brand-navy);border-color:var(--brand-navy);color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .flagbar h3{color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .flagbar .k{color:#7CC4F5}
-html:is([data-look="navy"],[data-look="dark"]) .flagbar .users{color:#C8D8EE}
-html:is([data-look="navy"],[data-look="dark"]) .steps span{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .tile .cap{background:rgba(11,26,58,.92);border-top-color:transparent}
-html:is([data-look="navy"],[data-look="dark"]) .tile .cap b{color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) .tile .cap small{color:#7CC4F5}
-html:is([data-look="navy"],[data-look="dark"]) footer{background:var(--brand-navy);color:#C8D8EE;border-top-color:#1C2E58}
-html:is([data-look="navy"],[data-look="dark"]) footer .name b{color:#fff}
-html:is([data-look="navy"],[data-look="dark"]) footer .links a{color:#DCE6F5}
-html:is([data-look="navy"],[data-look="dark"]) footer .links a:hover{color:#7CC4F5}
-html:is([data-look="navy"],[data-look="dark"]) footer small{color:#9FB3D1}
-html:is([data-look="navy"],[data-look="dark"]) footer .logos .ku{background:#fff;border-radius:6px;padding:3px;box-sizing:content-box}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .logo-on-light{display:none!important}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .logo-on-dark{display:block!important}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .topbar{background:var(--brand-navy);border-bottom-color:#1C2E58}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .brand .div{background:rgba(255,255,255,.25)}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .brand .ku{color:#9FB3D1}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) nav.main a{color:#DCE6F5}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) nav.main a:hover{background:rgba(255,255,255,.08)}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) nav.main a.active{color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .lang{border-color:rgba(255,255,255,.28)}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .lang a{background:transparent;color:#B9C8DE}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .lang a.on{background:var(--cyan);color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .lang a:not(.on):hover{background:rgba(255,255,255,.1);color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .flagbar{background:var(--brand-navy);border-color:var(--brand-navy);color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .flagbar h3{color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .flagbar .k{color:#7CC4F5}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .flagbar .users{color:#C8D8EE}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .steps span{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .tile .cap{background:rgba(11,26,58,.92);border-top-color:transparent}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .tile .cap b{color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) .tile .cap small{color:#7CC4F5}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) footer{background:var(--brand-navy);color:#C8D8EE;border-top-color:#1C2E58}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) footer .name b{color:#fff}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) footer .links a{color:#DCE6F5}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) footer .links a:hover{color:#7CC4F5}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) footer small{color:#9FB3D1}
+html:is([data-look="navy"],[data-look="dark"],[data-look="black"]) footer .logos .ku{background:#fff;border-radius:6px;padding:3px;box-sizing:content-box}
 
 /* full-navy look: the whole page dark, tokens from the v0.2 prototype's dark mode. --navy turns into light ink,
    so headings and names stay readable; anything that used it as a fill is repainted below. */
@@ -387,13 +387,50 @@ html[data-look="dark"]{
   --ok:#6FD4AE; --ok-soft:#123A2D; --next:#F0C36A; --next-soft:#3A2D0F; --verify:#F08A8A; --verify-soft:#42191B;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -12px rgba(0,0,0,.6);
 }
-html[data-look="dark"] .flagbar{background:var(--surface-2);border-color:var(--line)}
-html[data-look="dark"] .direction{background:#102347;border:1px solid #24406E}
-html[data-look="dark"] .flag,html[data-look="dark"] .mapbox{border-color:var(--line)}
-html[data-look="dark"] .ncard{border-top-color:var(--cyan)}
-html[data-look="dark"] .btn.primary,html[data-look="dark"] .skip,html[data-look="dark"] .lang button.on{background:var(--cyan);color:#fff}
-html[data-look="dark"] .btn.primary:hover{background:#1689D2}
-html[data-look="dark"] .look-switch button[aria-pressed="true"]{background:var(--cyan);color:#fff}
+html:is([data-look="dark"],[data-look="black"]) .flagbar{background:var(--surface-2);border-color:var(--line)}
+html:is([data-look="dark"],[data-look="black"]) .direction{background:#102347;border:1px solid #24406E}
+html:is([data-look="dark"],[data-look="black"]) .flag,html:is([data-look="dark"],[data-look="black"]) .mapbox{border-color:var(--line)}
+html:is([data-look="dark"],[data-look="black"]) .ncard{border-top-color:var(--cyan)}
+html:is([data-look="dark"],[data-look="black"]) .btn.primary,html:is([data-look="dark"],[data-look="black"]) .skip,html:is([data-look="dark"],[data-look="black"]) .lang button.on{background:var(--cyan);color:#fff}
+html:is([data-look="dark"],[data-look="black"]) .btn.primary:hover{background:#1689D2}
+html:is([data-look="dark"],[data-look="black"]) .look-switch button[aria-pressed="true"]{background:var(--cyan);color:#fff}
+
+/* black look: OpenAI-style monochrome. Pure black page, near-white type, hairline borders, white accents; the only
+   colour left is in the photos, the logo and the small status chips. Builds on the two navy rule sets above
+   (--brand-navy turns black, so the header, footer and flagship bar follow). */
+html[data-look="black"]{
+  color-scheme:dark;
+  --navy:#F5F5F5; --navy-2:#D4D4D4; --brand-navy:#000000;
+  --cyan:#FFFFFF; --cyan-ink:#FFFFFF; --cyan-soft:#1F1F1F;
+  --bg:#000000; --surface:#0D0D0D; --surface-2:#171717; --tint:#111111;
+  --text:#ECECEC; --muted:#9B9B9B; --line:#262626;
+  --ok:#6FD4AE; --ok-soft:#10261E; --next:#F0C36A; --next-soft:#2A210C; --verify:#F08A8A; --verify-soft:#301415;
+  --shadow:0 1px 2px rgba(0,0,0,.6),0 10px 30px -12px rgba(0,0,0,.8);
+}
+html[data-look="black"] .topbar{border-top-color:#000;border-bottom-color:#1F1F1F}
+html[data-look="black"] nav.main a{color:#D4D4D4}
+html[data-look="black"] .lang{border-color:#333}
+html[data-look="black"] .brand .ku,html[data-look="black"] .eyebrow,html[data-look="black"] .flagbar .k,
+html[data-look="black"] .tile .cap small,html[data-look="black"] .ncard .cat{color:#A3A3A3}
+html[data-look="black"] nav.main .en-tag,html[data-look="black"] footer .en-tag{color:#9B9B9B;border-color:#333}
+html[data-look="black"] .lang a.on,html[data-look="black"] .look-switch button[aria-pressed="true"],
+html[data-look="black"] .btn.primary,html[data-look="black"] .skip{background:#FFFFFF;color:#000000}
+html[data-look="black"] .btn.primary{border-radius:999px}
+html[data-look="black"] .btn.primary:hover{background:#D4D4D4}
+html[data-look="black"] .hero-card{border-top:2px solid #FFFFFF}
+html[data-look="black"] .direction{background:#0D0D0D;border:1px solid #262626}
+html[data-look="black"] .steps span{background:#111111;border-color:#333}
+html[data-look="black"] .tile .cap{background:rgba(0,0,0,.82)}
+html[data-look="black"] .ncard{border-top:1px solid #333}
+html[data-look="black"] .ncard.accent{border-top:1px solid #FFFFFF}
+html[data-look="black"] .chain-no{color:#000000}
+html[data-look="black"] main a:not(.btn):not(.tile){text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:3px}
+html[data-look="black"] main a:not(.btn):not(.tile):hover{text-decoration-color:#FFFFFF}
+html[data-look="black"] .direction a{text-decoration:none}
+html[data-look="black"] footer{border-top-color:#1F1F1F;color:#9B9B9B}
+html[data-look="black"] footer .links a{color:#D4D4D4}
+html[data-look="black"] footer .links a:hover{color:#FFFFFF}
+html[data-look="black"] footer small{color:#7A7A7A}
 
 /* review-only switch, bottom left */
 .look-switch{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 4px 4px 12px;box-shadow:var(--shadow);font:500 .85rem var(--thai)}
@@ -401,3 +438,5 @@ html[data-look="dark"] .look-switch button[aria-pressed="true"]{background:var(-
 .look-switch button{font:600 .85rem var(--thai);border:0;border-radius:999px;padding:6px 14px;cursor:pointer;background:transparent;color:var(--text)}
 .look-switch button[aria-pressed="true"]{background:var(--navy);color:#fff}
 .look-switch button:not([aria-pressed="true"]):hover{background:var(--surface-2)}
+.look-switch button{white-space:nowrap}
+@media (max-width:420px){.look-switch{flex-wrap:wrap;max-width:calc(100vw - 28px);border-radius:16px;padding:4px 6px}.look-switch span{display:none}.look-switch button{padding:6px 10px;font-size:.8rem}}

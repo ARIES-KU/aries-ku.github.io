@@ -31,7 +31,7 @@ for (const p of partners.show ? [...partners.gov, ...partners.intl] : []) {
 }
 if (!people.supportedBy.permission) warnings.push('"Supported by" section hidden until the Dean agrees');
 for (const p of projects.items) if (!p.titleConfirmed) warnings.push(`project title/status not yet checked against the contract: ${p.title.slice(0, 70)}...`);
-for (const n of news.items.slice(0, 4)) if (!n.confirmed) warnings.push(`news date not yet confirmed: ${n.title_en.slice(0, 70)}...`);
+for (const n of [...news.items].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4)) if (!n.confirmed) warnings.push(`news date not yet confirmed: ${n.title_en.slice(0, 70)}...`);
 if (people.roster.every((g) => g.members.length === 0)) warnings.push('no researcher or student has consented yet: the roster shows a placeholder line');
 
 console.log(`\n${preview ? 'Preview' : 'Launch'} check: ${blockers.length} blocking, ${warnings.length} to confirm\n`);

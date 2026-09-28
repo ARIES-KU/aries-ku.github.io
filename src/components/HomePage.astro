@@ -31,6 +31,8 @@ const team = [
   }))),
 ];
 const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
+// newest first whatever order the file is in; the newest card gets the accent rule
+const latestNews = [...news.items].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
 ---
 <section class="page">
   <img class="hero-photo" src="/images/hero-bridge-twin.jpg" alt={T.heroAlt} width="1600" height="900" />
@@ -109,8 +111,8 @@ const partnerName = (p: { en: string; th: string }) => (th ? p.th : p.en);
     <section class="home-sec">
       <div class="sec-head"><h2>{T.newsH}</h2></div>
       <div class="news">
-        {news.items.slice(0, 4).map((n) => (
-          <article class={n.accent ? 'ncard accent' : 'ncard'}>
+        {latestNews.map((n, i) => (
+          <article class={i === 0 ? 'ncard accent' : 'ncard'}>
             {n.href ? <a class="t" href={n.href} rel="noopener">{th ? n.title_th : n.title_en}</a> : <div class="t">{th ? n.title_th : n.title_en}</div>}
             <div class="d">{th ? n.date_th : n.date_en}</div>
             <div class="cat">{th ? n.cat_th : n.cat_en}</div>
