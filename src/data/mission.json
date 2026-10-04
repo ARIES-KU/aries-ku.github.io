@@ -15,7 +15,7 @@
   "layers": [
     { "name": "Sensing", "what": "UAV imagery, LiDAR point clouds, vibration and strain sensors.", "who": "Geospatial and Field Operations group", "feeds": "raw measurements of real structures" },
     { "name": "Intelligence", "what": "Computer vision that classifies damage, digital twins that hold geometry, damage and behaviour in one model, machine-learning estimators of capacity.", "who": "Structural Assessment and Digital Twin group", "feeds": "structured, comparable descriptions of condition" },
-    { "name": "Structural knowledge", "what": "Nonlinear finite-element assessment, X-ray measurement of corrosion in laboratory specimens, random-field models of spatial corrosion, reliability updating from inspection data, durability of materials.", "who": "Both groups; multi-hazard and materials groups as they open", "feeds": "how safe a structure is, and how that changes with time" },
+    { "name": "Structural knowledge", "what": "Nonlinear finite-element assessment, random-field models of spatial corrosion, reliability updating from inspection data, durability of materials.", "who": "Both groups; multi-hazard and materials groups as they open", "feeds": "how safe a structure is, and how that changes with time" },
     { "name": "Decisions", "what": "Network-level prioritization, data standards owner agencies can adopt, training for the engineers who will use them.", "who": "For the agencies that own and maintain bridges; at the research stage", "feeds": "which structure, which action, in what order" }
   ],
   "roadmap": [

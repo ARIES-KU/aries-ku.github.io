@@ -20,7 +20,7 @@ const href = (n: { key: string; enHref: string }) => (READY.has(n.key) ? `/next$
 const year = new Date().getFullYear();
 ---
 <!doctype html>
-<html lang={lang} class="nx" data-display="plex">
+<html lang={lang} class="nx">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -32,7 +32,7 @@ const year = new Date().getFullYear();
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
     <script is:inline>
       // The 3D scene runs only with WebGL 2, no reduced-motion request and no Save-Data; otherwise the static frames show.
       (function () {
@@ -40,8 +40,7 @@ const year = new Date().getFullYear();
         try {
           if (matchMedia('(prefers-reduced-motion: reduce)').matches) live = false;
           if (navigator.connection && navigator.connection.saveData) live = false;
-          var f = localStorage.getItem('aries-next-display'); if (f === 'chakra' || f === 'plex') d.dataset.display = f;
-        } catch (e) {}
+          } catch (e) {}
         if (live) d.classList.add('nx-live');
       })();
     </script>
@@ -92,22 +91,6 @@ const year = new Date().getFullYear();
       <span>เทียบ</span>
       <a href={v1Href}>v1</a>
       <a class="on" href={`/next${v1Href}`} aria-current="page">Next</a>
-      <span class="sep" aria-hidden="true"></span>
-      <span>ฟอนต์หัวข้อ</span>
-      <button type="button" data-display="plex">Plex</button>
-      <button type="button" data-display="chakra">Chakra</button>
     </div>
-    <script is:inline>
-      (function () {
-        var root = document.documentElement, btns = document.querySelectorAll('.nx-review button');
-        function set(f) {
-          root.dataset.display = f;
-          btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.display === f)); });
-          try { localStorage.setItem('aries-next-display', f); } catch (e) {}
-        }
-        btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.display); }); });
-        set(root.dataset.display || 'plex');
-      })();
-    </script>
   </body>
 </html>

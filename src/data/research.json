@@ -12,7 +12,7 @@
       "note": "Foundations: reliability updating of ageing RC structures with spatial corrosion; life-cycle reliability of deteriorating structures." },
     { "name": "Advanced Materials and Durability", "name_th": "วัสดุขั้นสูงและความทนทาน", "status": "next", "tile": "tile-materials.jpg",
       "text": "Advanced materials such as graphene quantum dots and ultra-high performance concrete, computational deterioration modelling, and low-carbon concrete.",
-      "note": "Foundations: corrosion-product quantification by X-ray techniques; fiber-reinforced strengthening of concrete columns." }
+      "note": "Foundations: quantifying corrosion products in concrete members; fiber-reinforced strengthening of concrete columns." }
   ],
   "extraTiles": [
     { "name": "Bridge Intelligence", "name_th": "Bridge Intelligence", "status": "flagship", "tile": "tile-flagship.jpg", "position": 2 },

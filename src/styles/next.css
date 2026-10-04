@@ -21,7 +21,6 @@
   --nx-gutter: max(24px, calc((100vw - 1232px) / 2));
   --nx-top: 64px;
 }
-html[data-display="chakra"] { --nx-display: 'Chakra Petch', 'IBM Plex Sans Thai', system-ui, sans-serif; }
 body[data-preview] { --nx-top: 94px; }
 
 * { box-sizing: border-box; }
@@ -104,7 +103,6 @@ img { max-width: 100%; height: auto; display: block; }
 .nx-hero-in { width: 100%; }
 .nx-hero-in > * { max-width: 640px; }
 .nx-h1 { font: 600 clamp(2.05rem, 4.3vw, 3.6rem)/1.04 var(--nx-display); letter-spacing: -.024em; text-wrap: balance; }
-html[data-display="chakra"] .nx-h1 { letter-spacing: -.012em; line-height: 1.02; }
 .nx-lead { font-size: clamp(1.02rem, 1.2vw, 1.14rem); line-height: 1.6; color: var(--nx-soft); margin-top: 22px; max-width: 54ch; }
 .nx-spec { display: flex; flex-wrap: wrap; gap: 14px 34px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--nx-line-2); }
 .nx-spec div { display: grid; gap: 3px; }
