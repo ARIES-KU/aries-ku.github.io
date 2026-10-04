@@ -66,27 +66,14 @@ const [creditA, creditB] = N.mapCredit.split('{osm}');
                 </dl>
                 {i === 2 && <Schematic labels={N} />}
                 {i === 3 && (
-                  <>
-                    <ul class="nx-legend" data-for="1">
-                      <li><i class="a"></i>{N.actFirst}</li>
-                      <li><i class="w"></i>{N.nextInLine}</li>
-                      <li><i class="c"></i>{N.monitor}</li>
-                    </ul>
-                    <ul class="nx-legend" data-for="2">
-                      <li><i class="sq"></i>{N.topCells}</li>
-                      <li><i class="ln"></i>{N.exposedRoads}</li>
-                      <li><i class="a"></i>{N.exposedBridges}</li>
-                    </ul>
-                    <ul class="nx-legend" data-for="3">
-                      <li><i class="x"></i>{N.closed}</li>
-                      <li><i class="ln w"></i>{N.detour}</li>
-                      <li><i class="ln d"></i>{N.usualRoute}</li>
-                      <li><i class="ring"></i>{N.reopenFirst}</li>
-                    </ul>
-                  </>
+                  <ul class="nx-legend">
+                    <li><i class="a"></i>{N.actFirst}</li>
+                    <li><i class="w"></i>{N.nextInLine}</li>
+                    <li><i class="c"></i>{N.monitor}</li>
+                  </ul>
                 )}
                 {i === 3
-                  ? <p class="nx-caption"><span data-for="1">{N.dv1Note}</span><span data-for="2">{N.dv2Note}</span><span data-for="3">{N.dv3Note}</span> {creditA}<a href="https://www.openstreetmap.org/copyright" rel="noopener">{N.osm}</a>{creditB}</p>
+                  ? <p class="nx-caption">{N.mapNote} {creditA}<a href="https://www.openstreetmap.org/copyright" rel="noopener">{N.osm}</a>{creditB}</p>
                   : <p class="nx-caption">{N.illustration}</p>}
               </div>
             </div>
@@ -104,14 +91,6 @@ const [creditA, creditB] = N.mapCredit.split('{osm}');
       <a class="nx-link" href="/mission/">{T.directionLink}</a>
     </div>
   </section>
-
-  <Fragment slot="review">
-    <span class="sep" aria-hidden="true"></span>
-    <span>{N.dvLabel}</span>
-    <button type="button" data-dv-btn="1" aria-pressed="true" title="เหตุการณ์สมมติเคลื่อนผ่าน แล้วจัดลำดับการตรวจ">1</button>
-    <button type="button" data-dv-btn="2" aria-pressed="false" title="แผนที่คัดกรอง: ช่อง 10 กม. ที่เสี่ยงสุด 10%">2</button>
-    <button type="button" data-dv-btn="3" aria-pressed="false" title="Connectivity: ปิดสะพาน ทางเลี่ยง เปิดคืนตัวไหนก่อน">3</button>
-  </Fragment>
 </Next>
 
 <script>

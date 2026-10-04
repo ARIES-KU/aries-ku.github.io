@@ -17,22 +17,6 @@ export function boot(): void {
     steps.forEach((s) => io.observe(s));
   }
 
-  // review only: which variant of the decisions step to show (html[data-dv]); ?dv= wins, then the last choice
-  const dvBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-dv-btn]'));
-  if (dvBtns.length) {
-    const ok = (v: number) => v === 1 || v === 2 || v === 3;
-    let dv = Number(new URLSearchParams(window.location.search).get('dv'));
-    if (!ok(dv)) { try { dv = Number(window.localStorage.getItem('nx-dv')); } catch { dv = 1; } }
-    const setDv = (v: number) => {
-      root.dataset.dv = String(v);
-      dvBtns.forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.dvBtn) === v)));
-      try { window.localStorage.setItem('nx-dv', String(v)); } catch { /* storage blocked: the choice lasts for this page only */ }
-      window.dispatchEvent(new Event('nx:dv'));
-    };
-    setDv(ok(dv) ? dv : 1);
-    dvBtns.forEach((b) => b.addEventListener('click', () => setDv(Number(b.dataset.dvBtn))));
-  }
-
   if (!root.classList.contains('nx-live')) return;
   const start = () => {
     import('./scene')

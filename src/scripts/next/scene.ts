@@ -244,13 +244,10 @@ export function startScene(): void {
       if (capture) (window as unknown as { __nxMapReady: boolean }).__nxMapReady = true;
     })
     .catch(() => { /* without the map the decisions step shows the card alone */ });
-  // review variants of that step: html[data-dv] is set by the switch in the review pill (boot.ts)
-  const DURATION = [0, 6, 4.5, 6.5];                      // seconds each variant takes to play once the step is reached
-  const variantNow = () => { const dv = Number(root.dataset.dv); return dv === 2 || dv === 3 ? dv : 1; };
+  // the event on the map plays once the decisions step is reached; ?s= freezes it in dev
+  const PLAY = 6;                                         // seconds
   const sFreeze = import.meta.env.DEV && params.has('s') ? Number(params.get('s')) : null;
   let sv = 0;
-  const onVariant = () => { sv = 0; };
-  window.addEventListener('nx:dv', onVariant);
   const resV = new Vector2();
 
   // overlays in the DOM: detection boxes and the hot spot
@@ -319,7 +316,7 @@ export function startScene(): void {
   let tc = 0, reveal = 0;
 
   // set every uniform and the camera for timeline t; returns what the overlays need
-  const apply = (t: number, now: number, opts: { keys: Key[]; scan: number; reveal: number; s: number; variant: number; centre?: boolean; parallax?: boolean }) => {
+  const apply = (t: number, now: number, opts: { keys: Key[]; scan: number; reveal: number; s: number; centre?: boolean; parallax?: boolean }) => {
     const time = (now - start) / 1000;
     pu.uTime.value = time;
     pu.uScan.value = -0.1 + 1.25 * opts.scan;
@@ -339,7 +336,7 @@ export function startScene(): void {
     pathMat.uniforms.uOpacity.value = uav * 0.9;
     droneMat.uniforms.uOpacity.value = uav;
     rayMat.opacity = uav * 0.55;
-    map?.update({ net: netA, s: opts.s, variant: opts.variant, time, pixelRatio: renderer.getPixelRatio(), res: renderer.getDrawingBufferSize(resV) });
+    map?.update({ net: netA, s: opts.s, time, pixelRatio: renderer.getPixelRatio(), res: renderer.getDrawingBufferSize(resV) });
 
     // drone along its path, rays to points on the bridge below it
     const u = (time * 0.06) % 1;
@@ -394,7 +391,6 @@ export function startScene(): void {
     io.disconnect(); ro.disconnect();
     window.removeEventListener('resize', resize);
     window.removeEventListener('pointermove', onPointer);
-    window.removeEventListener('nx:dv', onVariant);
     disposables.forEach((d) => d.dispose());
     map?.dispose();
     renderer.dispose();
@@ -413,11 +409,10 @@ export function startScene(): void {
     if (scan >= 1) hud?.classList.add('is-done');
 
     // the decisions step plays once it is reached and starts again when the visitor comes back to it
-    const variant = variantNow();
     if (tc < 3.5) sv = 0;
-    else if (tc > 3.85) sv = Math.min(1, sv + dt / DURATION[variant]);
+    else if (tc > 3.85) sv = Math.min(1, sv + dt / PLAY);
     const sNow = sFreeze ?? sv;
-    const o = apply(tc, now, { keys: isPhone() ? PHONE : DESKTOP, scan, reveal, s: sNow, variant, parallax: fine });
+    const o = apply(tc, now, { keys: isPhone() ? PHONE : DESKTOP, scan, reveal, s: sNow, parallax: fine });
     renderer.render(scene, camera);
 
     DETECTIONS.forEach((b, i) => {
@@ -433,7 +428,7 @@ export function startScene(): void {
       hotEl.style.opacity = s.ok ? String(o.hotA) : '0';
       hotEl.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`;
     }
-    const marks = map ? map.markers({ variant, s: sNow, net: o.netA }) : [];
+    const marks = map ? map.markers({ s: sNow, net: o.netA }) : [];
     rankEls.forEach((el, k) => {
       const m = marks[k];
       const sp = m ? toScreen(m.pos, W, H) : null;
@@ -459,8 +454,7 @@ export function startScene(): void {
       renderer.setSize(w, h, false);
       W = w; H = h; camera.aspect = w / h;
       findHot(DESKTOP, true);
-      const variant = variantNow();
-      const o = apply(t, start + 40000, { keys: DESKTOP, scan: 1, reveal: 1, s, variant, centre: true });
+      const o = apply(t, start + 40000, { keys: DESKTOP, scan: 1, reveal: 1, s, centre: true });
       renderer.render(scene, camera);
       const c2 = document.createElement('canvas');
       c2.width = w; c2.height = h;
@@ -490,7 +484,7 @@ export function startScene(): void {
         g.strokeStyle = '#FFB020'; g.lineWidth = 2; g.beginPath(); g.arc(s.x, s.y, 8, 0, Math.PI * 2); g.stroke();
         label((hotEl?.textContent ?? '').trim().toUpperCase(), s.x + 16, s.y + 10);
       }
-      if (map) map.markers({ variant, s, net: o.netA }).forEach((m, k) => {
+      if (map) map.markers({ s, net: o.netA }).forEach((m, k) => {
         if (m.alpha < 0.5) return;
         const q = toScreen(m.pos, w, h);
         label(String(k + 1), q.x + 14, q.y - 6);
