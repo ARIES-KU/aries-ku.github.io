@@ -22,7 +22,7 @@
         "Room 9806, Building 9"
       ]
     ],
-    "lead": "ARIES develops AI, digital-twin and field-sensing technologies that turn inspection data into decisions: how to assess, maintain and prioritize the bridges and infrastructure Thailand depends on.",
+    "lead": "ARIES develops AI, digital-twin and field-sensing technologies that turn inspection data into decisions: how to assess, maintain and prioritize the bridges, buildings and other infrastructure Thailand depends on.",
     "p1": "Thailand's bridges and elevated roads are many, and they are ageing. Visual inspection alone cannot keep up: it is limited in accuracy, consistency and coverage, and maintenance budgets and inspection engineers are both scarce. Prioritizing repairs across a whole network is hard to do in practice.",
     "p2": "Artificial intelligence, unmanned aerial vehicles, LiDAR and digital twins have matured fast. Brought together with structural engineering, they can make inspection, assessment and asset management more accurate, faster and far more complete. ARIES was started in 2026 by faculty of the Department of Civil Engineering at Kasetsart University to bring these strands into one center with one direction.",
     "workH": "Our work",
@@ -64,7 +64,7 @@
     "storyWhy": "Why it matters",
     "storyRead": "Read the paper →",
     "directionH": "Where we are going",
-    "directionP": "ARIES is not building an inspection tool. It is building the body of knowledge that connects data, structures and decisions: how what we measure on a bridge becomes what an owner decides to do about it.",
+    "directionP": "ARIES is not building a bridge inspection tool. It is building the body of knowledge that connects data, structures and decisions: how what we measure on a structure becomes what its owner decides to do about it.",
     "directionLink": "Mission, road map and how to work with us →",
     "researchLink": "The problems we work on →",
     "next": {
@@ -115,7 +115,7 @@
         "ห้อง 9806 อาคาร 9"
       ]
     ],
-    "lead": "ARIES พัฒนาเทคโนโลยีปัญญาประดิษฐ์ แบบจำลองคู่ขนานดิจิทัล และการสำรวจภาคสนาม เพื่อแปลงข้อมูลการตรวจสอบให้เป็นการตัดสินใจ: จะประเมิน บำรุงรักษา และจัดลำดับความสำคัญของสะพานและโครงสร้างพื้นฐานของประเทศอย่างไร",
+    "lead": "ARIES พัฒนาเทคโนโลยีปัญญาประดิษฐ์ แบบจำลองคู่ขนานดิจิทัล และการสำรวจภาคสนาม เพื่อแปลงข้อมูลการตรวจสอบให้เป็นการตัดสินใจ: จะประเมิน บำรุงรักษา และจัดลำดับความสำคัญของสะพาน อาคาร และโครงสร้างพื้นฐานของประเทศอย่างไร",
     "p1": "สะพานและทางยกระดับของประเทศไทยมีจำนวนมากและมีอายุการใช้งานยาวนาน การตรวจสอบด้วยสายตาเพียงอย่างเดียวมีข้อจำกัดทั้งด้านความแม่นยำ ความสม่ำเสมอ และความครอบคลุม ขณะที่งบประมาณบำรุงรักษาและจำนวนวิศวกรผู้ตรวจสอบมีอยู่อย่างจำกัด การจัดลำดับการซ่อมบำรุงในระดับโครงข่ายจึงทำได้ยากในทางปฏิบัติ",
     "p2": "ปัญญาประดิษฐ์ อากาศยานไร้คนขับ LiDAR และแบบจำลองคู่ขนานดิจิทัลพัฒนาไปอย่างรวดเร็ว เมื่อบูรณาการเข้ากับงานวิศวกรรมโครงสร้าง จะยกระดับการตรวจสอบ ประเมิน และบริหารจัดการโครงสร้างพื้นฐานให้แม่นยำ รวดเร็ว และครอบคลุมยิ่งขึ้น ศูนย์ ARIES เริ่มดำเนินงานในปี 2569 โดยคณาจารย์ภาควิชาวิศวกรรมโยธา มหาวิทยาลัยเกษตรศาสตร์ เพื่อรวมกำลังคน องค์ความรู้ และทรัพยากรไว้ภายใต้ทิศทางเดียวกัน",
     "workH": "งานของเรา",
@@ -157,7 +157,7 @@
     "storyWhy": "ทำไมจึงสำคัญ",
     "storyRead": "อ่านบทความ →",
     "directionH": "ทิศทางของเรา",
-    "directionP": "ARIES ไม่ได้สร้างแค่เครื่องมือตรวจสอบสะพาน แต่กำลังสร้างองค์ความรู้ที่เชื่อมข้อมูล โครงสร้าง และการตัดสินใจเข้าด้วยกัน: สิ่งที่เราวัดได้จากสะพานจะกลายเป็นสิ่งที่เจ้าของโครงสร้างตัดสินใจทำได้อย่างไร",
+    "directionP": "ARIES ไม่ได้สร้างแค่เครื่องมือตรวจสอบสะพาน แต่กำลังสร้างองค์ความรู้ที่เชื่อมข้อมูล โครงสร้าง และการตัดสินใจเข้าด้วยกัน: สิ่งที่เราวัดได้จากโครงสร้างจะกลายเป็นสิ่งที่เจ้าของตัดสินใจทำได้อย่างไร",
     "directionLink": "พันธกิจ แผนงาน และการร่วมงานกับเรา →",
     "researchLink": "ปัญหาที่เราทำงานอยู่ →"
   }

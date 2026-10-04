@@ -36,7 +36,7 @@ git commit -m "อธิบายสั้นๆ ว่าแก้อะไร"
 git push
 ```
 
-ตอนนี้ (ก่อนเปิดตัว) push **ไม่**ขึ้นเว็บเอง: push เพื่อเก็บงานไว้บน GitHub เท่านั้น เมื่อต้องการขึ้นเว็บ ให้ repo เป็น Public ก่อน แล้วไปที่แท็บ Actions > "Deploy to GitHub Pages" > Run workflow เลือก preview หรือ live ถ้าเป็นสีแดง เปิดดู log ของขั้น "Launch check" ก่อน ส่วนใหญ่คือมีคนที่ยังไม่ได้ `consent` ส่วนขั้น deploy ที่แดงพร้อมข้อความ "Ensure GitHub Pages has been enabled" แปลว่า repo ยังเป็น Private. หลังเปิดตัวจะเปิดให้ push แล้วขึ้นเว็บเองอีกครั้ง (วิธีอยู่ในหัวไฟล์ `.github/workflows/deploy.yml`)
+ตอนนี้ (ก่อนเปิดตัว อาจารย์เลือกเมื่อ 4 ต.ค. 2569) **push แล้วเว็บพรีวิวที่ https://aries-ku.github.io อัปเดตเองภายในไม่กี่นาที** (มีแถบเหลือง ตั้งไม่ให้ Google เก็บ และมี `/next/`) ดูผลที่แท็บ Actions ถ้าเป็นสีแดง เปิดดู log ของขั้น "Launch / preview check" ก่อน ส่วนใหญ่คือมีคนที่ยังไม่ได้ `consent` ส่วนขั้น deploy ที่แดงพร้อมข้อความ "Ensure GitHub Pages has been enabled" แปลว่า repo เป็น Private หรือ Settings > Pages > Source ไม่ใช่ GitHub Actions. จะเอาเว็บลงชั่วคราว: Settings > Pages > Unpublish site แล้ว push ครั้งถัดไปจะขึ้นกลับมาเอง. **วันเปิดจริง:** Actions > Run workflow เลือก live หนึ่งครั้ง แล้วแก้คำว่า `'preview'` ในขั้น "Mode" ของ `.github/workflows/deploy.yml` เป็น `'live'`
 
 ## ARIES Next (`/next/`)
 

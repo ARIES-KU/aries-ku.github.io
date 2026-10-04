@@ -1,7 +1,7 @@
 {
   "_help": "หน้า Mission: พันธกิจ ทิศทาง โครงสร้างความรู้ 4 ชั้น roadmap ที่เปิดเผยได้ (จากข้อเสนอจัดตั้งศูนย์และแบบ f1 เท่านั้น ไม่ใส่แผนอาชีพส่วนตัว) และการเชื่อมโครงการเข้ากับเป้าหมาย",
-  "thesis": "ARIES is not building an inspection tool. It is building the body of knowledge that connects data, structures and decisions: how what we measure on a bridge becomes what an owner decides to do about it.",
-  "thesisSub": "Sensing and AI produce data. Structural engineering turns data into knowledge about a structure. Decision methods and data standards turn that knowledge into maintenance decisions across a whole network. Every project at ARIES sits somewhere on that chain, and the chain is the product.",
+  "thesis": "ARIES is not building a bridge inspection tool. It is building the body of knowledge that connects data, structures and decisions: how what we measure on a structure becomes what its owner decides to do about it.",
+  "thesisSub": "Sensing and AI produce data. Structural engineering turns data into knowledge about a structure. Decision methods and data standards turn that knowledge into maintenance decisions across a whole network. Every project at ARIES sits somewhere on that chain, and the chain is the product. Bridges come first, because that is where our flagship program and published work are; the same chain applies to buildings and other structures.",
   "mission": [
     "Research and develop technologies that inspect, assess and predict the condition of infrastructure using artificial intelligence, digital twins and autonomous inspection systems.",
     "Develop materials and innovations that make structural systems more durable and more sustainable.",

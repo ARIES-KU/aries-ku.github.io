@@ -19,7 +19,7 @@ export function centerJsonLd(site: URL) {
       'ศวอ.',
     ],
     description:
-      'Research center operating under the Department of Civil Engineering, Kasetsart University, that develops AI, digital-twin and field-sensing technologies for assessing and maintaining bridges and infrastructure.',
+      'Research center operating under the Department of Civil Engineering, Kasetsart University, that develops AI, digital-twin and field-sensing technologies for assessing and maintaining bridges, buildings and other infrastructure.',
     url: u('/'),
     logo: u('/images/logo.png'),
     // foundingDate: add the date the Dean signs the establishment memo (not signed as of 28 Sep 2026)

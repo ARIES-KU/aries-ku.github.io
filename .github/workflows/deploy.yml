@@ -1,20 +1,21 @@
 # Builds the site and publishes it to GitHub Pages.
 # Repository: github.com/ARIES-KU/aries-ku.github.io  (Settings > Pages > Source: GitHub Actions)
 #
-# Manual only for now (26 Sep 2026): the repository is private until launch, and GitHub Free cannot serve
-# Pages from a private repository, so every automatic deploy failed and e-mailed a "Run failed" notice.
-#   * Actions tab > "Deploy to GitHub Pages" > Run workflow > mode = preview | live
-#       preview: banner + noindex; faculty entries still under review are allowed
-#       live:    the full launch check must pass
-#   * the repository must be public when you run it.
-# On launch day, make the repository public and add back the automatic deploy on every push:
-#     push:
-#       branches: [main]
-# under `on:` below, so that edits go live without pressing Run workflow.
+# Until launch (the director chose this on 4 Oct 2026): every push to main publishes the PREVIEW, so the online
+# preview is always the latest work.
+#   preview: yellow banner + noindex, /next/ included, faculty entries still under review allowed
+#   live:    the full launch check must pass
+#   * Actions tab > "Deploy to GitHub Pages" > Run workflow > mode = preview | live, to run it by hand
+#   * Settings > Pages > Unpublish site takes the site down; the next push brings it back
+#   * the repository must be public (GitHub Free cannot serve Pages from a private repository)
+# On launch day: Run workflow with mode = live once, then change 'preview' to 'live' in the "Mode" step below,
+# so that pushes keep the live site current.
 # Only people who have consented are in the repository at all (see src/lib/people.ts).
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       mode:
@@ -35,12 +36,15 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PREVIEW: ${{ inputs.mode == 'preview' }}
-      PUBLIC_PREVIEW: ${{ inputs.mode == 'preview' }}
-      # white / navy / full-navy switch while the look is being chosen; never on the live site
-      PUBLIC_THEME_SWITCH: ${{ inputs.mode == 'preview' }}
     steps:
+      # a push builds the preview until launch day; Run workflow builds the mode it is given.
+      # PREVIEW drives the launch check, PUBLIC_PREVIEW the banner and /next/, PUBLIC_THEME_SWITCH the look switch.
+      - name: Mode
+        run: |
+          MODE="${{ github.event_name == 'push' && 'preview' || inputs.mode }}"
+          if [ "$MODE" = "preview" ]; then V=true; else V=false; fi
+          echo "Building the $MODE site"
+          { echo "PREVIEW=$V"; echo "PUBLIC_PREVIEW=$V"; echo "PUBLIC_THEME_SWITCH=$V"; } >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
