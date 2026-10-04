@@ -2,10 +2,11 @@
 // the chain (sensing, intelligence, structural knowledge, decisions). Every visual here is an illustration.
 import {
   AdditiveBlending, BufferAttribute, BufferGeometry, DynamicDrawUsage, LineBasicMaterial, LineSegments, Mesh,
-  PerspectiveCamera, PlaneGeometry, Points, Scene, ShaderMaterial, Vector3, Vector4, WebGLRenderer,
+  PerspectiveCamera, PlaneGeometry, Points, Scene, ShaderMaterial, Vector2, Vector3, Vector4, WebGLRenderer,
 } from 'three';
-import { DETECTIONS, FRONT_WEB_Z, GIRDER, PART, buildCloud, buildLines, buildNetwork, uavAt, uavPath } from './bridge';
+import { DETECTIONS, FRONT_WEB_Z, GIRDER, PART, buildCloud, buildLines, uavAt, uavPath } from './bridge';
 import { FIELD_GLSL, MODES, fieldAt, fieldModes } from './field';
+import { buildThailand, type ThailandData, type ThailandMap } from './thailand';
 
 type V3 = [number, number, number];
 interface Key { pos: V3; target: V3; cx: number; cy: number; fov: number }
@@ -16,14 +17,14 @@ const DESKTOP: Key[] = [
   { pos: [-6, 26, 70], target: [-18, 16, 4], cx: 0.36, cy: 0.5, fov: 36 },
   { pos: [-15, 9.5, 31], target: [-25, 9, 2], cx: 0.36, cy: 0.5, fov: 36 },
   { pos: [-58, 6.5, 26], target: [-20, 9, 4], cx: 0.36, cy: 0.5, fov: 36 },
-  { pos: [160, 1050, 800], target: [0, 0, 0], cx: 0.36, cy: 0.5, fov: 36 },
+  { pos: [65, 1440, 510], target: [0, 0, 0], cx: 0.36, cy: 0.5, fov: 36 },
 ];
 const PHONE: Key[] = [
   { pos: [92, 30, 34], target: [0, 6, 0], cx: 0.5, cy: 0.2, fov: 40 },
   { pos: [-4, 30, 112], target: [-18, 16, 4], cx: 0.5, cy: 0.3, fov: 40 },
   { pos: [-17, 10, 52], target: [-25, 9, 2], cx: 0.5, cy: 0.3, fov: 40 },
   { pos: [-72, 7, 46], target: [-22, 9, 4], cx: 0.5, cy: 0.3, fov: 40 },
-  { pos: [160, 1500, 1150], target: [0, 0, 0], cx: 0.5, cy: 0.3, fov: 40 },
+  { pos: [0, 2440, 885], target: [0, 0, 0], cx: 0.5, cy: 0.29, fov: 40 },
 ];
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -129,8 +130,6 @@ void main() {
   gl_FragColor = vec4(0.36, 0.78, 1.0, uOpacity * pow(v, 0.6) * pow(h, 0.7) * 0.32);
 }`;
 
-const AMBER: V3 = [1, 0.69, 0.125], WHITE: V3 = [0.91, 0.933, 0.965], CYAN: V3 = [0.118, 0.608, 0.914];
-
 export function startScene(): void {
   const root = document.documentElement;
   const stage = document.querySelector<HTMLElement>('[data-stage]');
@@ -233,30 +232,31 @@ export function startScene(): void {
   const rayIdx = new Int32Array(RAYS);
   let rayClock = -1;
 
-  // an abstract network of bridges ranked by colour (decisions)
-  const net = buildNetwork();
-  const n = net.nodes.length;
-  const nodePos = new Float32Array((n + 1) * 3), nodeCol = new Float32Array((n + 1) * 3), nodeSize = new Float32Array(n + 1);
-  net.nodes.forEach((p, i) => {
-    nodePos.set(p, 3 * i);
-    nodeCol.set(net.rank[i] === 0 ? AMBER : net.rank[i] === 1 ? WHITE : CYAN, 3 * i);
-    nodeSize[i] = net.rank[i] === 0 ? 8 : net.rank[i] === 1 ? 6 : 4.5;
-  });
-  nodePos.set([0, 0, 0], 3 * n); nodeCol.set(AMBER.map((v) => v * 0.35), 3 * n); nodeSize[n] = 26;   // halo around this bridge
-  const nodeG = keep(new BufferGeometry());
-  nodeG.setAttribute('position', new BufferAttribute(nodePos, 3));
-  nodeG.setAttribute('aColor', new BufferAttribute(nodeCol, 3));
-  nodeG.setAttribute('aSize', new BufferAttribute(nodeSize, 1));
-  const nodeMat = dotMaterial();
-  scene.add(new Points(nodeG, nodeMat));
-  const edgeG = keep(new BufferGeometry());
-  edgeG.setAttribute('position', new BufferAttribute(net.edges, 3));
-  const edgeMat = keep(new LineBasicMaterial({ color: 0x1e9be9, transparent: true, opacity: 0, blending: AdditiveBlending, depthWrite: false }));
-  scene.add(new LineSegments(edgeG, edgeMat));
+  // Thailand's real main roads for the decisions step (thailand.ts), a separate chunk loaded once the scene runs.
+  // The bridge above fades out as the map comes in and is never placed on it: the pilot bridge is not identified.
+  const MAP_SCALE = 0.5;                                  // scene units per km
+  let map: ThailandMap | null = null;
+  import('../../assets/next/thailand.json')
+    .then((m) => {
+      if (!running) return;
+      map = buildThailand((m.default ?? m) as unknown as ThailandData, MAP_SCALE);
+      scene.add(map.group);
+      if (capture) (window as unknown as { __nxMapReady: boolean }).__nxMapReady = true;
+    })
+    .catch(() => { /* without the map the decisions step shows the card alone */ });
+  // review variants of that step: html[data-dv] is set by the switch in the review pill (boot.ts)
+  const DURATION = [0, 6, 4.5, 6.5];                      // seconds each variant takes to play once the step is reached
+  const variantNow = () => { const dv = Number(root.dataset.dv); return dv === 2 || dv === 3 ? dv : 1; };
+  const sFreeze = import.meta.env.DEV && params.has('s') ? Number(params.get('s')) : null;
+  let sv = 0;
+  const onVariant = () => { sv = 0; };
+  window.addEventListener('nx:dv', onVariant);
+  const resV = new Vector2();
 
   // overlays in the DOM: detection boxes and the hot spot
   const boxEls = Array.from(stage.querySelectorAll<HTMLElement>('[data-box]'));
   const hotEl = stage.querySelector<HTMLElement>('[data-hot]');
+  const rankEls = Array.from(stage.querySelectorAll<HTMLElement>('[data-rank]'));
   const hud = stage.querySelector<HTMLElement>('[data-hud]');
   const v = new Vector3();
   const toScreen = (p: V3, W: number, H: number) => { v.set(p[0], p[1], p[2]).project(camera); return { x: (v.x + 1) * 0.5 * W, y: (1 - v.y) * 0.5 * H, ok: v.z < 1 }; };
@@ -319,7 +319,7 @@ export function startScene(): void {
   let tc = 0, reveal = 0;
 
   // set every uniform and the camera for timeline t; returns what the overlays need
-  const apply = (t: number, now: number, opts: { keys: Key[]; scan: number; reveal: number; centre?: boolean; parallax?: boolean }) => {
+  const apply = (t: number, now: number, opts: { keys: Key[]; scan: number; reveal: number; s: number; variant: number; centre?: boolean; parallax?: boolean }) => {
     const time = (now - start) / 1000;
     pu.uTime.value = time;
     pu.uScan.value = -0.1 + 1.25 * opts.scan;
@@ -329,18 +329,17 @@ export function startScene(): void {
     dots.forEach((m) => { m.uniforms.uPixel.value = renderer.getPixelRatio(); });
 
     const uav = bump(t, 1, 0.62), wire = bump(t, 2, 0.72), boxes = bump(t, 2, 0.5);
-    const field = smooth(2.3, 2.85, t) * (1 - smooth(3.4, 3.85, t)), hotA = bump(t, 3, 0.42), netA = smooth(3.25, 3.85, t);
+    const field = smooth(2.3, 2.85, t) * (1 - smooth(3.25, 3.6, t)), hotA = bump(t, 3, 0.42), netA = smooth(3.25, 3.85, t);
     pu.uDensity.value = 0.8 + 0.2 * smooth(0.15, 1, t);
     gridMat.opacity = 0.07 * (1 - netA);
     pu.uField.value = field;
-    pu.uDim.value = 1 - 0.3 * wire - 0.55 * netA;
+    pu.uDim.value = (1 - 0.3 * wire) * (1 - smooth(3.2, 3.65, t));    // the bridge dissolves before the map arrives
     wireMat.opacity = wire * 0.5;
     fieldMat.uniforms.uOpacity.value = field * 0.88;
     pathMat.uniforms.uOpacity.value = uav * 0.9;
     droneMat.uniforms.uOpacity.value = uav;
     rayMat.opacity = uav * 0.55;
-    nodeMat.uniforms.uOpacity.value = netA;
-    edgeMat.opacity = netA * 0.32;
+    map?.update({ net: netA, s: opts.s, variant: opts.variant, time, pixelRatio: renderer.getPixelRatio(), res: renderer.getDrawingBufferSize(resV) });
 
     // drone along its path, rays to points on the bridge below it
     const u = (time * 0.06) % 1;
@@ -380,7 +379,7 @@ export function startScene(): void {
     camera.setViewOffset(W, H, (0.5 - cx) * W, (0.5 - cy) * H, W, H);
     pu.uProj.value = (H * renderer.getPixelRatio()) / (2 * Math.tan((cam.fov * Math.PI) / 360));
     camera.updateMatrixWorld();
-    return { boxes, hotA };
+    return { boxes, hotA, netA };
   };
 
   // render loop: paused while the stage is off screen or the tab is hidden
@@ -395,7 +394,9 @@ export function startScene(): void {
     io.disconnect(); ro.disconnect();
     window.removeEventListener('resize', resize);
     window.removeEventListener('pointermove', onPointer);
+    window.removeEventListener('nx:dv', onVariant);
     disposables.forEach((d) => d.dispose());
+    map?.dispose();
     renderer.dispose();
   };
 
@@ -411,7 +412,12 @@ export function startScene(): void {
     hud?.style.setProperty('--scan', String(scan));
     if (scan >= 1) hud?.classList.add('is-done');
 
-    const o = apply(tc, now, { keys: isPhone() ? PHONE : DESKTOP, scan, reveal, parallax: fine });
+    // the decisions step plays once it is reached and starts again when the visitor comes back to it
+    const variant = variantNow();
+    if (tc < 3.5) sv = 0;
+    else if (tc > 3.85) sv = Math.min(1, sv + dt / DURATION[variant]);
+    const sNow = sFreeze ?? sv;
+    const o = apply(tc, now, { keys: isPhone() ? PHONE : DESKTOP, scan, reveal, s: sNow, variant, parallax: fine });
     renderer.render(scene, camera);
 
     DETECTIONS.forEach((b, i) => {
@@ -427,6 +433,13 @@ export function startScene(): void {
       hotEl.style.opacity = s.ok ? String(o.hotA) : '0';
       hotEl.style.transform = `translate(${s.x.toFixed(1)}px, ${s.y.toFixed(1)}px)`;
     }
+    const marks = map ? map.markers({ variant, s: sNow, net: o.netA }) : [];
+    rankEls.forEach((el, k) => {
+      const m = marks[k];
+      const sp = m ? toScreen(m.pos, W, H) : null;
+      el.style.opacity = m && sp?.ok ? String(m.alpha) : '0';
+      if (sp) el.style.transform = `translate(${sp.x.toFixed(1)}px, ${sp.y.toFixed(1)}px)`;
+    });
 
     // a device that cannot hold 30 fps gets the static frames instead
     frames++;
@@ -440,13 +453,14 @@ export function startScene(): void {
 
   // dev only: render a state into a still frame (used to make the static frames in src/assets/next/)
   if (capture) {
-    (window as unknown as { __nxCapture: (t: number, w?: number, h?: number) => string }).__nxCapture = (t, w = 1600, h = 1000) => {
+    (window as unknown as { __nxCapture: (t: number, w?: number, h?: number, s?: number) => string }).__nxCapture = (t, w = 1600, h = 1000, s = 1) => {
       running = false;
       renderer.setPixelRatio(1);
       renderer.setSize(w, h, false);
       W = w; H = h; camera.aspect = w / h;
       findHot(DESKTOP, true);
-      const o = apply(t, start + 40000, { keys: DESKTOP, scan: 1, reveal: 1, centre: true });
+      const variant = variantNow();
+      const o = apply(t, start + 40000, { keys: DESKTOP, scan: 1, reveal: 1, s, variant, centre: true });
       renderer.render(scene, camera);
       const c2 = document.createElement('canvas');
       c2.width = w; c2.height = h;
@@ -476,6 +490,11 @@ export function startScene(): void {
         g.strokeStyle = '#FFB020'; g.lineWidth = 2; g.beginPath(); g.arc(s.x, s.y, 8, 0, Math.PI * 2); g.stroke();
         label((hotEl?.textContent ?? '').trim().toUpperCase(), s.x + 16, s.y + 10);
       }
+      if (map) map.markers({ variant, s, net: o.netA }).forEach((m, k) => {
+        if (m.alpha < 0.5) return;
+        const q = toScreen(m.pos, w, h);
+        label(String(k + 1), q.x + 14, q.y - 6);
+      });
       return c2.toDataURL('image/png');
     };
   }

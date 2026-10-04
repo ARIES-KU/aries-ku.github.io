@@ -162,26 +162,3 @@ export function uavAt(t: number): V {
   const A: V = [-44, 22, 15], C: V = [-20, 30, 19], B: V = [4, 22, 15], u = 1 - t;
   return [0, 1, 2].map((k) => u * u * A[k] + 2 * u * t * C[k] + t * t * B[k]) as V;
 }
-
-// an abstract road network: the bridge is the node at the origin; ranks are 0 act first, 1 next, 2 monitor
-export function buildNetwork(seed = 5) {
-  const r = mulberry32(seed);
-  const nodes: V[] = [[0, 0, 0]];
-  let guard = 0;
-  while (nodes.length < 54 && guard++ < 5000) {
-    const a = r() * Math.PI * 2, d = 90 + Math.pow(r(), 0.7) * 520;
-    const p: V = [Math.cos(a) * d * 1.3, 0, Math.sin(a) * d * 0.8];
-    if (nodes.every((q) => Math.hypot(q[0] - p[0], q[2] - p[2]) > 62)) nodes.push(p);
-  }
-  const keys = new Set<string>(), edges: number[] = [];
-  nodes.forEach((p, i) => {
-    nodes.map((q, j) => [Math.hypot(q[0] - p[0], q[2] - p[2]), j] as const)
-      .filter(([, j]) => j !== i).sort((a, b) => a[0] - b[0]).slice(0, 2)
-      .forEach(([, j]) => {
-        const k = i < j ? `${i}-${j}` : `${j}-${i}`;
-        if (!keys.has(k)) { keys.add(k); edges.push(...p, ...nodes[j]); }
-      });
-  });
-  const rank = nodes.map((_, i) => (i === 0 ? 0 : r() < 0.09 ? 0 : r() < 0.24 ? 1 : 2));
-  return { nodes, edges: new Float32Array(edges), rank };
-}

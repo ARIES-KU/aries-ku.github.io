@@ -95,6 +95,8 @@ img { max-width: 100%; height: auto; display: block; }
 .nx-hot { width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 1.5px solid var(--nx-amber); border-radius: 50%; }
 .nx-hot::after { content: ""; position: absolute; inset: -9px; border: 1px solid rgba(255, 176, 32, .55); border-radius: 50%; animation: nx-ping 1.8s ease-out infinite; }
 .nx-hot span { left: 20px; bottom: auto; top: -3px; margin: 0; }
+.nx-rank { position: absolute; left: 0; top: 0; opacity: 0; will-change: transform, opacity; }
+.nx-rank span { position: absolute; left: 13px; top: -24px; font: 600 .66rem/1.5 var(--nx-mono); color: #1A1206; background: var(--nx-amber); padding: 0 6px; border-radius: 2px; }
 @keyframes nx-ping { from { transform: scale(.5); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
 
 /* hero */
@@ -166,6 +168,18 @@ img { max-width: 100%; height: auto; display: block; }
 .nx-legend .a { background: var(--nx-amber); box-shadow: 0 0 10px rgba(255, 176, 32, .65); }
 .nx-legend .w { background: var(--nx-text); }
 .nx-legend .c { background: var(--nx-cyan); }
+.nx-legend .sq { border-radius: 1px; background: rgba(255, 176, 32, .6); }
+.nx-legend .ln { width: 16px; height: 2px; border-radius: 1px; background: var(--nx-amber); }
+.nx-legend .ln.w { background: var(--nx-text); }
+.nx-legend .ln.d { background: repeating-linear-gradient(90deg, rgba(232, 238, 246, .6) 0 4px, transparent 4px 7px); }
+.nx-legend .ring { width: 11px; height: 11px; border: 1.5px solid var(--nx-amber); }
+.nx-legend .x { position: relative; border-radius: 0; }
+.nx-legend .x::before, .nx-legend .x::after { content: ""; position: absolute; left: -1px; top: 3px; width: 10px; height: 2px; background: var(--nx-amber); transform: rotate(45deg); }
+.nx-legend .x::after { transform: rotate(-45deg); }
+/* three review variants of the decisions step: html[data-dv] picks which legend and note show */
+.nx-legend[data-for], .nx-caption [data-for] { display: none; }
+html:not([data-dv="2"]):not([data-dv="3"]) .nx-legend[data-for="1"], html[data-dv="2"] .nx-legend[data-for="2"], html[data-dv="3"] .nx-legend[data-for="3"] { display: flex; }
+html:not([data-dv="2"]):not([data-dv="3"]) .nx-caption [data-for="1"], html[data-dv="2"] .nx-caption [data-for="2"], html[data-dv="3"] .nx-caption [data-for="3"] { display: inline; }
 
 /* static frames, shown instead of the scene (reduced motion, Save-Data, no WebGL, no JavaScript, or a slow device) */
 .nx-fallback { display: none; }
