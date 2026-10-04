@@ -1,0 +1,22 @@
+---
+// Reliability updating, drawn as a schematic: no values on either axis, nothing here is data.
+interface Props {
+  labels: { schematic: string; schematicAlt: string; time: string; reliability: string; inspection: string };
+}
+const { labels: L } = Astro.props;
+---
+<figure class="nx-schem">
+  <svg viewBox="0 0 320 168" role="img" aria-label={L.schematicAlt}>
+    <line class="ax" x1="44" y1="14" x2="44" y2="134" />
+    <line class="ax" x1="44" y1="134" x2="306" y2="134" />
+    <text class="lab" x="16" y="76" transform="rotate(-90 16 76)" text-anchor="middle">{L.reliability}</text>
+    <text class="lab" x="306" y="154" text-anchor="end">{L.time}</text>
+    <line class="insp" x1="174" y1="14" x2="174" y2="134" />
+    <text class="lab" x="180" y="24">{L.inspection}</text>
+    <path class="prior" d="M44 38 C 98 41, 148 51, 174 59 C 216 71, 264 90, 306 106" />
+    <line class="jumpline" x1="174" y1="59" x2="174" y2="84" />
+    <path class="upd" pathLength="1" d="M174 84 C 216 95, 264 111, 306 126" />
+    <circle class="jump" cx="174" cy="84" r="3.5" />
+  </svg>
+  <figcaption>{L.schematic}</figcaption>
+</figure>

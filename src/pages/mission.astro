@@ -17,7 +17,7 @@ import m from '../data/mission.json';
       </section>
 
       <section class="block">
-        <div class="sec-head"><h2>How the pieces fit</h2><p class="muted">Four layers, each feeding the next. A project is judged by which links of the chain it strengthens.</p></div>
+        <div class="sec-head"><h2>{m.chainH}</h2><p class="muted">{m.chainP}</p></div>
         <ol class="chain">
           {m.layers.map((l, i) => (
             <li class="chain-step">
@@ -25,7 +25,7 @@ import m from '../data/mission.json';
               <div>
                 <h3>{l.name}</h3>
                 <p>{l.what}</p>
-                <p class="muted small"><b>Who:</b> {l.who} · <b>Produces:</b> {l.feeds}</p>
+                <p class="muted small"><b>{m.whoL}:</b> {l.who} · <b>{m.producesL}:</b> {l.feeds}</p>
               </div>
             </li>
           ))}

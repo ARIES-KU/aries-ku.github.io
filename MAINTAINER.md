@@ -36,7 +36,15 @@ git commit -m "อธิบายสั้นๆ ว่าแก้อะไร"
 git push
 ```
 
-ตอนนี้ (ก่อนเปิดตัว) repo เป็น Private และ push **ไม่**ขึ้นเว็บเอง: push เพื่อเก็บงานไว้บน GitHub เท่านั้น เมื่อต้องการขึ้นเว็บ ให้ repo เป็น Public ก่อน แล้วไปที่แท็บ Actions > "Deploy to GitHub Pages" > Run workflow เลือก preview หรือ live ถ้าเป็นสีแดง เปิดดู log ของขั้น "Launch check" ก่อน ส่วนใหญ่คือมีคนที่ยังไม่ได้ `consent` ส่วนขั้น deploy ที่แดงพร้อมข้อความ "Ensure GitHub Pages has been enabled" แปลว่า repo ยังเป็น Private. หลังเปิดตัวจะเปิดให้ push แล้วขึ้นเว็บเองอีกครั้ง (วิธีอยู่ในหัวไฟล์ `.github/workflows/deploy.yml`)
+ตอนนี้ (ก่อนเปิดตัว) push **ไม่**ขึ้นเว็บเอง: push เพื่อเก็บงานไว้บน GitHub เท่านั้น เมื่อต้องการขึ้นเว็บ ให้ repo เป็น Public ก่อน แล้วไปที่แท็บ Actions > "Deploy to GitHub Pages" > Run workflow เลือก preview หรือ live ถ้าเป็นสีแดง เปิดดู log ของขั้น "Launch check" ก่อน ส่วนใหญ่คือมีคนที่ยังไม่ได้ `consent` ส่วนขั้น deploy ที่แดงพร้อมข้อความ "Ensure GitHub Pages has been enabled" แปลว่า repo ยังเป็น Private. หลังเปิดตัวจะเปิดให้ push แล้วขึ้นเว็บเองอีกครั้ง (วิธีอยู่ในหัวไฟล์ `.github/workflows/deploy.yml`)
+
+## ARIES Next (`/next/`)
+
+เว็บอีกเวอร์ชันแบบล้ำที่อาจารย์กำลังเทียบกับเวอร์ชันปัจจุบัน (พร้อมพ์อยู่ที่ `06_Website\prompts\ARIES_Next_prompt_v1.md` บน Drive) ดูได้ที่ http://localhost:4321/next/ ตอน `npm run dev` และบนเว็บพรีวิวเมื่อ deploy แบบ preview เท่านั้น เว็บแบบ live ไม่มีอะไรของ Next ติดไปเลย (ตั้งไว้ใน `astro.config.mjs`)
+
+- ข้อความทั้งหมดดึงจาก `src/data/` ชุดเดียวกับเว็บปัจจุบัน แก้ที่เดียวได้ทั้งสองเวอร์ชัน ป้ายที่มีเฉพาะใน Next อยู่ใน `home.json` คีย์ `next` และเมนูอยู่ใน `nav.json`
+- โค้ดอยู่ที่ `src/next/`, `src/components/next/`, `src/scripts/next/`, `src/styles/next.css` ภาพนิ่งที่ใช้แทนฉาก 3 มิติอยู่ที่ `src/assets/next/` (สร้างจากฉากเองด้วย `http://localhost:4321/next/?capture`)
+- ภาพสะพานในฉากสร้างจากโค้ดทั้งหมด ไม่ใช่ข้อมูลสำรวจจริง และไม่ได้จำลองจากสะพานจริงแห่งใด
 
 ## กติกาที่ต้องถือ
 

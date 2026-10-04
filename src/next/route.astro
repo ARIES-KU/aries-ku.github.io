@@ -1,0 +1,12 @@
+---
+// ARIES Next: a second, futuristic version of the site, built for comparison with v1
+// (brief: 06_Website/prompts/ARIES_Next_prompt_v1.md on the center's Drive).
+// This route is injected by astro.config.mjs only in `npm run dev` and in preview builds; it is not in src/pages.
+import NextHome from '../components/next/NextHome.astro';
+
+export function getStaticPaths() {
+  return [{ params: { slug: undefined } }];
+}
+const { slug } = Astro.params;
+---
+{slug === undefined && <NextHome lang="en" />}

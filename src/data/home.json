@@ -66,7 +66,28 @@
     "directionH": "Where we are going",
     "directionP": "ARIES is not building an inspection tool. It is building the body of knowledge that connects data, structures and decisions: how what we measure on a bridge becomes what an owner decides to do about it.",
     "directionLink": "Mission, road map and how to work with us →",
-    "researchLink": "The problems we work on →"
+    "researchLink": "The problems we work on →",
+    "next": {
+      "_help": "ป้ายของ ARIES Next (/next/) เท่านั้น: เป็นป้ายหรือคำบรรยายสิ่งที่เห็น ไม่ใช่ข้อเท็จจริงใหม่",
+      "pageTitle": "ARIES Next | ARIES Center",
+      "scan": "Scan",
+      "scroll": "Scroll",
+      "heroCaption": "Illustration: a procedurally generated bridge, not survey data.",
+      "illustration": "Illustration",
+      "schematic": "Schematic",
+      "schematicAlt": "Schematic: a reliability index falls over time and is revised when an inspection update arrives.",
+      "time": "Time",
+      "reliability": "Reliability index",
+      "inspection": "Inspection update",
+      "crack": "Crack",
+      "spalling": "Spalling",
+      "worstSpot": "Highest local loss",
+      "actFirst": "Act first",
+      "nextInLine": "Next",
+      "monitor": "Monitor",
+      "thesisLabel": "Thesis",
+      "copyright": "ARIES Center, Kasetsart University"
+    }
   },
   "th": {
     "heroAlt": "ภาพประกอบ: สะพานข้ามแม่น้ำ ตอม่อหนึ่งต้นแสดงเป็นโครงลวดแบบจำลองคู่ขนานดิจิทัล",

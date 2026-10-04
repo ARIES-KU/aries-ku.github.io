@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { centerJsonLd } from '../lib/structured-data';
+import navData from '../data/nav.json';
 
 interface Props {
   title: string;          // page name; the site name is appended
@@ -18,15 +19,8 @@ const ogImage = new URL('/og.jpg', site).href;
 const fullTitle = page === 'home' ? `ARIES Center | Kasetsart University` : `${title} | ARIES Center`;
 
 // Thai exists for Home and Contact only; the other pages link to their English version from the Thai menu.
-const nav = [
-  { key: 'home',         en: 'Home',         th: 'หน้าแรก',        enHref: '/',              thHref: '/th/' },
-  { key: 'mission',      en: 'Mission',      th: 'พันธกิจ',        enHref: '/mission/',      thHref: '/mission/' },
-  { key: 'research',     en: 'Research',     th: 'งานวิจัย',        enHref: '/research/',     thHref: '/research/' },
-  { key: 'people',       en: 'People',       th: 'บุคลากร',        enHref: '/people/',       thHref: '/people/' },
-  { key: 'projects',     en: 'Projects',     th: 'โครงการ',        enHref: '/projects/',     thHref: '/projects/' },
-  { key: 'publications', en: 'Publications', th: 'ผลงานตีพิมพ์',    enHref: '/publications/', thHref: '/publications/' },
-  { key: 'contact',      en: 'Contact',      th: 'ติดต่อ',         enHref: '/contact/',      thHref: '/th/contact/' },
-];
+// The menu lives in src/data/nav.json, shared with ARIES Next (/next/).
+const nav = navData.main;
 // in the Thai menu, pages with no Thai version carry a small EN tag, so a reader knows before clicking
 const enOnly = (n: { enHref: string; thHref: string }) => lang === 'th' && n.thHref === n.enHref;
 const toTh = thHref ?? '/th/';
@@ -66,7 +60,7 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-    {isPreview && <div class="preview-bar" lang="th">ตัวอย่างสำหรับตรวจทาน ยังไม่ใช่เว็บที่เปิดตัว · Preview for review, not yet launched</div>}
+    {isPreview && <div class="preview-bar" lang="th">{navData.previewBar}</div>}
     <header class="topbar">
       <div class="wrap">
         <a class="brand" href={lang === 'th' ? '/th/' : '/'} aria-label="ARIES Center home">
@@ -106,8 +100,7 @@ const showLook = import.meta.env.DEV || import.meta.env.PUBLIC_THEME_SWITCH === 
         </div>
         <div class="links">
           {nav.slice(1).map((n) => <a href={lang === 'th' ? n.thHref : n.enHref} hreflang={enOnly(n) ? 'en' : undefined}>{lang === 'th' ? n.th : n.en}{enOnly(n) && <span class="en-tag" lang="en" title="หน้านี้เป็นภาษาอังกฤษ">EN</span>}</a>)}
-          <a href="https://www.eng.ku.ac.th/" rel="noopener">Faculty of Engineering, KU</a>
-          <a href="https://www.ku.ac.th/" rel="noopener">Kasetsart University</a>
+          {navData.external.map((x) => <a href={x.href} rel="noopener">{x.en}</a>)}
         </div>
       </div>
     </footer>

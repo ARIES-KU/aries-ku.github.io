@@ -1,0 +1,113 @@
+---
+// Layout for ARIES Next (/next/). Dark first, its own stylesheet; content comes from the same data files as v1.
+import '../styles/next.css';
+import navData from '../data/nav.json';
+import home from '../data/home.json';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'en' | 'th';
+  page: 'home' | 'mission' | 'research' | 'people' | 'projects' | 'publications' | 'contact';
+  v1Href: string;         // the same page in v1, for the review switch
+}
+const { title, description, lang = 'en', page, v1Href } = Astro.props;
+const N = home.en.next;
+const isPreview = import.meta.env.PUBLIC_PREVIEW === 'true';
+// Next pages built so far; menu items for the others point to their v1 page until theirs exists.
+const READY = new Set(['home']);
+const href = (n: { key: string; enHref: string }) => (READY.has(n.key) ? `/next${n.enHref}` : n.enHref);
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang={lang} class="nx" data-display="plex">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#05070C" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
+    <script is:inline>
+      // The 3D scene runs only with WebGL 2, no reduced-motion request and no Save-Data; otherwise the static frames show.
+      (function () {
+        var d = document.documentElement, live = typeof WebGL2RenderingContext !== 'undefined';
+        try {
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches) live = false;
+          if (navigator.connection && navigator.connection.saveData) live = false;
+          var f = localStorage.getItem('aries-next-display'); if (f === 'chakra' || f === 'plex') d.dataset.display = f;
+        } catch (e) {}
+        if (live) d.classList.add('nx-live');
+      })();
+    </script>
+  </head>
+  <body data-preview={isPreview ? '' : undefined}>
+    <a class="nx-skip" href="#main">Skip to content</a>
+    {isPreview && <div class="nx-preview" lang="th">{navData.previewBar}</div>}
+    <header class="nx-header" data-header>
+      <div class="nx-wrap nx-header-in">
+        <a class="nx-brand" href="/next/" aria-label="ARIES Center home">
+          <img src="/images/logo-h-white.png" alt="ARIES Smart Infrastructure" width="103" height="34" />
+          <span class="nx-brand-div" aria-hidden="true"></span>
+          <span class="nx-brand-ku">Kasetsart<br />University</span>
+        </a>
+        <nav class="nx-nav" aria-label="Primary">
+          {navData.main.map((n) => <a href={href(n)} class={n.key === page ? 'on' : undefined} aria-current={n.key === page ? 'page' : undefined}>{n[lang]}</a>)}
+        </nav>
+        <details class="nx-menu">
+          <summary>Menu</summary>
+          <nav class="nx-menu-panel" aria-label="Primary">
+            {navData.main.map((n) => <a href={href(n)} aria-current={n.key === page ? 'page' : undefined}>{n[lang]}</a>)}
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="nx-footer">
+      <div class="nx-wrap nx-footer-in">
+        <div>
+          <img src="/images/logo-h-white.png" alt="ARIES" width="133" height="44" />
+          <p class="nx-footer-name">{home.en.title}<br /><span lang="th">{home.th.title}</span></p>
+          <p class="nx-footer-status">{home.en.status1}</p>
+          <p class="nx-footer-addr">{home.en.status2}</p>
+          <small>© {year} {N.copyright}</small>
+        </div>
+        <nav class="nx-footer-links" aria-label="Footer">
+          {navData.main.slice(1).map((n) => <a href={href(n)}>{n[lang]}</a>)}
+          {navData.external.map((x) => <a href={x.href} rel="noopener">{x.en}</a>)}
+        </nav>
+      </div>
+    </footer>
+
+    <div class="nx-review" role="group" aria-label="Review tools" lang="th">
+      <span>เทียบ</span>
+      <a href={v1Href}>v1</a>
+      <a class="on" href={`/next${v1Href}`} aria-current="page">Next</a>
+      <span class="sep" aria-hidden="true"></span>
+      <span>ฟอนต์หัวข้อ</span>
+      <button type="button" data-display="plex">Plex</button>
+      <button type="button" data-display="chakra">Chakra</button>
+    </div>
+    <script is:inline>
+      (function () {
+        var root = document.documentElement, btns = document.querySelectorAll('.nx-review button');
+        function set(f) {
+          root.dataset.display = f;
+          btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.display === f)); });
+          try { localStorage.setItem('aries-next-display', f); } catch (e) {}
+        }
+        btns.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.display); }); });
+        set(root.dataset.display || 'plex');
+      })();
+    </script>
+  </body>
+</html>

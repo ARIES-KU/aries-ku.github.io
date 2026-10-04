@@ -1,0 +1,95 @@
+---
+// ARIES Next home: the page behaves like an inspection. One sticky scene moves through the four layers of the
+// chain in mission.json as the visitor scrolls; every word on it comes from the data files.
+import Next from '../../layouts/Next.astro';
+import Schematic from './Schematic.astro';
+import home from '../../data/home.json';
+import mission from '../../data/mission.json';
+// static frames of the scene (rendered from it in capture mode), shown when the 3D scene does not run
+const frames = Object.values(import.meta.glob<{ default: ImageMetadata }>('../../assets/next/chain-*.jpg', { eager: true }))
+  .map((m) => m.default)
+  .sort((a, b) => a.src.localeCompare(b.src));
+
+interface Props { lang: 'en' | 'th' }
+const { lang } = Astro.props;
+const T = home[lang];
+const N = home.en.next;
+const index = (i: number) => `§${String(i + 1).padStart(2, '0')}`;
+---
+<Next title={N.pageTitle} description={T.lead} lang={lang} page="home" v1Href="/">
+  <div class="nx-stage" data-stage>
+    <div class="nx-canvas-wrap" aria-hidden="true">
+      <canvas class="nx-canvas" data-canvas></canvas>
+      <div class="nx-overlay">
+        <div class="nx-box" data-box><span>{N.crack}</span></div>
+        <div class="nx-box" data-box><span>{N.spalling}</span></div>
+        <div class="nx-box" data-box><span>{N.crack}</span></div>
+        <div class="nx-hot" data-hot><span>{N.worstSpot}</span></div>
+      </div>
+      <div class="nx-hud" data-hud><span>{N.scan}</span><i></i></div>
+    </div>
+
+    <div class="nx-stage-content">
+      <section class="nx-hero" data-anchor>
+        <figure class="nx-fallback nx-fallback-hero"><img src={frames[0].src} alt="" width={frames[0].width} height={frames[0].height} loading="lazy" decoding="async" /></figure>
+        <div class="nx-wrap nx-hero-in">
+          <p class="nx-eyebrow">{T.eyebrow}</p>
+          <h1 class="nx-h1">{T.title}</h1>
+          <p class="nx-lead">{T.lead}</p>
+          <dl class="nx-spec">
+            {T.facts.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+          </dl>
+          <p class="nx-caption">{N.heroCaption}</p>
+        </div>
+        <a class="nx-scroll" href="#chain"><span>{N.scroll}</span><i aria-hidden="true"></i></a>
+      </section>
+
+      <section class="nx-chain" id="chain" aria-labelledby="chain-h">
+        <div class="nx-wrap nx-chain-intro">
+          <div class="nx-card nx-card-intro">
+            <h2 id="chain-h" class="nx-h2">{mission.chainH}</h2>
+            <p>{mission.chainP}</p>
+          </div>
+        </div>
+        {mission.layers.map((l, i) => (
+          <article class="nx-step" data-anchor data-step>
+            <figure class="nx-fallback"><img src={frames[i + 1].src} alt="" width={frames[i + 1].width} height={frames[i + 1].height} loading="lazy" decoding="async" /></figure>
+            <div class="nx-wrap nx-step-in">
+              <div class="nx-card">
+                <h3 class="nx-index"><span>{index(i)}</span>{l.name}</h3>
+                <p class="nx-what">{l.what}</p>
+                <dl class="nx-meta">
+                  <div><dt>{mission.whoL}</dt><dd>{l.who}</dd></div>
+                  <div><dt>{mission.producesL}</dt><dd>{l.feeds}</dd></div>
+                </dl>
+                {i === 2 && <Schematic labels={N} />}
+                {i === 3 && (
+                  <ul class="nx-legend">
+                    <li><i class="a"></i>{N.actFirst}</li>
+                    <li><i class="w"></i>{N.nextInLine}</li>
+                    <li><i class="c"></i>{N.monitor}</li>
+                  </ul>
+                )}
+                <p class="nx-caption">{N.illustration}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
+  </div>
+
+  <section class="nx-thesis" aria-labelledby="thesis-h">
+    <div class="nx-wrap">
+      <h2 id="thesis-h" class="nx-eyebrow">{N.thesisLabel}</h2>
+      <p class="nx-thesis-text">{mission.thesis}</p>
+      <p class="nx-thesis-sub">{mission.thesisSub}</p>
+      <a class="nx-link" href="/mission/">{T.directionLink}</a>
+    </div>
+  </section>
+</Next>
+
+<script>
+  import { boot } from '../../scripts/next/boot';
+  boot();
+</script>

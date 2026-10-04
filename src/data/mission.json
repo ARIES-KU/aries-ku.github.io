@@ -8,6 +8,10 @@
     "Transfer technology and provide academic services to government and industry, raising the standard of the country's infrastructure.",
     "Train researchers and engineers with advanced-technology skills in structural engineering."
   ],
+  "chainH": "How the pieces fit",
+  "chainP": "Four layers, each feeding the next. A project is judged by which links of the chain it strengthens.",
+  "whoL": "Who",
+  "producesL": "Produces",
   "layers": [
     { "name": "Sensing", "what": "UAV imagery, LiDAR point clouds, vibration and strain sensors.", "who": "Geospatial and Field Operations group", "feeds": "raw measurements of real structures" },
     { "name": "Intelligence", "what": "Computer vision that classifies damage, digital twins that hold geometry, damage and behaviour in one model, machine-learning estimators of capacity.", "who": "Structural Assessment and Digital Twin group", "feeds": "structured, comparable descriptions of condition" },

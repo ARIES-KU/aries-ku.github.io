@@ -1,0 +1,17 @@
+{
+  "_help": "เมนูหลัก ลิงก์ท้ายเว็บ และแถบพรีวิว ใช้ร่วมกันทั้งเว็บหลักและ ARIES Next (/next/) | thHref = หน้าภาษาไทย ถ้าไม่มีหน้าไทยให้ใส่ค่าเดียวกับ enHref แล้วเมนูไทยจะติดป้าย EN ให้เอง",
+  "main": [
+    { "key": "home",         "en": "Home",         "th": "หน้าแรก",        "enHref": "/",              "thHref": "/th/" },
+    { "key": "mission",      "en": "Mission",      "th": "พันธกิจ",        "enHref": "/mission/",      "thHref": "/mission/" },
+    { "key": "research",     "en": "Research",     "th": "งานวิจัย",        "enHref": "/research/",     "thHref": "/research/" },
+    { "key": "people",       "en": "People",       "th": "บุคลากร",        "enHref": "/people/",       "thHref": "/people/" },
+    { "key": "projects",     "en": "Projects",     "th": "โครงการ",        "enHref": "/projects/",     "thHref": "/projects/" },
+    { "key": "publications", "en": "Publications", "th": "ผลงานตีพิมพ์",    "enHref": "/publications/", "thHref": "/publications/" },
+    { "key": "contact",      "en": "Contact",      "th": "ติดต่อ",         "enHref": "/contact/",      "thHref": "/th/contact/" }
+  ],
+  "external": [
+    { "en": "Faculty of Engineering, KU", "href": "https://www.eng.ku.ac.th/" },
+    { "en": "Kasetsart University", "href": "https://www.ku.ac.th/" }
+  ],
+  "previewBar": "ตัวอย่างสำหรับตรวจทาน ยังไม่ใช่เว็บที่เปิดตัว · Preview for review, not yet launched"
+}
