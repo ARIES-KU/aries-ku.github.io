@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import pubs from '../data/publications.json';
+import pages from '../data/pages.json';
+
+const P = pages.publications;
 
 const items = pubs.items;
 const years = [...new Set(items.map((p) => p.year))].sort((a, b) => b - a);
@@ -8,18 +11,18 @@ const surnames = pubs.bold.map((s) => s.toLowerCase());
 const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s));
 const generated = new Date(pubs.generated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<Base title="Publications" description="Journal articles, conference papers and book chapters by members of the ARIES Center, Kasetsart University." page="publications">
+<Base title="Publications" description={P.description} page="publications">
   <section class="page inner">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Publications</span>
-        <h1>Publications by ARIES members</h1>
-        <p class="muted">Works are found through <a href="https://openalex.org/" rel="noopener">OpenAlex</a> and described from the publisher's CrossRef record. Last refreshed {generated}. Preprints and theses are excluded.</p>
+        <span class="eyebrow">{P.eyebrow}</span>
+        <h1>{P.title}</h1>
+        <p class="muted">{P.introA} <a href="https://openalex.org/" rel="noopener">{P.introLink}</a> {P.introB.replace('{date}', generated)}</p>
       </div>
       <div class="pubtools">
-        <label for="pub-filter" class="muted">Filter</label>
-        <input id="pub-filter" type="search" placeholder="Title, author, journal or year" />
-        <span id="pub-count" class="count">{items.length} of {items.length} publications</span>
+        <label for="pub-filter" class="muted">{P.filterL}</label>
+        <input id="pub-filter" type="search" placeholder={P.filterPh} />
+        <span id="pub-count" class="count">{P.count.replace('{n}', String(items.length)).replace('{total}', String(items.length))}</span>
       </div>
       <div id="pub-list">
         {years.map((y) => (
@@ -35,7 +38,7 @@ const generated = new Date(pubs.generated + 'T00:00:00').toLocaleDateString('en-
           </section>
         ))}
       </div>
-      <p id="pub-none" class="muted" style="margin-top:20px" hidden>No publications match that filter.</p>
+      <p id="pub-none" class="muted" style="margin-top:20px" hidden>{P.none}</p>
     </div>
   </section>
 </Base>

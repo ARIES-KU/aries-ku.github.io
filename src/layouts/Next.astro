@@ -1,5 +1,6 @@
 ---
 // Layout for ARIES Next (/next/). Dark first, its own stylesheet; content comes from the same data files as v1.
+// As in v1, Thai exists for Home and Contact only: in the Thai menu the other pages link to English and carry an EN tag.
 import '../styles/next.css';
 import navData from '../data/nav.json';
 import home from '../data/home.json';
@@ -10,13 +11,19 @@ interface Props {
   lang?: 'en' | 'th';
   page: 'home' | 'mission' | 'research' | 'people' | 'projects' | 'publications' | 'contact';
   v1Href: string;         // the same page in v1, for the review switch
+  enHref?: string;        // English counterpart (v1 path) when this page has a Thai version
+  thHref?: string;        // Thai counterpart (v1 path) when one exists
 }
-const { title, description, lang = 'en', page, v1Href } = Astro.props;
-const N = home.en.next;
+const { title, description, lang = 'en', page, v1Href, enHref, thHref } = Astro.props;
+const T = home[lang];
+const N = T.next;
 const isPreview = import.meta.env.PUBLIC_PREVIEW === 'true';
-// Next pages built so far; menu items for the others point to their v1 page until theirs exists.
-const READY = new Set(['home']);
-const href = (n: { key: string; enHref: string }) => (READY.has(n.key) ? `/next${n.enHref}` : n.enHref);
+const nx = (p: string) => `/next${p}`;
+const enOnly = (n: { enHref: string; thHref: string }) => lang === 'th' && n.thHref === n.enHref;
+const href = (n: { enHref: string; thHref: string }) => nx(lang === 'th' ? n.thHref : n.enHref);
+const toEn = nx(enHref ?? (lang === 'th' ? '/' : v1Href));
+const toTh = nx(thHref ?? '/th/');
+const other = lang === 'th' ? home.en : home.th;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -40,28 +47,40 @@ const year = new Date().getFullYear();
         try {
           if (matchMedia('(prefers-reduced-motion: reduce)').matches) live = false;
           if (navigator.connection && navigator.connection.saveData) live = false;
-          } catch (e) {}
+        } catch (e) {}
         if (live) d.classList.add('nx-live');
       })();
     </script>
   </head>
-  <body data-preview={isPreview ? '' : undefined}>
-    <a class="nx-skip" href="#main">Skip to content</a>
+  <body data-preview={isPreview ? '' : undefined} data-page={page}>
+    <a class="nx-skip" href="#main">{N.skip}</a>
     {isPreview && <div class="nx-preview" lang="th">{navData.previewBar}</div>}
     <header class="nx-header" data-header>
       <div class="nx-wrap nx-header-in">
-        <a class="nx-brand" href="/next/" aria-label="ARIES Center home">
+        <a class="nx-brand" href={nx(lang === 'th' ? '/th/' : '/')} aria-label="ARIES Center home">
           <img src="/images/logo-h-white.png" alt="ARIES Smart Infrastructure" width="103" height="34" />
           <span class="nx-brand-div" aria-hidden="true"></span>
-          <span class="nx-brand-ku">Kasetsart<br />University</span>
+          <span class="nx-brand-ku" lang="en">Kasetsart<br />University</span>
         </a>
         <nav class="nx-nav" aria-label="Primary">
-          {navData.main.map((n) => <a href={href(n)} class={n.key === page ? 'on' : undefined} aria-current={n.key === page ? 'page' : undefined}>{n[lang]}</a>)}
+          {navData.main.map((n) => (
+            <a href={href(n)} class={n.key === page ? 'on' : undefined} aria-current={n.key === page ? 'page' : undefined} hreflang={enOnly(n) ? 'en' : undefined}>
+              {n[lang]}{enOnly(n) && <span class="nx-en" lang="en" title="หน้านี้เป็นภาษาอังกฤษ">EN</span>}
+            </a>
+          ))}
         </nav>
+        <div class="nx-lang" role="group" aria-label="Language">
+          <a href={toEn} class={lang === 'en' ? 'on' : undefined} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+          <a href={toTh} class={lang === 'th' ? 'on' : undefined} hreflang="th" lang="th" aria-current={lang === 'th' ? 'true' : undefined}>TH</a>
+        </div>
         <details class="nx-menu">
-          <summary>Menu</summary>
+          <summary>{N.menu}</summary>
           <nav class="nx-menu-panel" aria-label="Primary">
-            {navData.main.map((n) => <a href={href(n)} aria-current={n.key === page ? 'page' : undefined}>{n[lang]}</a>)}
+            {navData.main.map((n) => (
+              <a href={href(n)} aria-current={n.key === page ? 'page' : undefined} hreflang={enOnly(n) ? 'en' : undefined}>
+                {n[lang]}{enOnly(n) && <span class="nx-en" lang="en">EN</span>}
+              </a>
+            ))}
           </nav>
         </details>
       </div>
@@ -75,14 +94,16 @@ const year = new Date().getFullYear();
       <div class="nx-wrap nx-footer-in">
         <div>
           <img src="/images/logo-h-white.png" alt="ARIES" width="133" height="44" />
-          <p class="nx-footer-name">{home.en.title}<br /><span lang="th">{home.th.title}</span></p>
-          <p class="nx-footer-status">{home.en.status1}</p>
-          <p class="nx-footer-addr">{home.en.status2}</p>
+          <p class="nx-footer-name">{T.title}<br /><span lang={lang === 'th' ? 'en' : 'th'}>{other.title}</span></p>
+          <p class="nx-footer-status">{T.status1}</p>
+          <p class="nx-footer-addr">{T.status2}</p>
           <small>© {year} {N.copyright}</small>
         </div>
         <nav class="nx-footer-links" aria-label="Footer">
-          {navData.main.slice(1).map((n) => <a href={href(n)}>{n[lang]}</a>)}
-          {navData.external.map((x) => <a href={x.href} rel="noopener">{x.en}</a>)}
+          {navData.main.slice(1).map((n) => (
+            <a href={href(n)} hreflang={enOnly(n) ? 'en' : undefined}>{n[lang]}{enOnly(n) && <span class="nx-en" lang="en">EN</span>}</a>
+          ))}
+          {navData.external.map((x) => <a href={x.href} rel="noopener" lang="en">{x.en}</a>)}
         </nav>
       </div>
     </footer>
@@ -90,7 +111,7 @@ const year = new Date().getFullYear();
     <div class="nx-review" role="group" aria-label="Review tools" lang="th">
       <span>เทียบ</span>
       <a href={v1Href}>v1</a>
-      <a class="on" href={`/next${v1Href}`} aria-current="page">Next</a>
+      <a class="on" href={nx(v1Href)} aria-current="page">Next</a>
     </div>
   </body>
 </html>

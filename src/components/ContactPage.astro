@@ -1,61 +1,43 @@
 ---
+// all text comes from src/data/pages.json (key contact), shared with ARIES Next
+import pages from '../data/pages.json';
 interface Props { lang: 'en' | 'th' }
 const { lang } = Astro.props;
-const th = lang === 'th';
-const email = 'supasit.sriv@ku.ac.th';
-const maps = 'https://www.google.com/maps/search/?api=1&query=Faculty+of+Engineering+Kasetsart+University+Building+9';
-const roles = th
-  ? [
-      ['นิสิตปริญญาโท / เอก', 'หัวข้อวิทยานิพนธ์ที่เป็นหนึ่งข้อต่อของ Bridge Intelligence: การสำรวจด้วยโดรนและ LiDAR, การตรวจจับความเสียหายด้วย AI, แบบจำลองคู่ขนานดิจิทัล, ความน่าเชื่อถือของโครงสร้าง หรือวัสดุ บนสะพานจริง'],
-      ['นิสิตปริญญาตรี (โครงงาน)', 'โครงงานที่ต่อยอดจากข้อมูลจริงของศูนย์ เช่น ชุดข้อมูลภาพจากโดรน หรือ point cloud ของสะพาน'],
-      ['ผู้ช่วยนักวิจัย', 'ทำงานเต็มเวลาในโครงการทุนวิจัยของศูนย์ ระหว่างเตรียมตัวเรียนต่อหรือทำงานสายวิศวกรรม'],
-      ['หน่วยงานและบริษัท', 'นำร่องระบบบนโครงข่ายของท่าน หรือร่วมกำหนดมาตรฐานข้อมูลที่ได้จากงานนี้'],
-    ]
-  : [
-      ["Master's and doctoral students", 'A thesis topic that is one link in the Bridge Intelligence chain: UAV and LiDAR survey, AI damage detection, digital twins, structural reliability or materials, on a real bridge.'],
-      ['Undergraduates (senior project)', 'A project built on the center’s real data, such as drone image sets or bridge point clouds.'],
-      ['Research assistants', 'Full-time work on a funded project, before graduate study or an engineering career.'],
-      ['Agencies and companies', 'Pilot the chain on part of your network, or shape the data standard that comes out of it.'],
-    ];
+const C = pages.contact[lang];
+const { email, maps } = pages.contact;
 ---
 <section class="page inner">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">{th ? 'ติดต่อ' : 'Contact'}</span>
-      <h1>{th ? 'พบเราได้ที่อาคาร 9' : 'Find us at Building 9'}</h1>
+      <span class="eyebrow">{C.eyebrow}</span>
+      <h1>{C.title}</h1>
     </div>
     <div class="contact">
       <div class="addr">
-        <div class="line"><span class="lab">{th ? 'ศูนย์' : 'Center'}</span>
-          <span>{th ? <Fragment><b>ศูนย์ ARIES</b><br />ห้อง 9806 ชั้น 8 อาคาร 9</Fragment> : <Fragment><b>ARIES Center</b><br />Room 9806, 8th floor, Building 9</Fragment>}</span></div>
-        <div class="line"><span class="lab">{th ? 'ที่อยู่' : 'Address'}</span>
-          <span>{th
-            ? <Fragment>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์<br />มหาวิทยาลัยเกษตรศาสตร์<br />เลขที่ 50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900</Fragment>
-            : <Fragment>Department of Civil Engineering, Faculty of Engineering<br />Kasetsart University<br />50 Ngam Wong Wan Road, Lat Yao, Chatuchak, Bangkok 10900, Thailand</Fragment>}</span></div>
-        <div class="line"><span class="lab">{th ? 'อีเมล' : 'Email'}</span>
-          <span class="emailrow"><a href={`mailto:${email}`}><code>{email}</code></a><button type="button" data-copy={email} data-done={th ? 'คัดลอกแล้ว' : 'Copied'}>{th ? 'คัดลอก' : 'Copy'}</button></span></div>
+        <div class="line"><span class="lab">{C.centerL}</span>
+          <span>{C.center.map((x, i) => <Fragment>{i > 0 && <br />}{i === 0 ? <b>{x}</b> : x}</Fragment>)}</span></div>
+        <div class="line"><span class="lab">{C.addressL}</span>
+          <span>{C.address.map((x, i) => <Fragment>{i > 0 && <br />}{x}</Fragment>)}</span></div>
+        <div class="line"><span class="lab">{C.emailL}</span>
+          <span class="emailrow"><a href={`mailto:${email}`}><code>{email}</code></a><button type="button" data-copy={email} data-done={C.copied}>{C.copy}</button></span></div>
       </div>
       <div class="mapbox">
-        <b>{th ? 'คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ บางเขน' : 'Faculty of Engineering, Kasetsart University, Bang Khen campus'}</b>
-        <a href={maps} rel="noopener">{th ? 'เปิดใน Google Maps →' : 'Open in Google Maps →'}</a>
+        <b>{C.campus}</b>
+        <a href={maps} rel="noopener">{C.mapsLink}</a>
       </div>
     </div>
 
     <section class="block">
       <div class="sec-head">
-        <span class="eyebrow">{th ? 'ร่วมงานกับเรา' : 'Join us'}</span>
-        <h2>{th ? 'ถ้าเข้ามาร่วมงานกับ ARIES คุณจะได้เป็นส่วนหนึ่งของอะไร' : 'If you join ARIES, this is what you would be part of'}</h2>
+        <span class="eyebrow">{C.joinEyebrow}</span>
+        <h2>{C.joinH}</h2>
       </div>
       <div class="doors">
-        {roles.map(([who, what]) => <article class="door"><h3>{who}</h3><p>{what}</p></article>)}
+        {C.roles.map(([who, what]) => <article class="door"><h3>{who}</h3><p>{what}</p></article>)}
       </div>
       <div class="cols" style="margin-top:28px">
-        <div class="prose"><p>{th
-          ? 'พื้นฐานวิศวกรรมโยธาหรือโครงสร้างเป็นสิ่งที่คาดหวัง ความคุ้นเคยกับการเขียนโปรแกรม (Python) เป็นข้อได้เปรียบ และความอยากรู้สำคัญกว่าทักษะที่ครบแล้ว'
-          : 'A background in civil or structural engineering is expected; comfort with programming (Python) is a strong plus, and curiosity matters more than a finished skill set.'}</p></div>
-        <div class="prose"><p>{th
-          ? 'การรับเข้าศึกษาระดับบัณฑิตศึกษาดำเนินการผ่านบัณฑิตวิทยาลัย มหาวิทยาลัยเกษตรศาสตร์ สนใจสมัคร ส่งอีเมลถึงหัวหน้าศูนย์พร้อม CV สั้นๆ และ 2-3 ประโยคว่าอยากทำเรื่องอะไร หน่วยงานที่สนใจนำร่องหรือร่วมวิจัย ส่งอีเมลได้ที่เดียวกัน'
-          : 'Graduate admission is through the Graduate School, Kasetsart University. Before applying, write to the Director with a short CV and two or three sentences on what you would like to work on. Agencies and companies interested in a pilot or joint research: same address.'}</p></div>
+        <div class="prose"><p>{C.joinP1}</p></div>
+        <div class="prose"><p>{C.joinP2}</p></div>
       </div>
     </section>
   </div>

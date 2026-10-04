@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import pages from '../data/pages.json';
 import ContactPage from '../components/ContactPage.astro';
 ---
-<Base title="Contact" description="Contact the ARIES Center at Room 9806, Building 9, Faculty of Engineering, Kasetsart University, and how to join as a graduate student." page="contact" thHref="/th/contact/" enHref="/contact/">
+<Base title="Contact" description={pages.contact.en.description} page="contact" thHref="/th/contact/" enHref="/contact/">
   <ContactPage lang="en" />
 </Base>

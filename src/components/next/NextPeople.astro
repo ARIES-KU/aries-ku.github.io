@@ -1,0 +1,87 @@
+---
+// ARIES Next, People: faculty, the roster (only people who have consented are in the repository; on this machine
+// the local pending file adds the others, marked "not public yet", exactly as in v1), alumni, and the doors in.
+import Next from '../../layouts/Next.astro';
+import { faculty, roster, groups, alumni, supportedBy, updated, rosterIsEmpty } from '../../lib/people';
+import m from '../../data/mission.json';
+import pages from '../../data/pages.json';
+const P = pages.people;
+const updatedText = new Date(updated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const filled = roster.filter((g) => g.members.length > 0);
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Next title="People | ARIES Next" description={P.description} page="people" v1Href="/people/">
+  <div class="nx-page">
+    <div class="nx-wrap">
+      <header class="nx-head">
+        <p class="nx-eyebrow">{P.eyebrow}</p>
+        <h1>{P.title}</h1>
+        <p class="nx-lead">{P.lead}</p>
+      </header>
+
+      <section class="nx-sec" data-reveal aria-labelledby="p-fac">
+        <div class="nx-sec-h"><span class="i">01</span><h2 id="p-fac">{P.facultyH}</h2></div>
+        <div class="nx-grid nx-g3">
+          {faculty.map((f) => (
+            <article class="nx-panel nx-person">
+              <span class="av" aria-hidden="true">{f.initials}</span>
+              <h3>{f.name}</h3>
+              <p class="nx-k nx-role">{f.role}</p>
+              <p class="nx-soft">{f.about}</p>
+              <p class="nx-links">{f.links.map((l) => <a href={l.href} rel={l.href.startsWith('http') ? 'noopener' : undefined}>{l.label}</a>)}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="p-roster">
+        <div class="nx-sec-h"><span class="i">02</span><h2 id="p-roster">{P.rosterH}</h2></div>
+        <p class="nx-sec-p">{P.rosterP}</p>
+        {rosterIsEmpty
+          ? <p class="nx-note nx-placeholder">{P.rosterEmpty}</p>
+          : filled.map((g) => (
+            <div class="nx-rgroup">
+              <p class="nx-k">{g.label}</p>
+              <ul class="nx-roster">
+                {g.members.map((mb) => (
+                  <li class={mb.pending ? 'pending' : undefined}>
+                    <span><b>{mb.name}</b> <span class="nx-thname" lang="th">{mb.name_th}</span>{mb.pending && <em class="nx-pend">{P.pendingTag}</em>}<small>{mb.topic}</small></span>
+                    <span class="nx-chip">{groups[mb.group].short}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="p-alumni">
+        <div class="nx-sec-h"><span class="i">03</span><h2 id="p-alumni">{P.alumniH}</h2></div>
+        {alumni.length
+          ? <ul class="nx-roster">{alumni.map((a) => <li><span><b>{a.name}</b><small>{a.note}</small></span><span class="nx-chip">{a.year}</span></li>)}</ul>
+          : <p class="nx-note">{P.alumniEmpty}</p>}
+      </section>
+
+      {supportedBy.permission && (
+        <section class="nx-sec" data-reveal aria-labelledby="p-support">
+          <div class="nx-sec-h"><span class="i">04</span><h2 id="p-support">{P.supportedH}</h2></div>
+          <p class="nx-sec-p">{supportedBy.text}</p>
+        </section>
+      )}
+
+      <section class="nx-sec" data-reveal aria-labelledby="p-collab" id="collaborate">
+        <div class="nx-sec-h"><span class="i">{supportedBy.permission ? '05' : '04'}</span><h2 id="p-collab"><span class="nx-pre">{P.collabEyebrow}</span>{P.collabH}</h2></div>
+        <div class="nx-doors">
+          {m.doors.map((d, i) => <article class="nx-door"><span class="nx-k">{pad(i)}</span><h3>{d.who}</h3><p>{d.offer}</p></article>)}
+        </div>
+        <p class="nx-after"><a class="nx-btn" href="/next/contact/">{P.contactBtn}</a><a class="nx-btn ghost" href="/next/mission/">{P.missionBtn}</a></p>
+      </section>
+
+      <p class="nx-updated">{P.updatedL} {updatedText}</p>
+    </div>
+  </div>
+</Next>
+
+<script>
+  import { ui } from '../../scripts/next/ui';
+  ui();
+</script>

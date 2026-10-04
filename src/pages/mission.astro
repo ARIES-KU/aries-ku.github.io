@@ -1,18 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import m from '../data/mission.json';
+import pages from '../data/pages.json';
+const P = pages.mission;
 ---
-<Base title="Mission" description="What ARIES is building: the knowledge that connects data, structures and decisions for Thailand's infrastructure, and the road map to get there." page="mission">
+<Base title="Mission" description={P.description} page="mission">
   <section class="page inner">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Mission and direction</span>
+        <span class="eyebrow">{P.eyebrow}</span>
         <h1>{m.thesis}</h1>
         <p class="lead muted prose">{m.thesisSub}</p>
       </div>
 
       <section class="block">
-        <h2 style="margin-bottom:16px">Mission</h2>
+        <h2 style="margin-bottom:16px">{P.missionH}</h2>
         <ol class="mission-list">{m.mission.map((t) => <li>{t}</li>)}</ol>
       </section>
 
@@ -33,7 +35,7 @@ import m from '../data/mission.json';
       </section>
 
       <section class="block">
-        <div class="sec-head"><h2>Road map</h2></div>
+        <div class="sec-head"><h2>{P.roadmapH}</h2></div>
         <div class="roadmap">
           {m.roadmap.map((r) => (
             <article class="phase">
@@ -46,31 +48,31 @@ import m from '../data/mission.json';
       </section>
 
       <section class="block">
-        <div class="sec-head"><h2>What each project is for</h2></div>
+        <div class="sec-head"><h2>{P.mapH}</h2></div>
         <div class="tablewrap">
           <table class="map">
-            <thead><tr><th>Project</th><th>What it does for the mission</th><th>Layers</th></tr></thead>
+            <thead><tr>{P.mapCols.map((c) => <th>{c}</th>)}</tr></thead>
             <tbody>
               {m.projectMap.map((p) => <tr><td>{p.project}</td><td>{p.goal}</td><td>{p.layers.join(' · ')}</td></tr>)}
             </tbody>
           </table>
         </div>
-        <p style="margin-top:12px"><a href="/projects/">All projects →</a></p>
+        <p style="margin-top:12px"><a href="/projects/">{P.allProjects}</a></p>
       </section>
 
       <section class="block">
-        <div class="sec-head"><h2>How we work</h2></div>
+        <div class="sec-head"><h2>{P.principlesH}</h2></div>
         <div class="pillars">
           {m.principles.map((p) => <article class="pillar"><h3>{p.t}</h3><p class="muted">{p.d}</p></article>)}
         </div>
       </section>
 
       <section class="block flag" id="work-with-us">
-        <div class="head"><div class="sec-head" style="margin-bottom:0"><span class="eyebrow">Work with us</span><h2>Four doors into ARIES</h2></div></div>
+        <div class="head"><div class="sec-head" style="margin-bottom:0"><span class="eyebrow">{P.doorsEyebrow}</span><h2>{P.doorsH}</h2></div></div>
         <div class="doors">
           {m.doors.map((d) => <article class="door"><h3>{d.who}</h3><p>{d.offer}</p></article>)}
         </div>
-        <p style="margin-top:20px"><a class="btn primary" href="/contact/">Contact the Director</a></p>
+        <p style="margin-top:20px"><a class="btn primary" href="/contact/">{P.contactBtn}</a></p>
       </section>
     </div>
   </section>

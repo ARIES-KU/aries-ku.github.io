@@ -2,21 +2,24 @@
 import Base from '../layouts/Base.astro';
 import { faculty, roster, groups, alumni, supportedBy, updated, rosterIsEmpty } from '../lib/people';
 import m from '../data/mission.json';
+import pages from '../data/pages.json';
+
+const P = pages.people;
 
 const updatedText = new Date(updated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const filled = roster.filter((g) => g.members.length > 0);
 ---
-<Base title="People" description="Faculty, researchers and students of the ARIES Center, what each works on, and how to join or collaborate." page="people">
+<Base title="People" description={P.description} page="people">
   <section class="page inner">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">People</span>
-        <h1>Members</h1>
-        <p class="lead muted prose">Two founding faculty, a senior advisor, and the researchers and students who do the work. If you want to work with us, the doors are at the bottom of this page.</p>
+        <span class="eyebrow">{P.eyebrow}</span>
+        <h1>{P.title}</h1>
+        <p class="lead muted prose">{P.lead}</p>
       </div>
 
       <section class="block" style="margin-top:32px">
-        <div class="sec-head" style="margin-bottom:16px"><h2>Faculty</h2></div>
+        <div class="sec-head" style="margin-bottom:16px"><h2>{P.facultyH}</h2></div>
         <div class="cards3">
           {faculty.map((f) => (
             <article class="person">
@@ -31,12 +34,12 @@ const filled = roster.filter((g) => g.members.length > 0);
 
       <section class="block">
         <div class="sec-head" style="margin-bottom:12px">
-          <h2>Researchers and Students</h2>
-          <p class="muted">Each entry names the question the person is working on. English names as each member spells them in their own documents.</p>
+          <h2>{P.rosterH}</h2>
+          <p class="muted">{P.rosterP}</p>
         </div>
         <div class="roster">
           {rosterIsEmpty
-            ? <p class="muted" style="padding:16px 0">Researcher and student profiles appear here once each person has confirmed.</p>
+            ? <p class="muted" style="padding:16px 0">{P.rosterEmpty}</p>
             : filled.map((g) => (
               <Fragment>
                 <div class="sub">{g.label}</div>
@@ -44,7 +47,7 @@ const filled = roster.filter((g) => g.members.length > 0);
                   {g.members.map((mb) => (
                     <li class={mb.pending ? 'pending' : undefined}>
                       <div>
-                        <div class="n">{mb.name} <span class="th-name" lang="th">{mb.name_th}</span>{mb.pending && <span class="pend">not public yet</span>}</div>
+                        <div class="n">{mb.name} <span class="th-name" lang="th">{mb.name_th}</span>{mb.pending && <span class="pend">{P.pendingTag}</span>}</div>
                         <div class="t">{mb.topic}</div>
                       </div>
                       <span class="grp-tag">{groups[mb.group].short}</span>
@@ -58,31 +61,31 @@ const filled = roster.filter((g) => g.members.length > 0);
 
       <section class="block">
         <details class="alumni">
-          <summary>Alumni</summary>
+          <summary>{P.alumniH}</summary>
           {alumni.length
             ? <ul class="members" style="padding:0 20px 12px">{alumni.map((a) => <li><div><div class="n">{a.name}</div><div class="t">{a.note}</div></div><span class="grp-tag">{a.year}</span></li>)}</ul>
-            : <p class="muted">The center's first cohort is still in progress. Graduates will be listed here by year of graduation.</p>}
+            : <p class="muted">{P.alumniEmpty}</p>}
         </details>
       </section>
 
       {supportedBy.permission && (
         <section class="block">
           <div class="sec-head" style="margin-bottom:8px">
-            <h2>Supported by</h2>
+            <h2>{P.supportedH}</h2>
             <p class="muted" style="max-width:66ch">{supportedBy.text}</p>
           </div>
         </section>
       )}
 
       <section class="block flag" id="collaborate">
-        <div class="head"><div class="sec-head" style="margin-bottom:0"><span class="eyebrow">Open for collaboration</span><h2>What you would be part of</h2></div></div>
+        <div class="head"><div class="sec-head" style="margin-bottom:0"><span class="eyebrow">{P.collabEyebrow}</span><h2>{P.collabH}</h2></div></div>
         <div class="doors">
           {m.doors.map((d) => <article class="door"><h3>{d.who}</h3><p>{d.offer}</p></article>)}
         </div>
-        <p style="margin-top:20px"><a class="btn primary" href="/contact/">Contact the Director</a> <a class="btn ghost" href="/mission/" style="margin-left:8px">Read the mission</a></p>
+        <p style="margin-top:20px"><a class="btn primary" href="/contact/">{P.contactBtn}</a> <a class="btn ghost" href="/mission/" style="margin-left:8px">{P.missionBtn}</a></p>
       </section>
 
-      <p class="updated">Last updated: {updatedText}</p>
+      <p class="updated">{P.updatedL} {updatedText}</p>
     </div>
   </section>
 </Base>

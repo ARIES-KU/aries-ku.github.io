@@ -1,10 +1,16 @@
 ---
 // ARIES Next home: the page behaves like an inspection. One sticky scene moves through the four layers of the
-// chain in mission.json as the visitor scrolls; every word on it comes from the data files.
+// chain in mission.json as the visitor scrolls; then the field cases, the problems, news, people and the doors in.
+// Every word comes from the data files; the Thai page uses the Thai keys next to the English ones.
 import Next from '../../layouts/Next.astro';
 import Schematic from './Schematic.astro';
 import home from '../../data/home.json';
 import mission from '../../data/mission.json';
+import problems from '../../data/problems.json';
+import stories from '../../data/stories.json';
+import news from '../../data/news.json';
+import pages from '../../data/pages.json';
+import { faculty, roster, groups, rosterIsEmpty } from '../../lib/people';
 // static frames of the scene (rendered from it in capture mode), shown when the 3D scene does not run
 const frames = Object.values(import.meta.glob<{ default: ImageMetadata }>('../../assets/next/chain-*.jpg', { eager: true }))
   .map((m) => m.default)
@@ -12,12 +18,30 @@ const frames = Object.values(import.meta.glob<{ default: ImageMetadata }>('../..
 
 interface Props { lang: 'en' | 'th' }
 const { lang } = Astro.props;
+const th = lang === 'th';
 const T = home[lang];
-const N = home.en.next;
-const index = (i: number) => `§${String(i + 1).padStart(2, '0')}`;
+const N = T.next;
+const PH = pages.home[lang];
+const C = pages.contact[lang];
+const R = pages.research;
+const { email } = pages.contact;
+const pad = (i: number) => String(i + 1).padStart(2, '0');
 const [creditA, creditB] = N.mapCredit.split('{osm}');
+// the chain in this page's language; the English layer name stays as the instrument label
+const chain = th ? mission.th : mission;
+const layers = mission.layers.map((l, i) => ({ ...l, ...(th ? mission.th.layers[i] : {}), label: l.name }));
+const thesis = th ? T.directionP : mission.thesis;
+// newest first whatever order the file is in; the newest is marked
+const latestNews = [...news.items].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
+const team = [
+  ...faculty.map((f) => ({ ini: f.initials, name: th ? f.name_th : f.name, role: th ? f.role_th : f.role, pending: false })),
+  ...roster.flatMap((g) => g.members.map((m) => ({
+    ini: m.initials, name: th ? m.name_th : m.name, role: `${th ? g.role_th : g.role} · ${groups[m.group].long}`, pending: !!m.pending,
+  }))),
+];
+const nx = (p: string) => `/next${p}`;
 ---
-<Next title={N.pageTitle} description={T.lead} lang={lang} page="home" v1Href="/">
+<Next title={N.pageTitle} description={T.lead} lang={lang} page="home" v1Href={th ? '/th/' : '/'} enHref="/" thHref="/th/">
   <div class="nx-stage" data-stage>
     <div class="nx-canvas-wrap" aria-hidden="true">
       <canvas class="nx-canvas" data-canvas></canvas>
@@ -26,7 +50,7 @@ const [creditA, creditB] = N.mapCredit.split('{osm}');
         <div class="nx-box" data-box><span>{N.spalling}</span></div>
         <div class="nx-box" data-box><span>{N.crack}</span></div>
         <div class="nx-hot" data-hot><span>{N.worstSpot}</span></div>
-        {[1, 2, 3].map((k) => <div class="nx-rank" data-rank><span>{k}</span></div>)}
+        {[1, 2, 3].map((k) => <div class="nx-rank" data-rank><span lang="en">{k}</span></div>)}
       </div>
       <div class="nx-hud" data-hud><span>{N.scan}</span><i></i></div>
     </div>
@@ -49,20 +73,20 @@ const [creditA, creditB] = N.mapCredit.split('{osm}');
       <section class="nx-chain" id="chain" aria-labelledby="chain-h">
         <div class="nx-wrap nx-chain-intro">
           <div class="nx-card nx-card-intro">
-            <h2 id="chain-h" class="nx-h2">{mission.chainH}</h2>
-            <p>{mission.chainP}</p>
+            <h2 id="chain-h" class="nx-h2">{chain.chainH}</h2>
+            <p>{chain.chainP}</p>
           </div>
         </div>
-        {mission.layers.map((l, i) => (
+        {layers.map((l, i) => (
           <article class="nx-step" data-anchor data-step>
             <figure class="nx-fallback"><img src={frames[i + 1].src} alt="" width={frames[i + 1].width} height={frames[i + 1].height} loading="lazy" decoding="async" /></figure>
             <div class="nx-wrap nx-step-in">
               <div class="nx-card">
-                <h3 class="nx-index"><span>{index(i)}</span>{l.name}</h3>
+                <h3 class="nx-index"><span lang="en">§{pad(i)}</span><b lang="en">{l.label}</b>{th && <em>{l.name}</em>}</h3>
                 <p class="nx-what">{l.what}</p>
                 <dl class="nx-meta">
-                  <div><dt>{mission.whoL}</dt><dd>{l.who}</dd></div>
-                  <div><dt>{mission.producesL}</dt><dd>{l.feeds}</dd></div>
+                  <div><dt>{chain.whoL}</dt><dd>{l.who}</dd></div>
+                  <div><dt>{chain.producesL}</dt><dd>{l.feeds}</dd></div>
                 </dl>
                 {i === 2 && <Schematic labels={N} />}
                 {i === 3 && (
@@ -73,7 +97,7 @@ const [creditA, creditB] = N.mapCredit.split('{osm}');
                   </ul>
                 )}
                 {i === 3
-                  ? <p class="nx-caption">{N.mapNote} {creditA}<a href="https://www.openstreetmap.org/copyright" rel="noopener">{N.osm}</a>{creditB}</p>
+                  ? <p class="nx-caption">{N.mapNote} {creditA}<a href="https://www.openstreetmap.org/copyright" rel="noopener" lang="en">{N.osm}</a>{creditB}</p>
                   : <p class="nx-caption">{N.illustration}</p>}
               </div>
             </div>
@@ -86,9 +110,116 @@ const [creditA, creditB] = N.mapCredit.split('{osm}');
   <section class="nx-thesis" aria-labelledby="thesis-h">
     <div class="nx-wrap">
       <h2 id="thesis-h" class="nx-eyebrow">{N.thesisLabel}</h2>
-      <p class="nx-thesis-text">{mission.thesis}</p>
-      <p class="nx-thesis-sub">{mission.thesisSub}</p>
-      <a class="nx-link" href="/mission/">{T.directionLink}</a>
+      <p class="nx-thesis-text">{thesis}</p>
+      <p class="nx-thesis-sub">{chain.thesisSub}</p>
+      <a class="nx-link" href={nx('/mission/')} hreflang={th ? 'en' : undefined}>{T.directionLink}{th && <span class="nx-en" lang="en">EN</span>}</a>
+    </div>
+  </section>
+
+  <section class="nx-home-sec" data-reveal aria-labelledby="cases-h">
+    <div class="nx-wrap">
+      <div class="nx-sec-h"><span class="i" lang="en">03</span><h2 id="cases-h">{T.storiesH}</h2></div>
+      <p class="nx-sec-p">{T.storiesP}</p>
+      <div class="nx-cases">
+        {stories.items.map((s, i) => { const t = s[lang]; return (
+          <article class="nx-case">
+            <figure class="nx-case-img">
+              <img src={`/images/${s.image}`} alt="" loading="lazy" decoding="async" width="800" height="450" />
+              <span class="nx-case-scan" aria-hidden="true"></span>
+              <span class="nx-case-tag" lang={th ? undefined : 'en'}>{N.caseL} {pad(i)}</span>
+            </figure>
+            <div class="nx-case-body">
+              <p class="nx-kicker">{t.kicker}</p>
+              <h3>{t.title}</h3>
+              {t.credit && <p class="nx-credit">{t.credit}</p>}
+              <dl class="nx-case-dl">
+                <div><dt>{T.storyProblem}</dt><dd>{t.problem}</dd></div>
+                <div><dt>{T.storyDid}</dt><dd>{t.did}</dd></div>
+                <div><dt>{T.storyWhy}</dt><dd>{t.why}</dd></div>
+              </dl>
+              <a class="nx-arrow" href={s.doi} rel="noopener">{T.storyRead}</a>
+            </div>
+          </article>
+        ); })}
+      </div>
+    </div>
+  </section>
+
+  <section class="nx-home-sec" data-reveal aria-labelledby="problems-h">
+    <div class="nx-wrap">
+      <div class="nx-sec-h"><span class="i" lang="en">04</span><h2 id="problems-h">{th ? N.problemsH : R.title}</h2></div>
+      <ol class="nx-problems">
+        {problems.items.map((p, i) => {
+          const chip = <span class={p.status === 'active' ? 'nx-chip' : 'nx-chip next'}><i></i>{p.status === 'active' ? (th ? N.statusPublished : R.chip.active) : (th ? N.statusInProgress : R.chip.next)}</span>;
+          return th ? (
+            <li><a class="nx-problem-row" href={nx(`/research/#${p.id}`)} hreflang="en">
+              <span class="no" lang="en">{pad(i)}</span>
+              <span class="q">{p.question_th}{p.credit_th && <span class="nx-credit">{p.credit_th}</span>}</span>
+              {chip}
+            </a></li>
+          ) : (
+            <li><details>
+              <summary class="nx-problem-row">
+                <span class="no">{pad(i)}</span>
+                <span class="q">{p.question}{p.credit && <span class="nx-credit">{p.credit}</span>}</span>
+                {chip}
+              </summary>
+              <div class="nx-problem-body">
+                <div><h4 class="nx-k">{R.approachH}</h4><p>{p.approach}</p></div>
+                <div><h4 class="nx-k">{R.foundH}</h4><p>{p.findings}</p></div>
+                <p class="nx-problem-more"><a class="nx-arrow" href={nx(`/research/#${p.id}`)}>{N.problemsMore}</a></p>
+              </div>
+            </details></li>
+          );
+        })}
+      </ol>
+      {th && <p class="nx-after"><a class="nx-arrow" href={nx('/research/')} hreflang="en">{N.problemsMore}</a></p>}
+    </div>
+  </section>
+
+  <section class="nx-home-sec" data-reveal aria-labelledby="news-h">
+    <div class="nx-wrap">
+      <div class="nx-sec-h"><span class="i" lang="en">05</span><h2 id="news-h">{T.newsH}</h2></div>
+      <ol class="nx-news">
+        {latestNews.map((n, i) => (
+          <li class={i === 0 ? 'nx-news-item is-latest' : 'nx-news-item'}>
+            <span class="d">{th ? n.date_th : n.date_en}{i === 0 && <b class="nx-latest">{N.latest}</b>}</span>
+            <span class="nx-k">{th ? n.cat_th : n.cat_en}</span>
+            {n.href ? <a class="t" href={n.href} rel="noopener">{th ? n.title_th : n.title_en}</a> : <span class="t">{th ? n.title_th : n.title_en}</span>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="nx-home-sec" data-reveal aria-labelledby="team-h">
+    <div class="nx-wrap">
+      <div class="nx-sec-h"><span class="i" lang="en">06</span><h2 id="team-h">{T.teamH}</h2></div>
+      <p class="nx-sec-p">{T.teamP}</p>
+      <ul class="nx-team">
+        {team.map((m) => (
+          <li class={m.pending ? 'pending' : undefined}>
+            <span class="av" lang="en" aria-hidden="true">{m.ini}</span>
+            <span><b>{m.name}</b><small>{m.role}</small>{m.pending && <em class="nx-pend">{PH.pendingTag}</em>}</span>
+          </li>
+        ))}
+      </ul>
+      {rosterIsEmpty && <p class="nx-note">{PH.rosterEmpty}</p>}
+      <p class="nx-after"><a class="nx-arrow" href={nx('/people/')} hreflang={th ? 'en' : undefined}>{PH.peopleLink}{th && <span class="nx-en" lang="en">EN</span>}</a></p>
+    </div>
+  </section>
+
+  <section class="nx-home-sec nx-join" data-reveal aria-labelledby="join-h">
+    <div class="nx-wrap">
+      <div class="nx-sec-h"><span class="i" lang="en">07</span><h2 id="join-h">{C.joinH}</h2></div>
+      <div class="nx-doors">
+        {C.roles.map(([who, what], i) => <article class="nx-door"><span class="nx-k" lang="en">{pad(i)}</span><h3>{who}</h3><p>{what}</p></article>)}
+      </div>
+      <div class="nx-join-foot">
+        <p class="nx-email"><span class="nx-k">{N.emailL}</span><a href={`mailto:${email}`} lang="en">{email}</a><button type="button" data-copy={email} data-done={C.copied}>{C.copy}</button></p>
+        <p class="nx-status">{T.status1}<br />{T.status2}</p>
+        <a class="nx-arrow" href={nx(th ? '/th/contact/' : '/contact/')}>{N.contactLink}</a>
+      </div>
     </div>
   </section>
 </Next>

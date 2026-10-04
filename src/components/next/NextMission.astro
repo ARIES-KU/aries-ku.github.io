@@ -1,0 +1,87 @@
+---
+// ARIES Next, Mission: the same data and order as v1's mission page (mission.json, pages.json), in the Next system.
+import Next from '../../layouts/Next.astro';
+import m from '../../data/mission.json';
+import pages from '../../data/pages.json';
+const P = pages.mission;
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Next title="Mission | ARIES Next" description={P.description} page="mission" v1Href="/mission/">
+  <div class="nx-page">
+    <div class="nx-wrap">
+      <header class="nx-head">
+        <p class="nx-eyebrow">{P.eyebrow}</p>
+        <h1>{m.thesis}</h1>
+        <p class="nx-lead">{m.thesisSub}</p>
+      </header>
+
+      <section class="nx-sec" data-reveal aria-labelledby="m-mission">
+        <div class="nx-sec-h"><span class="i">01</span><h2 id="m-mission">{P.missionH}</h2></div>
+        <ol class="nx-olist">{m.mission.map((t, i) => <li><span class="no">{pad(i)}</span><p>{t}</p></li>)}</ol>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="m-chain">
+        <div class="nx-sec-h"><span class="i">02</span><h2 id="m-chain">{m.chainH}</h2></div>
+        <p class="nx-sec-p">{m.chainP}</p>
+        <ol class="nx-chainlist">
+          {m.layers.map((l, i) => (
+            <li class="nx-panel">
+              <p class="nx-k"><span>§{pad(i)}</span> {l.name}</p>
+              <p>{l.what}</p>
+              <dl class="nx-meta">
+                <div><dt>{m.whoL}</dt><dd>{l.who}</dd></div>
+                <div><dt>{m.producesL}</dt><dd>{l.feeds}</dd></div>
+              </dl>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="m-road">
+        <div class="nx-sec-h"><span class="i">03</span><h2 id="m-road">{P.roadmapH}</h2></div>
+        <div class="nx-grid nx-g2">
+          {m.roadmap.map((r) => (
+            <article class="nx-panel nx-phase">
+              <p class="nx-k">{r.period}</p>
+              <h3>{r.title}</h3>
+              <ul class="nx-ticks">{r.items.map((it) => <li>{it}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="m-map">
+        <div class="nx-sec-h"><span class="i">04</span><h2 id="m-map">{P.mapH}</h2></div>
+        <div class="nx-tablewrap">
+          <table class="nx-table">
+            <thead><tr>{P.mapCols.map((c) => <th scope="col">{c}</th>)}</tr></thead>
+            <tbody>
+              {m.projectMap.map((p) => <tr><td>{p.project}</td><td>{p.goal}</td><td class="nx-layers">{p.layers.map((x) => <span>{x}</span>)}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <p class="nx-after"><a class="nx-arrow" href="/next/projects/">{P.allProjects}</a></p>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="m-how">
+        <div class="nx-sec-h"><span class="i">05</span><h2 id="m-how">{P.principlesH}</h2></div>
+        <div class="nx-grid nx-g4">
+          {m.principles.map((p, i) => <article class="nx-panel"><p class="nx-k">{pad(i)}</p><h3>{p.t}</h3><p class="nx-soft">{p.d}</p></article>)}
+        </div>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="m-doors" id="work-with-us">
+        <div class="nx-sec-h"><span class="i">06</span><h2 id="m-doors"><span class="nx-pre">{P.doorsEyebrow}</span>{P.doorsH}</h2></div>
+        <div class="nx-doors">
+          {m.doors.map((d, i) => <article class="nx-door"><span class="nx-k">{pad(i)}</span><h3>{d.who}</h3><p>{d.offer}</p></article>)}
+        </div>
+        <p class="nx-after"><a class="nx-btn" href="/next/contact/">{P.contactBtn}</a></p>
+      </section>
+    </div>
+  </div>
+</Next>
+
+<script>
+  import { ui } from '../../scripts/next/ui';
+  ui();
+</script>

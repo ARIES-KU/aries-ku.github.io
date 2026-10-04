@@ -1,12 +1,11 @@
-// ARIES Next home: small behaviours that run everywhere, and the 3D scene loaded after first paint when html.nx-live
-// is set (WebGL 2, no reduced-motion request, no Save-Data). Any failure falls back to the static frames.
+// ARIES Next home: the behaviours every Next page has (ui.ts), the active step, and the 3D scene loaded after first
+// paint when html.nx-live is set (WebGL 2, no reduced-motion request, no Save-Data). Any failure falls back to the
+// static frames.
+import { ui } from './ui';
+
 export function boot(): void {
   const root = document.documentElement;
-
-  const header = document.querySelector<HTMLElement>('[data-header]');
-  const solid = () => header?.classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.55);
-  solid();
-  window.addEventListener('scroll', solid, { passive: true });
+  ui(() => window.innerHeight * 0.55);              // the header turns solid once the hero has scrolled away
 
   // the step crossing the middle of the screen is "active" (draws the reliability schematic)
   const steps = Array.from(document.querySelectorAll<HTMLElement>('[data-step]'));

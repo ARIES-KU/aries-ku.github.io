@@ -1,0 +1,65 @@
+---
+// ARIES Next, Publications: the list from `npm run pubs`, newest year first, with the filter. Fast and readable:
+// long list, generous line height, no motion on items.
+import Next from '../../layouts/Next.astro';
+import pubs from '../../data/publications.json';
+import pages from '../../data/pages.json';
+const P = pages.publications;
+const items = pubs.items;
+const years = [...new Set(items.map((p) => p.year))].sort((a, b) => b - a);
+const surnames = pubs.bold.map((s) => s.toLowerCase());
+const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s));
+const generated = new Date(pubs.generated + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const count = (n: number) => P.count.replace('{n}', String(n)).replace('{total}', String(items.length));
+---
+<Next title="Publications | ARIES Next" description={P.description} page="publications" v1Href="/publications/">
+  <div class="nx-page">
+    <div class="nx-wrap">
+      <header class="nx-head">
+        <p class="nx-eyebrow">{P.eyebrow}</p>
+        <h1>{P.title}</h1>
+        <p class="nx-lead">{P.introA} <a href="https://openalex.org/" rel="noopener">{P.introLink}</a> {P.introB.replace('{date}', generated)}</p>
+      </header>
+
+      <div class="nx-pubtools">
+        <label for="pub-filter" class="nx-k">{P.filterL}</label>
+        <input id="pub-filter" type="search" placeholder={P.filterPh} autocomplete="off" />
+        <span id="pub-count" class="nx-k" data-template={P.count} aria-live="polite">{count(items.length)}</span>
+      </div>
+      <div id="pub-list">
+        {years.map((y) => (
+          <section class="nx-year" data-year={y} aria-labelledby={`y-${y}`}>
+            <h2 class="nx-yh" id={`y-${y}`}>{y}</h2>
+            <ol class="nx-publist">
+              {items.filter((p) => p.year === y).map((p) => (
+                <li class="nx-pub" data-text={[p.title, p.venue, p.year, p.authors.join(' ')].join(' ').toLowerCase()}>
+                  <p class="t">{p.doi ? <a href={p.doi} rel="noopener">{p.title}</a> : p.title}</p>
+                  <p class="a">{p.authors.map((a, i) => <Fragment>{i > 0 && ', '}{isMember(a) ? <b>{a}</b> : a}</Fragment>)}</p>
+                  <p class="v"><em>{p.venue}</em><span class="nx-k">{p.type}</span>{p.doi && <span class="nx-doi">{p.doi.replace('https://doi.org/', '')}</span>}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+      <p id="pub-none" class="nx-note" hidden>{P.none}</p>
+    </div>
+  </div>
+</Next>
+
+<script>
+  import { ui } from '../../scripts/next/ui';
+  ui();
+  const input = document.getElementById('pub-filter') as HTMLInputElement | null;
+  const count = document.getElementById('pub-count');
+  const none = document.getElementById('pub-none');
+  const all = Array.from(document.querySelectorAll<HTMLElement>('.nx-pub'));
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    all.forEach((el) => { const hit = !q || (el.dataset.text || '').includes(q); el.hidden = !hit; if (hit) shown++; });
+    document.querySelectorAll<HTMLElement>('.nx-year').forEach((s) => { s.hidden = !s.querySelector('.nx-pub:not([hidden])'); });
+    if (count) count.textContent = (count.dataset.template || '{n} of {total}').replace('{n}', String(shown)).replace('{total}', String(all.length));
+    if (none) none.hidden = shown > 0;
+  });
+</script>

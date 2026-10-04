@@ -1,0 +1,52 @@
+---
+// ARIES Next, Contact (English and Thai): address, email, map link and the join-us doors, from pages.json.
+import Next from '../../layouts/Next.astro';
+import home from '../../data/home.json';
+import pages from '../../data/pages.json';
+interface Props { lang: 'en' | 'th' }
+const { lang } = Astro.props;
+const th = lang === 'th';
+const C = pages.contact[lang];
+const { email, maps } = pages.contact;
+const T = home[lang];
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Next title={th ? 'ติดต่อ | ARIES Next' : 'Contact | ARIES Next'} description={C.description} lang={lang} page="contact" v1Href={th ? '/th/contact/' : '/contact/'} enHref="/contact/" thHref="/th/contact/">
+  <div class="nx-page">
+    <div class="nx-wrap">
+      <header class="nx-head">
+        <p class="nx-eyebrow">{C.eyebrow}</p>
+        <h1>{C.title}</h1>
+      </header>
+
+      <section class="nx-sec nx-contact" data-reveal aria-label={C.eyebrow}>
+        <dl class="nx-panel nx-addr">
+          <div><dt class="nx-k">{C.centerL}</dt><dd>{C.center.map((x, i) => <Fragment>{i > 0 && <br />}{i === 0 ? <b>{x}</b> : x}</Fragment>)}</dd></div>
+          <div><dt class="nx-k">{C.addressL}</dt><dd>{C.address.map((x, i) => <Fragment>{i > 0 && <br />}{x}</Fragment>)}</dd></div>
+          <div><dt class="nx-k">{C.emailL}</dt><dd class="nx-email"><a href={`mailto:${email}`} lang="en">{email}</a><button type="button" data-copy={email} data-done={C.copied}>{C.copy}</button></dd></div>
+        </dl>
+        <div class="nx-panel nx-mapbox">
+          <p><b>{C.campus}</b></p>
+          <a class="nx-arrow" href={maps} rel="noopener">{C.mapsLink}</a>
+          <p class="nx-status">{T.status1}</p>
+        </div>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="c-join">
+        <div class="nx-sec-h"><span class="i" lang="en">01</span><h2 id="c-join"><span class="nx-pre">{C.joinEyebrow}</span>{C.joinH}</h2></div>
+        <div class="nx-doors">
+          {C.roles.map(([who, what], i) => <article class="nx-door"><span class="nx-k" lang="en">{pad(i)}</span><h3>{who}</h3><p>{what}</p></article>)}
+        </div>
+        <div class="nx-grid nx-g2 nx-prose2">
+          <p>{C.joinP1}</p>
+          <p>{C.joinP2}</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</Next>
+
+<script>
+  import { ui } from '../../scripts/next/ui';
+  ui();
+</script>

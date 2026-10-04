@@ -1,0 +1,100 @@
+---
+// ARIES Next, Research: the five problems (with credit, approach, findings, limits and papers), the four research
+// areas, the two groups and the flagship, in the same order as v1's research page.
+import Next from '../../layouts/Next.astro';
+import research from '../../data/research.json';
+import problems from '../../data/problems.json';
+import pubs from '../../data/publications.json';
+import pages from '../../data/pages.json';
+const P = pages.research;
+const status = P.status as Record<string, string>;
+const byDoi = new Map(pubs.items.filter((p) => p.doi).map((p) => [p.doi!.toLowerCase(), p]));
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+---
+<Next title="Research | ARIES Next" description={P.description} page="research" v1Href="/research/">
+  <div class="nx-page">
+    <div class="nx-wrap">
+      <header class="nx-head">
+        <p class="nx-eyebrow">{P.eyebrow}</p>
+        <h1>{P.title}</h1>
+        <p class="nx-lead">{P.lead}</p>
+      </header>
+
+      <div class="nx-problemlist">
+        {problems.items.map((p, i) => (
+          <article class="nx-sec nx-prob" id={p.id} data-reveal aria-labelledby={`q-${p.id}`}>
+            <div class="nx-prob-head">
+              <span class="no">{pad(i)}</span>
+              <div>
+                <h2 id={`q-${p.id}`}>{p.question}</h2>
+                {p.credit && <p class="nx-credit">{p.credit}</p>}
+                <p class="nx-soft">{p.context}</p>
+              </div>
+              <span class={p.status === 'active' ? 'nx-chip' : 'nx-chip next'}><i></i>{p.status === 'active' ? P.chip.active : P.chip.next}</span>
+            </div>
+            <div class="nx-prob-body">
+              <div><h3 class="nx-k">{P.approachH}</h3><p>{p.approach}</p></div>
+              <div><h3 class="nx-k">{P.foundH}</h3><p>{p.findings}</p></div>
+              {p.limits && <div><h3 class="nx-k">{P.limitsH}</h3><p class="nx-soft">{p.limits}</p></div>}
+              {p.dois.length > 0 && (
+                <div class="nx-papers">
+                  <h3 class="nx-k">{P.papersH}</h3>
+                  <ul>
+                    {p.dois.map((d) => { const w = byDoi.get(d.toLowerCase()); return w
+                      ? <li><a href={w.doi} rel="noopener">{w.title}</a> <span class="nx-muted">({w.venue}, {w.year})</span></li>
+                      : <li><a href={d} rel="noopener">{d.replace('https://doi.org/', '')}</a></li>; })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <section class="nx-sec" data-reveal aria-labelledby="r-areas">
+        <div class="nx-sec-h"><span class="i">06</span><h2 id="r-areas">{P.areasH}</h2></div>
+        <p class="nx-sec-p">{research.intro}</p>
+        <div class="nx-grid nx-g2">
+          {research.pillars.map((p) => (
+            <article class="nx-panel">
+              <div class="nx-row"><h3>{p.name}</h3><span class={p.status === 'active' ? 'nx-chip' : 'nx-chip next'}><i></i>{status[p.status]}</span></div>
+              <p class="nx-soft">{p.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="nx-sec" data-reveal aria-labelledby="r-groups">
+        <div class="nx-sec-h"><span class="i">07</span><h2 id="r-groups">{P.groupsH}</h2></div>
+        <div class="nx-grid nx-g2">
+          {research.groups.map((g) => (
+            <article class="nx-panel">
+              <h3>{g.name}</h3>
+              <p class="nx-soft">{g.text}</p>
+              <p class="nx-leadline"><span class="nx-muted">{P.leadL}</span> <b>{g.lead}</b></p>
+            </article>
+          ))}
+        </div>
+        <p class="nx-note">{P.groupsNote}</p>
+      </section>
+
+      <section class="nx-sec nx-flag" data-reveal aria-labelledby="r-flag" id="bridge-intelligence">
+        <div class="nx-sec-h"><span class="i">08</span><h2 id="r-flag"><span class="nx-pre">{P.flagEyebrow}</span>{P.flagH}</h2></div>
+        <div class="nx-grid nx-g2 nx-prose2">
+          <p>{research.flagship.p1}</p>
+          <p>{research.flagship.p2}</p>
+        </div>
+        <ol class="nx-pipe">
+          {research.flagship.steps.map((s, i) => <li><p class="nx-k"><span>{pad(i)}</span> {s.k}</p><h3>{s.h}</h3><p class="nx-soft">{s.p}</p></li>)}
+        </ol>
+        <p class="nx-note">{research.flagship.usersNote}</p>
+        <p class="nx-after"><a class="nx-arrow" href="/next/mission/">{P.flagLink}</a></p>
+      </section>
+    </div>
+  </div>
+</Next>
+
+<script>
+  import { ui } from '../../scripts/next/ui';
+  ui();
+</script>

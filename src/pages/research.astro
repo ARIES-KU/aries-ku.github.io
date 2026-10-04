@@ -3,20 +3,22 @@ import Base from '../layouts/Base.astro';
 import research from '../data/research.json';
 import problems from '../data/problems.json';
 import pubs from '../data/publications.json';
+import pages from '../data/pages.json';
 
-const label = { active: 'Active', next: 'Next phase' } as Record<string, string>;
+const P = pages.research;
+const label = P.status as Record<string, string>;
 const byDoi = new Map(pubs.items.filter((p) => p.doi).map((p) => [p.doi!.toLowerCase(), p]));
 const paper = (doi: string) => byDoi.get(doi.toLowerCase());
 const surnames = pubs.bold.map((s) => s.toLowerCase());
 const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s));
 ---
-<Base title="Research" description="The problems ARIES works on, how it approaches them, what the published work found so far, and the four research areas and two groups behind it." page="research">
+<Base title="Research" description={P.description} page="research">
   <section class="page inner">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Research</span>
-        <h1>The problems we work on</h1>
-        <p class="lead muted prose">Each problem below is stated the way an owner agency meets it. Under it: how we approach it, what our published work has found, where the limits are, and the papers to read.</p>
+        <span class="eyebrow">{P.eyebrow}</span>
+        <h1>{P.title}</h1>
+        <p class="lead muted prose">{P.lead}</p>
       </div>
 
       <div class="problems">
@@ -29,15 +31,15 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
                 {p.credit && <p class="credit">{p.credit}</p>}
                 <p class="muted">{p.context}</p>
               </div>
-              <span class={`chip ${p.status === 'active' ? 'ok' : 'next'}`}><i></i>{p.status === 'active' ? 'Published work' : 'In progress'}</span>
+              <span class={`chip ${p.status === 'active' ? 'ok' : 'next'}`}><i></i>{p.status === 'active' ? P.chip.active : P.chip.next}</span>
             </div>
             <div class="problem-body">
-              <div><h3>Approach</h3><p>{p.approach}</p></div>
-              <div><h3>What the work found</h3><p>{p.findings}</p></div>
-              {p.limits && <div><h3>Limits</h3><p class="muted">{p.limits}</p></div>}
+              <div><h3>{P.approachH}</h3><p>{p.approach}</p></div>
+              <div><h3>{P.foundH}</h3><p>{p.findings}</p></div>
+              {p.limits && <div><h3>{P.limitsH}</h3><p class="muted">{p.limits}</p></div>}
               {p.dois.length > 0 && (
                 <div class="papers">
-                  <h3>Papers</h3>
+                  <h3>{P.papersH}</h3>
                   <ul>
                     {p.dois.map((d) => { const w = paper(d); return w
                       ? <li><a href={w.doi} rel="noopener">{w.title}</a> <span class="muted">({w.venue}, {w.year})</span></li>
@@ -51,7 +53,7 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
       </div>
 
       <section class="block">
-        <div class="sec-head"><h2>Four research areas, implemented in phases</h2><p class="muted prose">{research.intro}</p></div>
+        <div class="sec-head"><h2>{P.areasH}</h2><p class="muted prose">{research.intro}</p></div>
         <div class="pillars">
           {research.pillars.map((p) => (
             <article class="pillar">
@@ -63,24 +65,24 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
       </section>
 
       <section class="block">
-        <h2 style="margin-bottom:16px">Research groups</h2>
+        <h2 style="margin-bottom:16px">{P.groupsH}</h2>
         <div class="cols">
           {research.groups.map((g) => (
             <article class="pillar">
               <h3>{g.name}</h3>
               <p class="muted">{g.text}</p>
-              <p style="font-size:.95rem"><span class="muted">Lead:</span> <b>{g.lead}</b></p>
+              <p style="font-size:.95rem"><span class="muted">{P.leadL}</span> <b>{g.lead}</b></p>
             </article>
           ))}
         </div>
-        <p class="muted" style="margin-top:16px;max-width:66ch">Further groups covering multi-hazard assessment and advanced materials are planned as the center expands.</p>
+        <p class="muted" style="margin-top:16px;max-width:66ch">{P.groupsNote}</p>
       </section>
 
       <section class="block flag" id="bridge-intelligence">
         <div class="head">
           <div class="sec-head" style="margin-bottom:0">
-            <span class="eyebrow">Flagship program 2026 to 2028</span>
-            <h2>Bridge Intelligence</h2>
+            <span class="eyebrow">{P.flagEyebrow}</span>
+            <h2>{P.flagH}</h2>
           </div>
         </div>
         <div class="cols" style="margin-top:20px">
@@ -91,7 +93,7 @@ const isMember = (a: string) => surnames.some((s) => a.toLowerCase().includes(s)
           {research.flagship.steps.map((s) => <div class="step"><span class="k">{s.k}</span><h4>{s.h}</h4><p>{s.p}</p></div>)}
         </div>
         <p class="muted" style="margin-top:18px;max-width:66ch">{research.flagship.usersNote}</p>
-        <p style="margin-top:16px"><a href="/mission/">Why this program, and where it leads →</a></p>
+        <p style="margin-top:16px"><a href="/mission/">{P.flagLink}</a></p>
       </section>
 
     </div>

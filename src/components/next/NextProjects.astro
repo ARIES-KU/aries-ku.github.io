@@ -1,0 +1,35 @@
+---
+// ARIES Next, Projects: funded research under the center (projects.json), no grant values (see the note).
+import Next from '../../layouts/Next.astro';
+import projects from '../../data/projects.json';
+import pages from '../../data/pages.json';
+const P = pages.projects;
+const chip: Record<string, string> = { active: 'nx-chip', done: 'nx-chip done', pending: 'nx-chip next' };
+---
+<Next title="Projects | ARIES Next" description={P.description} page="projects" v1Href="/projects/">
+  <div class="nx-page">
+    <div class="nx-wrap">
+      <header class="nx-head">
+        <p class="nx-eyebrow">{P.eyebrow}</p>
+        <h1>{P.title}</h1>
+      </header>
+
+      <div class="nx-projects">
+        {projects.items.map((p, i) => (
+          <article class="nx-sec nx-proj" data-reveal>
+            <div class="nx-proj-meta"><span class="nx-k">{String(i + 1).padStart(2, '0')} · {p.fund}</span><span class={chip[p.status]}><i></i>{p.statusLabel}</span></div>
+            <h2>{p.title}</h2>
+            <p class="nx-soft">{p.text}</p>
+            <p class="nx-tags">{p.tags.map((t) => <span>{t}</span>)}</p>
+          </article>
+        ))}
+      </div>
+      <p class="nx-note">{projects.note}</p>
+    </div>
+  </div>
+</Next>
+
+<script>
+  import { ui } from '../../scripts/next/ui';
+  ui();
+</script>

@@ -2,11 +2,27 @@
 // ARIES Next: a second, futuristic version of the site, built for comparison with v1
 // (brief: 06_Website/prompts/ARIES_Next_prompt_v1.md on the center's Drive).
 // This route is injected by astro.config.mjs only in `npm run dev` and in preview builds; it is not in src/pages.
+// As in v1, Thai exists for Home and Contact only.
 import NextHome from '../components/next/NextHome.astro';
+import NextMission from '../components/next/NextMission.astro';
+import NextResearch from '../components/next/NextResearch.astro';
+import NextPeople from '../components/next/NextPeople.astro';
+import NextProjects from '../components/next/NextProjects.astro';
+import NextPublications from '../components/next/NextPublications.astro';
+import NextContact from '../components/next/NextContact.astro';
 
 export function getStaticPaths() {
-  return [{ params: { slug: undefined } }];
+  return [undefined, 'mission', 'research', 'people', 'projects', 'publications', 'contact', 'th', 'th/contact']
+    .map((slug) => ({ params: { slug } }));
 }
 const { slug } = Astro.params;
 ---
 {slug === undefined && <NextHome lang="en" />}
+{slug === 'th' && <NextHome lang="th" />}
+{slug === 'mission' && <NextMission />}
+{slug === 'research' && <NextResearch />}
+{slug === 'people' && <NextPeople />}
+{slug === 'projects' && <NextProjects />}
+{slug === 'publications' && <NextPublications />}
+{slug === 'contact' && <NextContact lang="en" />}
+{slug === 'th/contact' && <NextContact lang="th" />}

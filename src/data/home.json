@@ -89,7 +89,14 @@
       "osm": "OpenStreetMap contributors",
       "mapNote": "Illustration: the event and every bridge score are invented.",
       "thesisLabel": "Thesis",
-      "copyright": "ARIES Center, Kasetsart University"
+      "copyright": "ARIES Center, Kasetsart University",
+      "caseL": "Case",
+      "problemsMore": "Approach, findings, limits and papers →",
+      "latest": "Latest",
+      "emailL": "Email",
+      "contactLink": "Contact and directions →",
+      "skip": "Skip to content",
+      "menu": "Menu"
     }
   },
   "th": {
@@ -159,6 +166,40 @@
     "directionH": "ทิศทางของเรา",
     "directionP": "ARIES ไม่ได้สร้างแค่เครื่องมือตรวจสอบสะพาน แต่กำลังสร้างองค์ความรู้ที่เชื่อมข้อมูล โครงสร้าง และการตัดสินใจเข้าด้วยกัน: สิ่งที่เราวัดได้จากโครงสร้างจะกลายเป็นสิ่งที่เจ้าของตัดสินใจทำได้อย่างไร",
     "directionLink": "พันธกิจ แผนงาน และการร่วมงานกับเรา →",
-    "researchLink": "ปัญหาที่เราทำงานอยู่ →"
+    "researchLink": "ปัญหาที่เราทำงานอยู่ →",
+    "next": {
+      "_help": "ป้ายของ ARIES Next ภาษาไทย (/next/th/) เท่านั้น: เป็นป้ายหรือคำบรรยายสิ่งที่เห็น ไม่ใช่ข้อเท็จจริงใหม่",
+      "pageTitle": "ARIES Next | ศูนย์ ARIES",
+      "scan": "สแกน",
+      "scroll": "เลื่อนลง",
+      "heroCaption": "ภาพประกอบ: สะพานที่สร้างจากโค้ด ไม่ใช่ข้อมูลสำรวจจริง",
+      "illustration": "ภาพประกอบ",
+      "schematic": "แผนภาพ",
+      "schematicAlt": "แผนภาพ: ดัชนีความน่าเชื่อถือลดลงตามเวลา และถูกปรับเมื่อมีข้อมูลจากการตรวจสอบ",
+      "time": "เวลา",
+      "reliability": "ดัชนีความน่าเชื่อถือ",
+      "inspection": "ข้อมูลจากการตรวจสอบ",
+      "crack": "รอยร้าว",
+      "spalling": "คอนกรีตกะเทาะ",
+      "worstSpot": "จุดที่สูญเสียมากที่สุด",
+      "actFirst": "ตรวจก่อน",
+      "nextInLine": "ลำดับถัดไป",
+      "monitor": "เฝ้าติดตาม",
+      "mapNote": "ภาพประกอบ: เหตุการณ์และคะแนนของสะพานทุกจุดแต่งขึ้น",
+      "mapCredit": "ถนน © {osm} (ODbL) เส้นเขตประเทศ: กรมแผนที่ทหาร ผ่าน OCHA (CC BY‑IGO)",
+      "osm": "OpenStreetMap contributors",
+      "thesisLabel": "แนวคิดหลัก",
+      "copyright": "ศูนย์ ARIES มหาวิทยาลัยเกษตรศาสตร์",
+      "caseL": "กรณีศึกษา",
+      "problemsH": "ปัญหาที่เราทำงานอยู่",
+      "problemsMore": "วิธีการ ผลที่พบ ข้อจำกัด และเปเปอร์ อยู่ในหน้างานวิจัย (ภาษาอังกฤษ) →",
+      "statusPublished": "มีผลงานตีพิมพ์",
+      "statusInProgress": "กำลังดำเนินการ",
+      "latest": "ล่าสุด",
+      "emailL": "อีเมล",
+      "contactLink": "ติดต่อและการเดินทาง →",
+      "skip": "ข้ามไปที่เนื้อหา",
+      "menu": "เมนู"
+    }
   }
 }

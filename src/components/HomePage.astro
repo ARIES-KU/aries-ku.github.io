@@ -4,19 +4,15 @@ import partners from '../data/partners.json';
 import news from '../data/news.json';
 import research from '../data/research.json';
 import stories from '../data/stories.json';
+import pages from '../data/pages.json';
 import { faculty, roster, groups, rosterIsEmpty } from '../lib/people';
 
 interface Props { lang: 'en' | 'th' }
 const { lang } = Astro.props;
 const T = home[lang];
 const th = lang === 'th';
-
-const statusLabel = {
-  active:   { en: 'Active',     th: 'ดำเนินการอยู่' },
-  next:     { en: 'Next phase', th: 'ระยะถัดไป' },
-  flagship: { en: 'Flagship',   th: 'แผนงานหลัก' },
-  ongoing:  { en: 'Ongoing',    th: 'ต่อเนื่อง' },
-};
+const P = pages.home[lang];
+const statusLabel = P.statusLabel as Record<string, string>;
 // six tiles: four pillars with the flagship and field-work tiles slotted in
 const tiles = research.pillars.map((p) => ({ name: th ? p.name_th : p.name, tile: p.tile, status: p.status }));
 for (const x of research.extraTiles) tiles.splice(x.position, 0, { name: th ? x.name_th : x.name, tile: x.tile, status: x.status });
@@ -127,7 +123,7 @@ const latestNews = [...news.items].sort((a, b) => b.date.localeCompare(a.date)).
         {tiles.map((t) => (
           <a class="tile" href="/research/">
             <img src={`/images/${t.tile}`} alt="" loading="lazy" width="800" height="450" />
-            <div class="cap"><b>{t.name}</b><small>{statusLabel[t.status as keyof typeof statusLabel][lang]}</small></div>
+            <div class="cap"><b>{t.name}</b><small>{statusLabel[t.status]}</small></div>
           </a>
         ))}
       </div>
@@ -153,11 +149,11 @@ const latestNews = [...news.items].sort((a, b) => b.date.localeCompare(a.date)).
       <div class="sec-head"><h2>{T.teamH}</h2><p class="muted">{T.teamP}</p></div>
       <div class="team">
         {team.map((m) => (
-          <div class={m.pending ? 'member pending' : 'member'}><div class="av">{m.ini}</div><div><div class="nm">{m.name}</div><div class="rl">{m.role}</div>{m.pending && <span class="pend">{th ? 'ยังไม่เผยแพร่' : 'not public yet'}</span>}</div></div>
+          <div class={m.pending ? 'member pending' : 'member'}><div class="av">{m.ini}</div><div><div class="nm">{m.name}</div><div class="rl">{m.role}</div>{m.pending && <span class="pend">{P.pendingTag}</span>}</div></div>
         ))}
       </div>
-      {rosterIsEmpty && <p class="muted" style="margin-top:14px">{th ? 'รายชื่อนิสิตและผู้ช่วยนักวิจัยจะแสดงเมื่อเจ้าตัวยืนยัน' : 'Researcher and student profiles appear here once each person has confirmed.'}</p>}
-      <p style="margin-top:18px"><a href="/people/">{th ? 'ดูบุคลากรทั้งหมด และการร่วมงานกับเรา →' : 'All people, and how to work with us →'}</a></p>
+      {rosterIsEmpty && <p class="muted" style="margin-top:14px">{P.rosterEmpty}</p>}
+      <p style="margin-top:18px"><a href="/people/">{P.peopleLink}</a></p>
     </section>
 
     <div class="status"><span>{T.status1}</span><span>{T.status2}</span></div>

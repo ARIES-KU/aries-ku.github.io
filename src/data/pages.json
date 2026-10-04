@@ -1,0 +1,137 @@
+{
+  "_help": "ข้อความประจำหน้า (หัวข้อ คำอธิบาย ป้าย ปุ่ม) ที่เว็บหลักและ ARIES Next ใช้ร่วมกัน แก้ที่นี่ที่เดียวได้ทั้งสองเวอร์ชัน | หน้าที่มีภาษาไทย (home, contact) มีคีย์ en และ th | {date}, {n}, {total} คือช่องที่โค้ดเติมให้",
+  "home": {
+    "en": {
+      "statusLabel": { "active": "Active", "next": "Next phase", "flagship": "Flagship", "ongoing": "Ongoing" },
+      "pendingTag": "not public yet",
+      "rosterEmpty": "Researcher and student profiles appear here once each person has confirmed.",
+      "peopleLink": "All people, and how to work with us →"
+    },
+    "th": {
+      "statusLabel": { "active": "ดำเนินการอยู่", "next": "ระยะถัดไป", "flagship": "แผนงานหลัก", "ongoing": "ต่อเนื่อง" },
+      "pendingTag": "ยังไม่เผยแพร่",
+      "rosterEmpty": "รายชื่อนิสิตและผู้ช่วยนักวิจัยจะแสดงเมื่อเจ้าตัวยืนยัน",
+      "peopleLink": "ดูบุคลากรทั้งหมด และการร่วมงานกับเรา →"
+    }
+  },
+  "mission": {
+    "description": "What ARIES is building: the knowledge that connects data, structures and decisions for Thailand's infrastructure, and the road map to get there.",
+    "eyebrow": "Mission and direction",
+    "missionH": "Mission",
+    "roadmapH": "Road map",
+    "mapH": "What each project is for",
+    "mapCols": ["Project", "What it does for the mission", "Layers"],
+    "allProjects": "All projects →",
+    "principlesH": "How we work",
+    "doorsEyebrow": "Work with us",
+    "doorsH": "Four doors into ARIES",
+    "contactBtn": "Contact the Director"
+  },
+  "research": {
+    "description": "The problems ARIES works on, how it approaches them, what the published work found so far, and the four research areas and two groups behind it.",
+    "eyebrow": "Research",
+    "title": "The problems we work on",
+    "lead": "Each problem below is stated the way an owner agency meets it. Under it: how we approach it, what our published work has found, where the limits are, and the papers to read.",
+    "chip": { "active": "Published work", "next": "In progress" },
+    "approachH": "Approach",
+    "foundH": "What the work found",
+    "limitsH": "Limits",
+    "papersH": "Papers",
+    "areasH": "Four research areas, implemented in phases",
+    "status": { "active": "Active", "next": "Next phase" },
+    "groupsH": "Research groups",
+    "leadL": "Lead:",
+    "groupsNote": "Further groups covering multi-hazard assessment and advanced materials are planned as the center expands.",
+    "flagEyebrow": "Flagship program 2026 to 2028",
+    "flagH": "Bridge Intelligence",
+    "flagLink": "Why this program, and where it leads →"
+  },
+  "people": {
+    "description": "Faculty, researchers and students of the ARIES Center, what each works on, and how to join or collaborate.",
+    "eyebrow": "People",
+    "title": "Members",
+    "lead": "Two founding faculty, a senior advisor, and the researchers and students who do the work. If you want to work with us, the doors are at the bottom of this page.",
+    "facultyH": "Faculty",
+    "rosterH": "Researchers and Students",
+    "rosterP": "Each entry names the question the person is working on. English names as each member spells them in their own documents.",
+    "rosterEmpty": "Researcher and student profiles appear here once each person has confirmed.",
+    "pendingTag": "not public yet",
+    "alumniH": "Alumni",
+    "alumniEmpty": "The center's first cohort is still in progress. Graduates will be listed here by year of graduation.",
+    "supportedH": "Supported by",
+    "collabEyebrow": "Open for collaboration",
+    "collabH": "What you would be part of",
+    "contactBtn": "Contact the Director",
+    "missionBtn": "Read the mission",
+    "updatedL": "Last updated:"
+  },
+  "projects": {
+    "description": "Funded research projects of the ARIES Center, Kasetsart University.",
+    "eyebrow": "Projects",
+    "title": "Funded research under the center"
+  },
+  "publications": {
+    "description": "Journal articles, conference papers and book chapters by members of the ARIES Center, Kasetsart University.",
+    "eyebrow": "Publications",
+    "title": "Publications by ARIES members",
+    "introA": "Works are found through",
+    "introLink": "OpenAlex",
+    "introB": "and described from the publisher's CrossRef record. Last refreshed {date}. Preprints and theses are excluded.",
+    "filterL": "Filter",
+    "filterPh": "Title, author, journal or year",
+    "count": "{n} of {total} publications",
+    "none": "No publications match that filter."
+  },
+  "contact": {
+    "email": "supasit.sriv@ku.ac.th",
+    "maps": "https://www.google.com/maps/search/?api=1&query=Faculty+of+Engineering+Kasetsart+University+Building+9",
+    "en": {
+      "description": "Contact the ARIES Center at Room 9806, Building 9, Faculty of Engineering, Kasetsart University, and how to join as a graduate student.",
+      "eyebrow": "Contact",
+      "title": "Find us at Building 9",
+      "centerL": "Center",
+      "center": ["ARIES Center", "Room 9806, 8th floor, Building 9"],
+      "addressL": "Address",
+      "address": ["Department of Civil Engineering, Faculty of Engineering", "Kasetsart University", "50 Ngam Wong Wan Road, Lat Yao, Chatuchak, Bangkok 10900, Thailand"],
+      "emailL": "Email",
+      "copy": "Copy",
+      "copied": "Copied",
+      "campus": "Faculty of Engineering, Kasetsart University, Bang Khen campus",
+      "mapsLink": "Open in Google Maps →",
+      "joinEyebrow": "Join us",
+      "joinH": "If you join ARIES, this is what you would be part of",
+      "roles": [
+        ["Master's and doctoral students", "A thesis topic that is one link in the Bridge Intelligence chain: UAV and LiDAR survey, AI damage detection, digital twins, structural reliability or materials, on a real bridge."],
+        ["Undergraduates (senior project)", "A project built on the center’s real data, such as drone image sets or bridge point clouds."],
+        ["Research assistants", "Full-time work on a funded project, before graduate study or an engineering career."],
+        ["Agencies and companies", "Pilot the chain on part of your network, or shape the data standard that comes out of it."]
+      ],
+      "joinP1": "A background in civil or structural engineering is expected; comfort with programming (Python) is a strong plus, and curiosity matters more than a finished skill set.",
+      "joinP2": "Graduate admission is through the Graduate School, Kasetsart University. Before applying, write to the Director with a short CV and two or three sentences on what you would like to work on. Agencies and companies interested in a pilot or joint research: same address."
+    },
+    "th": {
+      "description": "ติดต่อศูนย์ ARIES ห้อง 9806 อาคาร 9 คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ และการสมัครเป็นนิสิตบัณฑิตศึกษา",
+      "eyebrow": "ติดต่อ",
+      "title": "พบเราได้ที่อาคาร 9",
+      "centerL": "ศูนย์",
+      "center": ["ศูนย์ ARIES", "ห้อง 9806 ชั้น 8 อาคาร 9"],
+      "addressL": "ที่อยู่",
+      "address": ["ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์", "มหาวิทยาลัยเกษตรศาสตร์", "เลขที่ 50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพฯ 10900"],
+      "emailL": "อีเมล",
+      "copy": "คัดลอก",
+      "copied": "คัดลอกแล้ว",
+      "campus": "คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเกษตรศาสตร์ บางเขน",
+      "mapsLink": "เปิดใน Google Maps →",
+      "joinEyebrow": "ร่วมงานกับเรา",
+      "joinH": "ถ้าเข้ามาร่วมงานกับ ARIES คุณจะได้เป็นส่วนหนึ่งของอะไร",
+      "roles": [
+        ["นิสิตปริญญาโท / เอก", "หัวข้อวิทยานิพนธ์ที่เป็นหนึ่งข้อต่อของ Bridge Intelligence: การสำรวจด้วยโดรนและ LiDAR, การตรวจจับความเสียหายด้วย AI, แบบจำลองคู่ขนานดิจิทัล, ความน่าเชื่อถือของโครงสร้าง หรือวัสดุ บนสะพานจริง"],
+        ["นิสิตปริญญาตรี (โครงงาน)", "โครงงานที่ต่อยอดจากข้อมูลจริงของศูนย์ เช่น ชุดข้อมูลภาพจากโดรน หรือ point cloud ของสะพาน"],
+        ["ผู้ช่วยนักวิจัย", "ทำงานเต็มเวลาในโครงการทุนวิจัยของศูนย์ ระหว่างเตรียมตัวเรียนต่อหรือทำงานสายวิศวกรรม"],
+        ["หน่วยงานและบริษัท", "นำร่องระบบบนโครงข่ายของท่าน หรือร่วมกำหนดมาตรฐานข้อมูลที่ได้จากงานนี้"]
+      ],
+      "joinP1": "พื้นฐานวิศวกรรมโยธาหรือโครงสร้างเป็นสิ่งที่คาดหวัง ความคุ้นเคยกับการเขียนโปรแกรม (Python) เป็นข้อได้เปรียบ และความอยากรู้สำคัญกว่าทักษะที่ครบแล้ว",
+      "joinP2": "การรับเข้าศึกษาระดับบัณฑิตศึกษาดำเนินการผ่านบัณฑิตวิทยาลัย มหาวิทยาลัยเกษตรศาสตร์ สนใจสมัคร ส่งอีเมลถึงหัวหน้าศูนย์พร้อม CV สั้นๆ และ 2-3 ประโยคว่าอยากทำเรื่องอะไร หน่วยงานที่สนใจนำร่องหรือร่วมวิจัย ส่งอีเมลได้ที่เดียวกัน"
+    }
+  }
+}
